@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bangkok Trip Itinerary | 8 - 12 ต.ค. 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-light: #dbeafe;
+      --secondary: #f97316;
+      --secondary-light: #ffedd5;
+      --bg-body: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-sub: #64748b;
+      --border-color: #e2e8f0;
+      --badge-red: #ef4444;
+      --badge-green: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Prompt', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Header Banner */
+    .hero {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      color: white;
+      padding: 40px 20px 30px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    .hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+    .hero p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    .flight-pill {
+      display: inline-flex;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 8px 18px;
+      border-radius: 30px;
+      margin-top: 14px;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* Container */
+    .container {
+      max-width: 860px;
+      margin: 25px auto 0;
+      padding: 0 16px;
+    }
+
+    /* Highlight Banner (LOPIA) */
+    .spotlight-card {
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+      border: 1.5px solid #fed7aa;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.08);
+    }
+    .spotlight-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .spotlight-header h3 {
+      color: #c2410c;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+    .badge-spotlight {
+      background-color: #ea580c;
+      color: white;
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+    .spotlight-content {
+      font-size: 0.9rem;
+      color: #7c2d12;
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .spotlight-item {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      border: 1px solid #ffedd5;
+    }
+    .spotlight-item strong {
+      color: #9a3412;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* Day Accordion / Card */
+    .day-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      margin-bottom: 22px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .day-card:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    }
+    .day-header {
+      padding: 16px 22px;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .day-title-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .day-tag {
+      background-color: var(--primary);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+    .day-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .day-date {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+    }
+
+    /* Timeline Section */
+    .timeline {
+      padding: 20px 22px;
+      position: relative;
+    }
+    .timeline-item {
+      display: flex;
+      position: relative;
+      padding-bottom: 24px;
+    }
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 105px;
+      top: 14px;
+      bottom: -10px;
+      width: 2px;
+      background-color: #f1f5f9;
+    }
+    .timeline-item:last-child::before {
+      display: none;
+    }
+
+    .time-slot {
+      width: 95px;
+      flex-shrink: 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      padding-top: 2px;
+    }
+    .bullet {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--primary);
+      position: relative;
+      left: 4.5px;
+      top: 5px;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .event-body {
+      margin-left: 20px;
+      flex-grow: 1;
+    }
+    .event-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+    .event-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .badge-time {
+      background: #f1f5f9;
+      color: #475569;
+      font-size: 0.72rem;
+      padding: 1px 8px;
+      border-radius: 6px;
+      font-weight: 500;
+      border: 1px solid #e2e8f0;
+    }
+    .event-desc {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+    .event-tips {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      background-color: #f8fafc;
+      padding: 6px 12px;
+      border-left: 3px solid var(--primary);
+      border-radius: 0 6px 6px 0;
+      color: #334155;
+    }
+
+    /* Safari Show Table inside card */
+    .show-box {
+      margin-top: 10px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 0.82rem;
+    }
+    .show-title {
+      color: #166534;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .show-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 6px;
+      color: #14532d;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.45rem; }
+      .timeline-item { flex-direction: column; padding-bottom: 20px; }
+      .timeline-item::before { left: 4px; top: 28px; bottom: 0; }
+      .time-slot { width: auto; margin-bottom: 4px; padding-left: 20px; }
+      .bullet { position: absolute; left: -2px; top: 5px; }
+      .event-body { margin-left: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Hero Header -->
+  <header class="hero">
+    <h1>🇹🇭 Bangkok 5-Day Vacation Plan</h1>
+    <p>ทริปเที่ยวกรุงเทพฯ ชิมของอร่อย ช้อปปิ้ง และพักผ่อนสบายๆ</p>
+    <div class="flight-pill">
+      <span>🛫 <strong>ไป:</strong> VZ115 CNX 09:35 → BKK 10:55 (8 ต.ค.)</span>
+      <span>🛬 <strong>กลับ:</strong> VZ2106 BKK 19:00 → CNX 20:25 (12 ต.ค.)</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Special Highlight: LOPIA Japan -->
+    <div class="spotlight-card">
+      <div class="spotlight-header">
+        <span class="badge-spotlight">จุดแวะไฮไลต์พิเศษ</span>
+        <h3>🍱 LOPIA JAPAN @ เซ็นทรัล แจ้งวัฒนะ</h3>
+      </div>
+      <p class="spotlight-content">
+        ซูเปอร์มาร์เก็ตญี่ปุ่นชื่อดังสาขาแรกในไทย ตั้งอยู่ที่ <strong>ชั้น G เซ็นทรัล แจ้งวัฒนะ</strong> (เปิดวันศุกร์ 10:30 – 22:00 น.) มีโซนรับประทานอาหารปรุงสุกใหม่ พร้อมวัตถุดิบนำเข้าพรีเมียม
+      </p>
+      <div class="spotlight-grid">
+        <div class="spotlight-item">
+          <strong>🥩 เนื้อวากิวญี่ปุ่นพรีเมียม</strong>
+          นำเข้าเกรด A4–A5 ลายหินอ่อนสวย ในราคาคุ้มค่า
+        </div>
+        <div class="spotlight-item">
+          <strong>🍣 ซูชิ & ซาชิมิคำโต</strong>
+          ปลาดิบสดใหม่ แซลมอน ฮามาจิ ไข่หอยเม่นหน้าล้น
+        </div>
+        <div class="spotlight-item">
+          <strong>🍱 โซนอาหารพร้อมทาน (Delica)</strong>
+          ข้าวกล่องเบนโตะ ของทอดสไตล์ญี่ปุ่น พิซซ่าอบสด
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-tag">Day 1</span>
+          <span class="day-title">ถึงกรุงเทพฯ & พักผ่อนใจกลางเมือง</span>
+        </div>
+        <span class="day-date">พฤหัสบดีที่ 8 ต.ค. 2026</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time-slot">10:55 - 12:30</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">✈️ ถึงสุวรรณภูมิ (VZ115) & รับสัมภาระ</span>
+            </div>
+            <div class="event-desc">ลงสถานีชั้นใต้ดิน (ชั้น B) นั่ง <strong>Airport Rail Link (ARL)</strong> มุ่งหน้าสถานีมักกะสัน</div>
+            <div class="event-tips">💡 ใช้ ARL ประหยัดเวลากว่าแท็กซี่ ไม่ต้องเจอปัญหารถติดทางด่วนช่วงเที่ยง</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">12:30 - 16:30</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🏨 เช็คอิน Mercure Bangkok Makkasan</span>
+              <span class="badge-time">Check-in 14:00</span>
+            </div>
+            <div class="event-desc">เก็บสัมภาระ พักผ่อนเอาแรง หรือหาอาหารกลางวันทานแถวโรงแรม</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">17:00 - 21:30</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🛍️ centralwOrld ช้อปปิ้ง & มื้อค่ำ</span>
+              <span class="badge-time">เปิด 10:00 - 22:00</span>
+            </div>
+            <div class="event-desc">นั่ง MRT เพชรบุรี ไปต่อ BTS อโศก ลงสถานีชิดลม เดินผ่านทางเชื่อม Skywalk สะดวกสบาย</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-tag">Day 2</span>
+          <span class="day-title">รับรถเช่า – ตะลุยเซ็นทรัล แจ้งวัฒนะ & ดินเนอร์ LOPIA</span>
+        </div>
+        <span class="day-date">ศุกร์ที่ 9 ต.ค. 2026</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time-slot">เช้า - 12:30</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">☕ เช้าสบายๆ & ทานมื้อสาย</span>
+            </div>
+            <div class="event-desc">พักผ่อนสบายๆ ไม่ต้องรีบ แวะทานกาแฟหรือบรันช์ที่ Singha Complex</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">13:00 - 14:15</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🚗 รับรถเช่า & ขับไปแจ้งวัฒนะ</span>
+            </div>
+            <div class="event-desc">รับมอบรถ ตรวจเช็คสภาพรอบคัน ขับขึ้นทางพิเศษศรีรัชมุ่งหน้าลงด่านแจ้งวัฒนะ</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">14:30 - 18:00</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🏢 Central Chaengwattana</span>
+              <span class="badge-time">เปิด 10:00 - 22:00</span>
+            </div>
+            <div class="event-desc">จอดรถในห้าง เดินเล่นช้อปปิ้งตากแอร์ ดูสินค้าแฟชั่นและไลฟ์สไตล์</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">18:00 - 20:30</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🍱 มื้อเย็นที่ LOPIA JAPAN & ร้านอาหารญี่ปุ่น</span>
+              <span class="badge-time">เปิด 10:30 - 22:00</span>
+            </div>
+            <div class="event-desc">แวะทานมื้อค่ำที่โซน LOPIA ชั้น G (ข้าวหน้าเนื้อวากิว, ซูชิ, ดงบุริ) หรือเลือกร้านอาหารญี่ปุ่นชั้น 5-6</div>
+            <div class="event-tips">💡 เดินทางกลับโรงแรมหลัง 20:30 น. ปริมาณรถบนทางด่วนศรีรัชจะเบาบางลงมาก</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-tag">Day 3</span>
+          <span class="day-title">ขาไก่สัมมากร – สนุกเต็มวัน Safari World – ไนท์มาร์เก็ต</span>
+        </div>
+        <span class="day-date">เสาร์ที่ 10 ต.ค. 2026</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time-slot">08:45 - 09:30</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🚗 เดินทางไปสัมมากร (รามคำแหง 112)</span>
+            </div>
+            <div class="event-desc">วิ่งเส้นพระราม 9 ตรงเข้าสู่ถนนรามคำแหง</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">09:30 - 10:15</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🍗 ขาไก่สัมมากร (Mr.Khakai)</span>
+              <span class="badge-time">เปิด 09:30 - 18:30 (อ.-ส.)</span>
+            </div>
+            <div class="event-desc">ซื้อขนมพายกรอบขาไก่เนยสดในตำนาน *(สลับมาวันเสาร์เพราะร้านหยุดวันอาทิตย์-จันทร์)*</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">10:30 - 16:45</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🦒 Safari World (ซาฟารีเวิลด์)</span>
+              <span class="badge-time">เปิด 09:00 - 17:00</span>
+            </div>
+            <div class="event-desc">ขับรถชม <strong>Safari Park (โซนเปิด)</strong> และเดินชม <strong>Marine Park</strong> พร้อมให้อาหารฝูงยีราฟ</div>
+            <div class="show-box">
+              <div class="show-title">⭐ ตารางโชว์แนะนำช่วงบ่าย:</div>
+              <div class="show-list">
+                <span>• 13:45 น. โชว์โลมา (ไฮไลต์)</span>
+                <span>• 14:45 น. สตันท์ Spy War หรือ โชว์นก</span>
+                <span>• 15:45 น. โชว์สิงโตทะเล</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">17:15 - 20:30</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🛍️ Fashion Island หรือ ตลาดเลียบด่วนรามอินทรา</span>
+            </div>
+            <div class="event-desc">แวะทานมื้อเย็นและช้อปปิ้งส่งท้ายวันบนเส้นทางขากลับโรงแรม</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-tag">Day 4</span>
+          <span class="day-title">ตลาดยิ่งเจริญ – พาต้าคิงคอง – ชิลล์ฝั่งธนฯ</span>
+        </div>
+        <span class="day-date">อาทิตย์ที่ 11 ต.ค. 2026</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time-slot">08:00 - 10:00</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🥬 ตลาดยิ่งเจริญ (สะพานใหม่)</span>
+              <span class="badge-time">เปิด 24 ชม. (เช้าคึกคัก)</span>
+            </div>
+            <div class="event-desc">ขึ้นโทลล์เวย์ไปสะพานใหม่ มีอาคารจอดรถ ตะลุยกินมื้อเช้า: ต้มเลือดหมู โจ๊ก ปาท่องโก๋ ขนมไทย</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">10:00 - 11:30</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🌉 ขับรถข้ามไปฝั่งธนบุรี (ปิ่นเกล้า)</span>
+            </div>
+            <div class="event-desc">ใช้ทางพิเศษประจิมรัถยา (ศรีรัช-วงแหวนรอบนอก) ข้ามเจ้าพระยาลงถนนบรมราชชนนี</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">12:00 - 14:00</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🦍 สวนสัตว์พาต้า (Pata Zoo)</span>
+              <span class="badge-time">เปิด 10:00 - 17:00</span>
+            </div>
+            <div class="event-desc">ชม "บัวน้อย" กอริลลาตัวสุดท้ายในไทย และสัตว์แปลกหายากบนดาดฟ้าห้างพาต้า</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">14:30 - 17:30</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">☕ Central Pinklao / The Sense ปิ่นเกล้า</span>
+              <span class="badge-time">เปิด 10:00 - 22:00</span>
+            </div>
+            <div class="event-desc">เดินตากแอร์ หาเครื่องดื่ม นั่งพักคาเฟ่ชิลล์ๆ ช้อปปิ้งสบายๆ</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">18:00 เป็นต้นไป</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🍽️ มื้อค่ำริมเจ้าพระยา & กลับโรงแรม</span>
+            </div>
+            <div class="event-desc">ข้ามสะพานพระราม 8 กลับเข้าฝั่งพระนคร พักผ่อนและเตรียมแพ็กกระเป๋าเดินทาง</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title-group">
+          <span class="day-tag">Day 5</span>
+          <span class="day-title">ช้อปปิ้งเอาท์เล็ต – คืนรถ – เดินทางกลับเชียงใหม่</span>
+        </div>
+        <span class="day-date">จันทร์ที่ 12 ต.ค. 2026</span>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time-slot">09:30 - 11:00</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🧳 ตื่นสายสบายๆ & เช็คเอาท์</span>
+              <span class="badge-time">Check-out 12:00</span>
+            </div>
+            <div class="event-desc">เช็คเอาท์จาก Mercure Bangkok Makkasan ขนสัมภาระขึ้นรถ</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">11:30 - 15:00</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🛍️ Central Village หรือ Mega Bangna</span>
+              <span class="badge-time">เปิด 10:00 - 22:00</span>
+            </div>
+            <div class="event-desc">ทานอาหารกลางวัน ช้อปปิ้งสินค้าแบรนด์เนมลดราคาใกล้สนามบินสุวรรณภูมิ เลี่ยงปัญหารถติด</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">15:30 - 16:00</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">🚗 คืนรถเช่าที่สนามบินสุวรรณภูมิ</span>
+            </div>
+            <div class="event-desc">แวะเติมน้ำมันเต็มถัง ตรวจรับมอบรถคืนล่วงหน้า 3 ชม. ก่อนเวลาบิน</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="time-slot">16:30 - 19:00</div>
+          <div class="bullet"></div>
+          <div class="event-body">
+            <div class="event-header">
+              <span class="event-title">✈️ เดินทางกลับเชียงใหม่ (VZ2106)</span>
+            </div>
+            <div class="event-desc">เช็คอิน โหลดสัมภาระ ผ่านด่านความปลอดภัย รอขึ้นเครื่องที่ Gate (เครื่องออก 19:00 น. ถึงเชียงใหม่ 20:25 น.)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
