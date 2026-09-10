@@ -924,7 +924,7 @@
     .modal-box {
       background: white;
       width: 100%;
-      max-width: 520px;
+      max-width: 540px;
       border-radius: var(--radius-lg);
       padding: 24px;
       box-shadow: var(--shadow-lg);
@@ -936,7 +936,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .modal-header h3 {
       font-size: 1.15rem;
@@ -978,11 +978,20 @@
       border-radius: 10px;
       font-size: 0.88rem;
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
     .form-control:focus {
       border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
     }
+    .form-control.flash-fill {
+      animation: flashSuccess 1.2s ease;
+    }
+    @keyframes flashSuccess {
+      0% { background-color: #ecfdf5; border-color: #10b981; }
+      100% { background-color: white; border-color: var(--border-color); }
+    }
+
     textarea.form-control {
       resize: vertical;
       min-height: 65px;
@@ -994,6 +1003,69 @@
     .form-row .form-group {
       flex: 1;
     }
+
+    /* AI / Auto-fetch Input Group */
+    .input-with-action {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn-magic {
+      background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+      color: white;
+      border: none;
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(168, 85, 247, 0.25);
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .btn-magic:hover {
+      background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
+      transform: translateY(-1px);
+    }
+    .btn-magic:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Quick suggestions pills inside modal */
+    .quick-suggest-box {
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+    .suggest-label {
+      font-size: 0.72rem;
+      color: #64748b;
+      margin-right: 2px;
+    }
+    .suggest-chip {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      font-size: 0.73rem;
+      padding: 2px 8px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .suggest-chip:hover {
+      background: #e0e7ff;
+      border-color: #c7d2fe;
+      color: #4338ca;
+    }
+
     .modal-footer {
       display: flex;
       justify-content: flex-end;
@@ -1081,6 +1153,10 @@
         margin-top: 6px;
       }
       .flights-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .input-with-action {
         flex-direction: column;
         align-items: stretch;
       }
@@ -1246,7 +1322,7 @@
 
   </main>
 
-  <!-- Activity Add / Edit Modal -->
+  <!-- Activity Add / Edit Modal with AI Auto-Fill -->
   <div class="modal-backdrop" id="eventModal">
     <div class="modal-box">
       <div class="modal-header">
@@ -1255,6 +1331,28 @@
       </div>
       <form id="eventForm">
         <input type="hidden" id="formEventId">
+
+        <!-- Place Name Input with Auto-Fill Button -->
+        <div class="form-group">
+          <label for="formTitle">ชื่อกิจกรรม / สถานที่ <span style="font-weight: 400; color: #64748b; font-size: 0.78rem;">(พิมพ์ชื่อแล้วกดค้นหา เพื่อดึงข้อมูลอัตโนมัติ)</span></label>
+          <div class="input-with-action">
+            <input type="text" id="formTitle" class="form-control" placeholder="เช่น บรรทัดทอง, ไอคอนสยาม, เจ๊โอว..." required autocomplete="off">
+            <button type="button" class="btn-magic" id="btnAutoFetch">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> <span>ค้นหาข้อมูลอัตโนมัติ</span>
+            </button>
+          </div>
+          <!-- Quick Suggest Chips -->
+          <div class="quick-suggest-box">
+            <span class="suggest-label">ตัวอย่าง:</span>
+            <button type="button" class="suggest-chip" onclick="quickFill('บรรทัดทอง')">บรรทัดทอง</button>
+            <button type="button" class="suggest-chip" onclick="quickFill('ไอคอนสยาม')">ไอคอนสยาม</button>
+            <button type="button" class="suggest-chip" onclick="quickFill('เจ๊โอว')">เจ๊โอว</button>
+            <button type="button" class="suggest-chip" onclick="quickFill('เยาวราช')">เยาวราช</button>
+            <button type="button" class="suggest-chip" onclick="quickFill('วัดอรุณ')">วัดอรุณ</button>
+            <button type="button" class="suggest-chip" onclick="quickFill('จ๊อดแฟร์')">จ๊อดแฟร์</button>
+            <button type="button" class="suggest-chip" onclick="quickFill('One Bangkok')">One Bangkok</button>
+          </div>
+        </div>
 
         <div class="form-row">
           <div class="form-group">
@@ -1273,11 +1371,6 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="formTitle">ชื่อกิจกรรม / สถานที่</label>
-          <input type="text" id="formTitle" class="form-control" placeholder="เช่น ขาไก่สัมมากร, Safari World" required>
-        </div>
-
         <div class="form-row">
           <div class="form-group">
             <label for="formCategory">หมวดหมู่</label>
@@ -1292,24 +1385,24 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="formOpeningHours">เวลาเปิด-ปิด (ถ้ามี)</label>
+            <label for="formOpeningHours">เวลาเปิด-ปิด</label>
             <input type="text" id="formOpeningHours" class="form-control" placeholder="เช่น เปิด 10:00 - 22:00">
           </div>
         </div>
 
         <div class="form-group">
           <label for="formDesc">รายละเอียด</label>
-          <textarea id="formDesc" class="form-control" placeholder="รายละเอียดของกิจกรรม เส้นทาง หรือจุดที่ต้องแวะ"></textarea>
+          <textarea id="formDesc" class="form-control" placeholder="รายละเอียดของกิจกรรม จุดเช็คอิน หรือไฮไลต์"></textarea>
         </div>
 
         <div class="form-group">
-          <label for="formTip">ทิป / คำแนะนำพิเศษ (ถ้ามี)</label>
-          <input type="text" id="formTip" class="form-control" placeholder="เช่น เลี่ยงทางด่วนช่วงเย็น, โทรจองล่วงหน้า">
+          <label for="formTip">ทิป / คำแนะนำพิเศษ</label>
+          <input type="text" id="formTip" class="form-control" placeholder="เช่น ทิปการจอง การเดินทาง เมนูแนะนำ">
         </div>
 
         <div class="form-group">
           <label for="formMapQuery">ค้นหาใน Google Maps (ชื่อสถานที่)</label>
-          <input type="text" id="formMapQuery" class="form-control" placeholder="เช่น Central Chaengwattana">
+          <input type="text" id="formMapQuery" class="form-control" placeholder="เช่น ICONSIAM Bangkok">
         </div>
 
         <div class="modal-footer">
@@ -1328,6 +1421,268 @@
 
   <!-- App Logic Script -->
   <script>
+    // --- Rich Smart Knowledge Base for Bangkok Locations ---
+    const BANGKOK_SMART_KB = {
+      "บรรทัดทอง": {
+        title: "🍜 ตะลุยกินถนนบรรทัดทอง",
+        category: "food",
+        time: "17:30 - 21:30",
+        hours: "เปิด 16:00 - 24:00 น.",
+        desc: "ถนนสายสตรีทฟู้ดยอดฮิตอันดับ 1 ของกรุงเทพฯ รวมร้านเด็ดระดับตำนานและคาเฟ่รุ่นใหม่ ทั้งข้าวต้ม ก๋วยเตี๋ยว ไอศกรีม และบิงซู",
+        tip: "ร้านดังมักต้องกดคิวผ่านแอป QueQ หรือเดินไปรับบัตรคิวก่อนล่วงหน้า แนะนำจอดรถที่อุทยาน 100 ปี จุฬาฯ",
+        mapQuery: "ถนนบรรทัดทอง จุฬาฯ"
+      },
+      "ไอคอนสยาม": {
+        title: "🛍️ ICONSIAM (ไอคอนสยาม)",
+        category: "shopping",
+        time: "14:00 - 18:30",
+        hours: "เปิด 10:00 - 22:00 น.",
+        desc: "อภิมหาโครงการเมืองริมแม่น้ำเจ้าพระยา ไฮไลต์อยู่ที่ 'สุขสยาม (SOOKSIAM)' ชั้น G รวมของกิน 4 ภาค พร้อมระเบียงชมวิวน้ำพุริมแม่น้ำ",
+        tip: "ช่วง 18:30 น. มีการแสดงระบำสายน้ำ The ICONIC Multimedia Water Features สวยงามมาก",
+        mapQuery: "ICONSIAM Bangkok"
+      },
+      "สยามพารากอน": {
+        title: "🛍️ Siam Paragon (สยามพารากอน)",
+        category: "shopping",
+        time: "13:00 - 17:00",
+        hours: "เปิด 10:00 - 22:00 น.",
+        desc: "ศูนย์การค้าระดับโลกใจกลางสยาม รวมแบรนด์ลักชูรี Gourmet Market ชั้น G และพิพิธภัณฑ์สัตว์น้ำ SEA LIFE Bangkok Ocean World",
+        tip: "เชื่อมต่อ BTS สยาม สะดวกสบาย เดินทะลุไปยัง Siam Center และ Siam Discovery ได้เลย",
+        mapQuery: "Siam Paragon Bangkok"
+      },
+      "เจ๊โอว": {
+        title: "🍲 ร้านเจ๊โอว ข้าวต้มเป็ด",
+        category: "food",
+        time: "20:30 - 23:00",
+        hours: "เปิด 16:30 - 24:00 น.",
+        desc: "ร้านระดับมิชลิน บิบ กูร์มองด์ ขวัญใจสายกิน เมนูมาม่าต้มยำทะเลหม้อไฟ หมูกรอบ และยำแซลมอนแซ่บซี้ด",
+        tip: "คิวยาวมากช่วงหัวค่ำ แนะนำไปรับบัตรคิวก่อนแล้วเดินเล่น หรือจองรอบผ่าน Klook ล่วงหน้า",
+        mapQuery: "ร้านเจ๊โอว ข้าวต้มเป็ด จุฬาฯ"
+      },
+      "เยาวราช": {
+        title: "🏮 ตะลุยราตรีสตรีทฟู้ด เยาวราช",
+        category: "food",
+        time: "18:00 - 22:00",
+        hours: "เปิด 17:30 - 24:00 น. (คึกคัก อ.-อา.)",
+        desc: "ไชน่าทาวน์เมืองไทย แหล่งรวมสตรีทฟู้ดระดับโลก ทั้งก๋วยจั๊บนายเอ็ก ขนมปังปิ้งเยาวราช หูฉลามน้ำแดง และบัวลอยน้ำขิง",
+        tip: "เดินทางด้วย MRT ลงสถานีวัดมังกร สะดวกที่สุด เลี่ยงปัญหารถติดและหาที่จอดยาก",
+        mapQuery: "ถนนเยาวราช ไชน่าทาวน์"
+      },
+      "วัดอรุณ": {
+        title: "🛕 วัดอรุณราชวราราม (วัดแจ้ง)",
+        category: "attraction",
+        time: "08:30 - 11:30",
+        hours: "เปิด 08:00 - 18:00 น.",
+        desc: "ชมความงามของพระปรางค์วัดอรุณริมแม่น้ำเจ้าพระยา ประดับด้วยกระเบื้องเคลือบสีโบราณ จุดเช็คอินถ่ายรูปชุดไทยยอดฮิตของนักท่องเที่ยว",
+        tip: "เช่าชุดไทยถ่ายรูปที่หน้าร้านริมวัด และนั่งเรือข้ามฟากไปฝั่งท่าเตียนได้ในราคา 5 บาท",
+        mapQuery: "วัดอรุณราชวรารามราชวรมหาวิหาร"
+      },
+      "วัดพระแก้ว": {
+        title: "👑 วัดพระแก้ว & พระบรมมหาราชวัง",
+        category: "attraction",
+        time: "08:30 - 11:30",
+        hours: "เปิด 08:30 - 15:30 น.",
+        desc: "พระอารามหลวงคู่บ้านคู่เมือง ประดิษฐานพระแก้วมรกต และสถาปัตยกรรมพระที่นั่งอันวิจิตรงดงาม",
+        tip: "ต้องแต่งกายสุภาพ (เสื้อมีแขน กางเกงหรือกระโปรงยาวคลุมเข่า)",
+        mapQuery: "วัดพระศรีรัตนศาสดาราม พระบรมมหาราชวัง"
+      },
+      "จ๊อดแฟร์": {
+        title: "🎪 ตลาดนัดจ๊อดแฟร์ (JODD FAIRS)",
+        category: "shopping",
+        time: "17:30 - 21:30",
+        hours: "เปิด 16:00 - 24:00 น.",
+        desc: "ไนท์มาร์เก็ตยอดนิยมสไตล์มินิมอล รวมร้านอาหารแฟชั่น เล้งแซ่บภูเขาไฟ กุ้งเต้น และขนมหวานสไตล์สตรีท",
+        tip: "เดินทางสะดวกด้วย MRT พระราม 9 เดินออกทางห้างเซ็นทรัล พระราม 9 สะดวกมาก",
+        mapQuery: "JODD FAIRS พระราม 9"
+      },
+      "จตุจักร": {
+        title: "🛍️ ตลาดนัดจตุจักร (Chatuchak Weekend Market)",
+        category: "shopping",
+        time: "10:00 - 15:00",
+        hours: "เปิด ส.-อา. 09:00 - 18:00 น.",
+        desc: "ตลาดนัดสุดสัปดาห์ที่ใหญ่ที่สุดในโลก กว่า 15,000 ร้านค้า เสื้อผ้า งานคราฟต์ ของแต่งบ้าน และโซนต้นไม้",
+        tip: "แนะนำมาช่วงเช้า 10 โมง แดดยังไม่ร้อน นั่ง MRT สวนจตุจักร หรือ BTS หมอชิต",
+        mapQuery: "ตลาดนัดจตุจักร"
+      },
+      "one bangkok": {
+        title: "🏢 One Bangkok (วัน แบงค็อก)",
+        category: "shopping",
+        time: "16:30 - 20:30",
+        hours: "เปิด 10:00 - 22:00 น.",
+        desc: "เมกะโปรเจกต์ใหม่ระดับโลกใจกลางกรุงเทพฯ สถาปัตยกรรม Art Loop โซนช้อปปิ้งและร้านอาหารชั้นนำระดับสากล",
+        tip: "MRT ลุมพินี มีทางเชื่อมใต้ดินเดินเข้าห้างได้โดยตรง ช่วงเย็นวิวไฟสวยมาก",
+        mapQuery: "One Bangkok Rama 4"
+      },
+      "emsphere": {
+        title: "🛍️ EMSPHERE (เอ็มสเฟียร์)",
+        category: "shopping",
+        time: "17:00 - 21:00",
+        hours: "เปิด 10:00 - 24:00 น. (EM Market ถึงตี 3)",
+        desc: "ศูนย์การค้าใหม่สุดชิคแห่งสุขุมวิท รวมร้านอาหารดังทั่วโลกและสตรีทฟู้ดเปิดดึก พร้อม IKEA City Store",
+        tip: "ร้าน Butterbear อยู่ชั้น G คิวน่ารักขนมอร่อย นั่ง BTS พร้อมพงษ์ สะดวกสบาย",
+        mapQuery: "EMSPHERE Sukhumvit"
+      },
+      "สุกี้ตี๋น้อย": {
+        title: "🍲 สุกี้ตี๋น้อย บุฟเฟต์",
+        category: "food",
+        time: "21:00 - 23:30",
+        hours: "เปิด 12:00 - 05:00 น. (ตีห้า)",
+        desc: "บุฟเฟต์สุกี้ขวัญใจมหาชน วัตถุดิบคุณภาพ คุ้มค่า น้ำจิ้มสูตรเด็ดและชีสไม่อั้น เสิร์ฟพร้อมของทอดสดใหม่",
+        tip: "กดคิวผ่านแอปพลิเคชันล่วงหน้าเพื่อไม่ต้องรอนานหน้าร้าน",
+        mapQuery: "สุกี้ตี๋น้อย"
+      },
+      "มนต์นมสด": {
+        title: "🍞 มนต์นมสด เสาชิงช้า",
+        category: "food",
+        time: "16:00 - 18:00",
+        hours: "เปิด 13:00 - 22:00 น.",
+        desc: "ร้านนมสดและขนมปังปิ้งในตำนานกว่า 50 ปี ขนมปังปิ้งกรอบนอกนุ่มใน ราดสังขยาใบเตย ช็อกโกแลต และนมสดร้อนๆ",
+        tip: "สังขยาใบเตยและสังขยาไข่คือเมนูห้ามพลาด ซื้อใส่กล่องกลับบ้านได้",
+        mapQuery: "มนต์นมสด เสาชิงช้า"
+      },
+      "ทิพย์สมัย": {
+        title: "🦐 ทิพย์สมัย ผัดไทยประตูผี",
+        category: "food",
+        time: "17:00 - 19:30",
+        hours: "เปิด 09:00 - 24:00 น. (หยุดวันอังคาร)",
+        desc: "ผัดไทยไฟเตาถ่านสูตรดั้งเดิม ผัดไทยเส้นจันท์ใส่มันกุ้งห่อไข่ พร้อมน้ำส้มคั้นสดแท้ 100% รสชาติเข้มข้น",
+        tip: "น้ำส้มคั้นสดเป็นเมนูไฮไลต์ที่ทุกโต๊ะต้องสั่ง",
+        mapQuery: "ทิพย์สมัย ผัดไทยประตูผี"
+      },
+      "สะพานเขียว": {
+        title: "🌿 เดินเล่น BMA Skywalk สะพานเขียว",
+        category: "attraction",
+        time: "16:30 - 18:00",
+        hours: "เปิด 06:00 - 21:00 น.",
+        desc: "ทางเดินลอยฟ้ายกระดับเชื่อมต่อระหว่างสวนลุมพินีและสวนเบญจกิติ บรรยากาศเหมือนอยู่โตเกียว วิวสวยร่มรื่น",
+        tip: "พกแว่นกันแดดมาถ่ายรูปช่วง 17:00 น. แสงแดดสีทองอบอุ่นสวยที่สุด",
+        mapQuery: "สะพานเขียว สวนลุมพินี สวนเบญจกิติ"
+      }
+    };
+
+    // Auto-fetch details function (Checks local Smart KB + Falls back to Wikipedia API)
+    async function autoFetchPlaceDetails(query) {
+      if (!query || !query.trim()) {
+        showToast("กรุณาพิมพ์ชื่อสถานที่ก่อนกดค้นหาครับ");
+        return;
+      }
+
+      const q = query.trim().toLowerCase();
+      const btn = document.getElementById('btnAutoFetch');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> กำลังค้นหา...`;
+
+      try {
+        // 1. Check local Smart KB first (Instant & highly accurate)
+        let matchedKey = Object.keys(BANGKOK_SMART_KB).find(k => q.includes(k) || k.includes(q));
+        if (matchedKey) {
+          const data = BANGKOK_SMART_KB[matchedKey];
+          applyAutoFilledData(data);
+          showToast(`✨ ดึงข้อมูลของ "${query}" สำเร็จแล้ว!`);
+          return;
+        }
+
+        // 2. Fallback to Thai Wikipedia REST API
+        const cleanQuery = query.replace(/[^฀-๿a-zA-Z0-9\s]/g, '').trim();
+        const wikiUrl = `https://th.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cleanQuery)}`;
+        const res = await fetch(wikiUrl);
+
+        if (res.ok) {
+          const wiki = await res.json();
+          if (wiki.extract) {
+            // Guess category
+            let cat = 'attraction';
+            const descLower = wiki.extract.toLowerCase();
+            if (descLower.includes('อาหาร') || descLower.includes('ร้าน') || descLower.includes('กิน') || descLower.includes('คาเฟ่')) {
+              cat = 'food';
+            } else if (descLower.includes('ห้าง') || descLower.includes('ตลาด') || descLower.includes('ช้อปปิ้ง') || descLower.includes('ศูนย์การค้า')) {
+              cat = 'shopping';
+            } else if (descLower.includes('โรงแรม') || descLower.includes('รีสอร์ต') || descLower.includes('ที่พัก')) {
+              cat = 'hotel';
+            }
+
+            const data = {
+              title: wiki.title || query,
+              category: cat,
+              time: "13:00 - 16:00",
+              hours: "โปรดตรวจสอบเวลาทำการ",
+              desc: wiki.extract.length > 250 ? wiki.extract.substring(0, 247) + '...' : wiki.extract,
+              tip: `แนะนำตรวจสอบรอบเวลาและเส้นทางก่อนเดินทางจริง`,
+              mapQuery: wiki.title || query
+            };
+
+            applyAutoFilledData(data);
+            showToast(`✨ ดึงข้อมูลจาก Wikipedia สำเร็จ!`);
+            return;
+          }
+        }
+
+        // 3. Fallback: Generic Bangkok Place Template
+        const genericData = {
+          title: query,
+          category: 'attraction',
+          time: '14:00 - 17:00',
+          hours: 'เปิด 10:00 - 22:00',
+          desc: `แวะเช็คอิน พักผ่อน และเพลิดเพลินที่ ${query}`,
+          tip: 'แนะนำวางแผนเวลาเดินทางเพื่อเลี่ยงช่วงชั่วโมงเร่งด่วน',
+          mapQuery: query + ' กรุงเทพ'
+        };
+        applyAutoFilledData(genericData);
+        showToast(`✨ ใส่ข้อมูลโครงสร้างเริ่มต้นให้เรียบร้อยแล้ว`);
+
+      } catch (err) {
+        console.error("Auto fetch error:", err);
+        showToast("ไม่สามารถเชื่อมต่อข้อมูลได้ กรุณาลองใหม่อีกครั้ง");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+    }
+
+    function applyAutoFilledData(data) {
+      if (data.title) {
+        document.getElementById('formTitle').value = data.title;
+        flashElement(document.getElementById('formTitle'));
+      }
+      if (data.category) {
+        document.getElementById('formCategory').value = data.category;
+        flashElement(document.getElementById('formCategory'));
+      }
+      if (data.time && !document.getElementById('formTimeSlot').value) {
+        document.getElementById('formTimeSlot').value = data.time;
+        flashElement(document.getElementById('formTimeSlot'));
+      }
+      if (data.hours) {
+        document.getElementById('formOpeningHours').value = data.hours;
+        flashElement(document.getElementById('formOpeningHours'));
+      }
+      if (data.desc) {
+        document.getElementById('formDesc').value = data.desc;
+        flashElement(document.getElementById('formDesc'));
+      }
+      if (data.tip) {
+        document.getElementById('formTip').value = data.tip;
+        flashElement(document.getElementById('formTip'));
+      }
+      if (data.mapQuery) {
+        document.getElementById('formMapQuery').value = data.mapQuery;
+        flashElement(document.getElementById('formMapQuery'));
+      }
+    }
+
+    function flashElement(el) {
+      if (!el) return;
+      el.classList.remove('flash-fill');
+      void el.offsetWidth; // trigger reflow
+      el.classList.add('flash-fill');
+    }
+
+    function quickFill(name) {
+      document.getElementById('formTitle').value = name;
+      autoFetchPlaceDetails(name);
+    }
+
     // --- Initial Default Data (Rich plan for BKK 8-12 Oct 2026) ---
     const DEFAULT_DAYS = [
       {
@@ -1683,7 +2038,7 @@
     // --- State Management ---
     const STORAGE_KEY = 'bkk_trip_plan_v2';
     let tripData = [];
-    let currentActiveDay = 'all'; // 'all' or dayNumber 1..5
+    let currentActiveDay = 'all';
     let currentCategory = 'all';
     let searchQuery = '';
 
@@ -1769,12 +2124,10 @@
       container.innerHTML = html;
     }
 
-    // Quick add explore item to plan
     function addExploreItemToPlan(exploreId) {
       const item = EXPLORE_ITEMS.find(x => x.id === exploreId);
       if (!item) return;
 
-      // Open Modal pre-filled
       openAddModal(1);
       document.getElementById('formTitle').value = item.title;
       document.getElementById('formCategory').value = item.category || 'attraction';
@@ -2036,13 +2389,14 @@
       document.getElementById('formDaySelect').value = defaultDay;
       document.getElementById('formTimeSlot').value = "";
       document.getElementById('formTitle').value = "";
-      document.getElementById('formCategory').value = "attraction";
+      document.getElementById('formCategory').value = "food";
       document.getElementById('formOpeningHours').value = "";
       document.getElementById('formDesc').value = "";
       document.getElementById('formTip').value = "";
       document.getElementById('formMapQuery').value = "";
 
       eventModal.classList.add('active');
+      setTimeout(() => document.getElementById('formTitle').focus(), 100);
     }
 
     function openEditModal(id) {
@@ -2084,6 +2438,19 @@
       const day = currentActiveDay === 'all' ? 1 : currentActiveDay;
       openAddModal(day);
     };
+
+    // Auto-fetch click & Enter key listeners
+    document.getElementById('btnAutoFetch').onclick = function() {
+      const q = document.getElementById('formTitle').value;
+      autoFetchPlaceDetails(q);
+    };
+
+    document.getElementById('formTitle').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        autoFetchPlaceDetails(this.value);
+      }
+    });
 
     eventForm.onsubmit = function(e) {
       e.preventDefault();
@@ -2148,7 +2515,6 @@
       renderItinerary();
       closeModal();
       
-      // Auto switch back to Itinerary View so user sees their new addition
       switchView('itinerary');
       selectDayTab(dayNum);
     };
