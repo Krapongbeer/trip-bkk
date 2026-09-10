@@ -25,6 +25,7 @@
       --accent-light: #fff7ed;
       
       --purple: #8b5cf6;
+      --purple-gradient: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
       --purple-light: #f5f3ff;
       --purple-border: #ddd6fe;
       
@@ -70,44 +71,81 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-      padding: 12px 20px;
+      padding: 10px 18px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
     }
     .brand {
       display: flex;
       align-items: center;
       gap: 10px;
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #1e3a8a;
+      white-space: nowrap;
     }
     .brand i {
       color: var(--primary);
-      font-size: 1.3rem;
+      font-size: 1.25rem;
+    }
+    .nav-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-link-btn {
+      background: #f1f5f9;
+      border: 1px solid var(--border-color);
+      color: #334155;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    .nav-link-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .nav-link-btn.highlight-event {
+      background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+      color: white;
+      border: none;
+      box-shadow: 0 2px 8px rgba(236, 72, 153, 0.3);
     }
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     .btn-icon {
       background: #f1f5f9;
       color: #334155;
       border: 1px solid var(--border-color);
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       transition: all 0.2s ease;
     }
     .btn-icon:hover {
@@ -119,7 +157,7 @@
     .hero {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
       color: white;
-      padding: 35px 20px 28px;
+      padding: 30px 20px 24px;
       position: relative;
       overflow: hidden;
     }
@@ -155,15 +193,15 @@
       border: 1px solid rgba(255,255,255,0.25);
     }
     .hero h1 {
-      font-size: 1.85rem;
+      font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       letter-spacing: -0.5px;
     }
     .hero p {
-      font-size: 0.92rem;
-      opacity: 0.9;
-      margin-bottom: 18px;
+      font-size: 0.9rem;
+      opacity: 0.92;
+      margin-bottom: 16px;
       font-weight: 300;
     }
 
@@ -172,12 +210,12 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255,255,255,0.22);
       border-radius: 12px;
-      padding: 6px 16px;
-      font-size: 0.85rem;
-      margin-bottom: 16px;
+      padding: 5px 16px;
+      font-size: 0.84rem;
+      margin-bottom: 14px;
     }
     .countdown-number {
       font-weight: 700;
@@ -197,9 +235,9 @@
       gap: 10px;
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(10px);
-      padding: 8px 16px;
+      padding: 7px 15px;
       border-radius: 24px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       border: 1px solid rgba(255, 255, 255, 0.2);
       text-align: left;
     }
@@ -211,25 +249,25 @@
     .container {
       max-width: 860px;
       margin: 0 auto;
-      padding: 20px 16px;
+      padding: 18px 16px;
     }
 
-    /* Navigation Mode Switch (Itinerary vs New Places/Events) */
-    .view-switcher {
-      display: flex;
+    /* Main Menu Navigation Switcher */
+    .main-nav-switcher {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       background: #e2e8f0;
       padding: 4px;
       border-radius: 14px;
       margin-bottom: 20px;
-      gap: 4px;
+      gap: 6px;
     }
     .view-btn {
-      flex: 1;
       border: none;
       background: transparent;
       padding: 10px 14px;
       border-radius: 10px;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       font-weight: 600;
       color: #475569;
       cursor: pointer;
@@ -243,6 +281,9 @@
       background: white;
       color: var(--primary);
       box-shadow: var(--shadow-sm);
+    }
+    .view-btn.event-tab.active {
+      color: #9333ea;
     }
     .view-badge-hot {
       background: #ef4444;
@@ -781,11 +822,11 @@
       display: block;
     }
     .explore-hero-card {
-      background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);
+      background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 60%, #6366f1 100%);
       color: white;
       border-radius: var(--radius-lg);
       padding: 24px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       box-shadow: 0 8px 24px rgba(67, 56, 202, 0.18);
     }
     .explore-hero-card h2 {
@@ -798,10 +839,47 @@
     }
     .explore-hero-card p {
       font-size: 0.88rem;
-      opacity: 0.9;
+      opacity: 0.92;
       font-weight: 300;
+      line-height: 1.5;
     }
 
+    /* Explore Filter Bar */
+    .explore-filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-bottom: 20px;
+      padding-bottom: 2px;
+    }
+    .explore-filters::-webkit-scrollbar {
+      display: none;
+    }
+    .exp-filter-btn {
+      background: white;
+      border: 1px solid var(--border-color);
+      color: #475569;
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 7px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .exp-filter-btn:hover {
+      background: #f8fafc;
+      color: var(--text-main);
+    }
+    .exp-filter-btn.active {
+      background: #4338ca;
+      color: white;
+      border-color: #4338ca;
+      box-shadow: 0 2px 8px rgba(67, 56, 202, 0.25);
+    }
+
+    /* Explore Cards Grid */
     .explore-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -819,33 +897,53 @@
       justify-content: space-between;
       transition: all 0.2s ease;
       position: relative;
-      overflow: hidden;
     }
     .explore-card:hover {
       box-shadow: var(--shadow-md);
       border-color: #cbd5e1;
       transform: translateY(-2px);
     }
+    .explore-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
     .explore-tag {
-      display: inline-block;
       font-size: 0.72rem;
       font-weight: 600;
       padding: 3px 10px;
       border-radius: 12px;
-      margin-bottom: 10px;
-    }
-    .tag-new {
-      background: #dbeafe;
-      color: #1d4ed8;
     }
     .tag-festival {
       background: #fce7f3;
       color: #be185d;
     }
+    .tag-new {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+    .tag-food-hot {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
     .tag-art {
       background: #ede9fe;
       color: #6d28d9;
     }
+
+    .explore-when-badge {
+      background: #fef3c7;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
     .explore-card h3 {
       font-size: 1.05rem;
       font-weight: 700;
@@ -864,16 +962,26 @@
       font-size: 0.84rem;
       color: var(--text-muted);
       line-height: 1.5;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       flex-grow: 1;
+    }
+    .explore-match {
+      background: #f0fdf4;
+      border-left: 3px solid #16a34a;
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      color: #14532d;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 8px;
+      font-weight: 500;
     }
     .explore-tip {
       background: #f8fafc;
-      border-left: 3px solid var(--primary);
+      border: 1px solid #f1f5f9;
       padding: 6px 10px;
       font-size: 0.78rem;
-      color: #334155;
-      border-radius: 0 6px 6px 0;
+      color: #475569;
+      border-radius: 6px;
       margin-bottom: 14px;
     }
     .explore-card-actions {
@@ -885,10 +993,10 @@
       border-top: 1px solid var(--border-color);
     }
     .btn-add-to-plan {
-      background: var(--primary);
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
       color: white;
       border: none;
-      padding: 6px 14px;
+      padding: 7px 14px;
       border-radius: 8px;
       font-size: 0.8rem;
       font-weight: 600;
@@ -899,7 +1007,8 @@
       transition: all 0.2s;
     }
     .btn-add-to-plan:hover {
-      background: #1d4ed8;
+      background: #1e40af;
+      transform: translateY(-1px);
     }
 
     /* Modal Backdrop & Dialog */
@@ -1128,8 +1237,8 @@
 
     /* Responsive adjustments */
     @media (max-width: 640px) {
-      .hero { padding: 25px 16px 20px; }
-      .hero h1 { font-size: 1.5rem; }
+      .hero { padding: 22px 16px 18px; }
+      .hero h1 { font-size: 1.45rem; }
       .event-card {
         flex-direction: column;
         padding-bottom: 20px;
@@ -1160,6 +1269,9 @@
         flex-direction: column;
         align-items: stretch;
       }
+      .main-nav-switcher {
+        grid-template-columns: 1fr;
+      }
     }
 
     @keyframes fadeIn {
@@ -1178,7 +1290,15 @@
   <nav class="top-nav">
     <div class="brand">
       <i class="fa-solid fa-map-location-dot"></i>
-      <span>BKK Trip Planner</span>
+      <span>BKK Planner</span>
+    </div>
+    <div class="nav-nav-links">
+      <button class="nav-link-btn active" id="navBtnPlan" onclick="switchView('itinerary')">
+        <i class="fa-solid fa-calendar-days"></i> แพลน 5 วัน
+      </button>
+      <button class="nav-link-btn highlight-event" id="navBtnEvents" onclick="switchView('explore')">
+        <i class="fa-solid fa-fire"></i> อีเวนต์ช่วง 8-12 ต.ค.
+      </button>
     </div>
     <div class="nav-actions">
       <button class="btn-icon" id="btnExport" title="คัดลอกสรุปทริป">
@@ -1220,14 +1340,14 @@
   <!-- Main App Container -->
   <main class="container">
 
-    <!-- View Switcher (Itinerary vs New Places/Events) -->
-    <div class="view-switcher">
+    <!-- Big Navigation Switcher -->
+    <div class="main-nav-switcher">
       <button class="view-btn active" id="btnViewItinerary" onclick="switchView('itinerary')">
-        <i class="fa-solid fa-calendar-days"></i> แผนการเดินทาง 5 วัน
+        <i class="fa-solid fa-calendar-check"></i> 1. แผนการเดินทางหลัก (Day 1 - 5)
       </button>
-      <button class="view-btn" id="btnViewExplore" onclick="switchView('explore')">
-        <i class="fa-solid fa-compass"></i> ที่เที่ยวเปิดใหม่ & งานอีเวนต์
-        <span class="view-badge-hot">ใหม่!</span>
+      <button class="view-btn event-tab" id="btnViewExplore" onclick="switchView('explore')">
+        <i class="fa-solid fa-wand-magic-sparkles" style="color: #ec4899;"></i> 2. แนะนำอีเวนต์ & ที่เที่ยวช่วง 8-12 ต.ค.
+        <span class="view-badge-hot">แนะนำ</span>
       </button>
     </div>
 
@@ -1311,10 +1431,20 @@
     <!-- VIEW 2: EXPLORE NEW ATTRACTIONS & EVENTS VIEW -->
     <div id="exploreView" class="explore-container">
       <div class="explore-hero-card">
-        <h2>🎪 ที่เที่ยวเปิดใหม่ & งานเทศกาลช่วง 8 - 12 ต.ค. 2026</h2>
-        <p>รวมแลนด์มาร์กใหม่ล่าสุดของกรุงเทพฯ งานเทศกาล และอีเวนต์น่าแวะ สามารถกด <strong>"+ เพิ่มเข้าแพลน"</strong> เพื่อใส่ลงในตารางวันของคุณได้ทันที!</p>
+        <h2>🎪 ไฮไลต์อีเวนต์ & ที่เที่ยวแนะนำเฉพาะช่วง 8 - 12 ต.ค. 2026</h2>
+        <p>คัดสรรเทศกาลประจำปี งานอีเวนต์ใหญ่ และแลนด์มาร์กใหม่ล่าสุดในกรุงเทพฯ ที่ตรงกับช่วงที่คุณมาเที่ยวพอดี พร้อมคำแนะนำว่า <strong>"เหมาะแวะวันไหนของทริป"</strong> สามารถกด <strong>"+ เพิ่มเข้าแพลน"</strong> เพื่อใส่ลงตารางได้ทันที!</p>
       </div>
 
+      <!-- Explore Sub-category Filters -->
+      <div class="explore-filters" id="exploreFilterBar">
+        <button class="exp-filter-btn active" onclick="filterExplore('all', this)">✨ ทั้งหมด (8)</button>
+        <button class="exp-filter-btn" onclick="filterExplore('festival', this)">🎪 งานเทศกาล & อีเวนต์ (3)</button>
+        <button class="exp-filter-btn" onclick="filterExplore('new', this)">🆕 แลนด์มาร์กเปิดใหม่ (2)</button>
+        <button class="exp-filter-btn" onclick="filterExplore('food', this)">🍜 สตรีทฟู้ด & ไนท์ไลฟ์ (2)</button>
+        <button class="exp-filter-btn" onclick="filterExplore('art', this)">🎨 อาร์ต & วิวเมือง (2)</button>
+      </div>
+
+      <!-- Explore Grid Cards -->
       <div class="explore-grid" id="exploreGridContainer">
         <!-- Generated via JS -->
       </div>
@@ -1336,7 +1466,7 @@
         <div class="form-group">
           <label for="formTitle">ชื่อกิจกรรม / สถานที่ <span style="font-weight: 400; color: #64748b; font-size: 0.78rem;">(พิมพ์ชื่อแล้วกดค้นหา เพื่อดึงข้อมูลอัตโนมัติ)</span></label>
           <div class="input-with-action">
-            <input type="text" id="formTitle" class="form-control" placeholder="เช่น บรรทัดทอง, ไอคอนสยาม, เจ๊โอว..." required autocomplete="off">
+            <input type="text" id="formTitle" class="form-control" placeholder="เช่น บรรทัดทอง, ไอคอนสยาม, เจ๊โอว, งานสัปดาห์หนังสือ..." required autocomplete="off">
             <button type="button" class="btn-magic" id="btnAutoFetch">
               <i class="fa-solid fa-wand-magic-sparkles"></i> <span>ค้นหาข้อมูลอัตโนมัติ</span>
             </button>
@@ -1356,7 +1486,7 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="formDaySelect">วันที่</label>
+            <label for="formDaySelect">วันที่ต้องการเพิ่ม</label>
             <select id="formDaySelect" class="form-control" required>
               <option value="1">Day 1 (พฤหัสฯ 8 ต.ค.)</option>
               <option value="2">Day 2 (ศุกร์ 9 ต.ค.)</option>
@@ -1560,7 +1690,7 @@
       }
     };
 
-    // Auto-fetch details function (Checks local Smart KB + Falls back to Wikipedia API)
+    // Auto-fetch details function
     async function autoFetchPlaceDetails(query) {
       if (!query || !query.trim()) {
         showToast("กรุณาพิมพ์ชื่อสถานที่ก่อนกดค้นหาครับ");
@@ -1574,7 +1704,6 @@
       btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> กำลังค้นหา...`;
 
       try {
-        // 1. Check local Smart KB first (Instant & highly accurate)
         let matchedKey = Object.keys(BANGKOK_SMART_KB).find(k => q.includes(k) || k.includes(q));
         if (matchedKey) {
           const data = BANGKOK_SMART_KB[matchedKey];
@@ -1583,7 +1712,6 @@
           return;
         }
 
-        // 2. Fallback to Thai Wikipedia REST API
         const cleanQuery = query.replace(/[^฀-๿a-zA-Z0-9\s]/g, '').trim();
         const wikiUrl = `https://th.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cleanQuery)}`;
         const res = await fetch(wikiUrl);
@@ -1591,7 +1719,6 @@
         if (res.ok) {
           const wiki = await res.json();
           if (wiki.extract) {
-            // Guess category
             let cat = 'attraction';
             const descLower = wiki.extract.toLowerCase();
             if (descLower.includes('อาหาร') || descLower.includes('ร้าน') || descLower.includes('กิน') || descLower.includes('คาเฟ่')) {
@@ -1618,7 +1745,6 @@
           }
         }
 
-        // 3. Fallback: Generic Bangkok Place Template
         const genericData = {
           title: query,
           category: 'attraction',
@@ -1674,7 +1800,7 @@
     function flashElement(el) {
       if (!el) return;
       el.classList.remove('flash-fill');
-      void el.offsetWidth; // trigger reflow
+      void el.offsetWidth;
       el.classList.add('flash-fill');
     }
 
@@ -1947,91 +2073,135 @@
       }
     ];
 
-    // --- Curated New Landmarks & Mid-October Events (8-12 Oct 2026) ---
+    // --- Curated Mid-October Events & Tailored Attractions (8-12 Oct 2026) ---
     const EXPLORE_ITEMS = [
       {
         id: "exp-1",
-        type: "new",
-        tag: "🆕 อภิมหาโครงการใหม่",
-        title: "One Bangkok (วัน แบงค็อก)",
-        location: "ถนนพระราม 4 (MRT ลุมพินี ทางออกตรงเข้าห้าง)",
-        desc: "เมกะโปรเจกต์ระดับโลกใจกลางกรุง รวม Parade & The Storeys ร้านอาหารระดับมิชลินและแบรนด์ดังระดับโลก โซน Art Loop จุดถ่ายรูปสถาปัตยกรรมสุดอลังการ",
-        tip: "แวะช่วงบ่ายแก่ๆ ถึงค่ำ ถ่ายรูปกับแสงไฟและทานดินเนอร์ สวยงามมาก",
-        mapQuery: "One Bangkok Rama 4",
-        category: "shopping",
-        defaultTime: "17:30 - 21:00"
+        type: "festival",
+        filterGroup: "festival",
+        tag: "🎪 งานอีเวนต์ใหญ่ (จัด ต.ค. 2026)",
+        whenText: "จัดตรงช่วง 8-12 ต.ค.",
+        title: "มหกรรมหนังสือระดับชาติ (Book Expo Thailand)",
+        location: "ศูนย์การประชุมแห่งชาติสิริกิติ์ (QSNCC)",
+        matchDay: "💡 แนะนำแวะ: Day 1 หรือ Day 2 (MRT มักกะสัน → ศูนย์ฯสิริกิติ์ แค่ 3 สถานี)",
+        desc: "งานมหกรรมหนังสือที่ใหญ่ที่สุดแห่งปีของไทย มีสำนักพิมพ์ชั้นนำ โซนของสะสม การ์ตูน Art Toys บอร์ดเกม และนิทรรศการพิเศษ แอร์เย็นเดินสบาย",
+        tip: "มีบริการส่งพัสดุหนังสือกลับบ้านได้ ไม่ต้องหิ้วขึ้นเครื่องบินให้หนักกระเป๋า",
+        mapQuery: "ศูนย์การประชุมแห่งชาติสิริกิติ์",
+        category: "event",
+        defaultDay: 1,
+        defaultTime: "14:00 - 17:00"
       },
       {
         id: "exp-2",
-        type: "new",
-        tag: "🆕 ช้อป & สตรีทฟู้ดดึก",
-        title: "EMSPHERE (เอ็มสเฟียร์ สุขุมวิท)",
-        location: "สุขุมวิท (BTS พร้อมพงษ์ Skywalk)",
-        desc: "ศูนย์การค้ายอดฮิตขวัญใจคนรุ่นใหม่ โซน EM MARKET รวมร้านดังและสตรีทฟู้ดเปิดถึงตี 3 พร้อม IKEA Sukhumvit City Store แห่งแรกในไทย",
-        tip: "ร้านเนยกรอบ Butterbear, ร้านราเมน และเบเกอรี่ดังรวมอยู่ที่นี่ครบ",
-        mapQuery: "EMSPHERE Sukhumvit",
-        category: "shopping",
-        defaultTime: "18:00 - 21:30"
+        type: "festival",
+        filterGroup: "festival",
+        tag: "🎪 เทศกาลประจำปี (ช่วง ต.ค.)",
+        whenText: "เทศกาลกินเจเยาวราช",
+        title: "เทศกาลกินเจเยาวราช (Chinatown Food Street)",
+        location: "ถนนเยาวราช (MRT วัดมังกร)",
+        matchDay: "💡 แนะนำแวะ: Day 1 หรือ Day 4 มื้อค่ำ (18:00 น. เป็นต้นไป)",
+        desc: "เทศกาลกินเจสุดยิ่งใหญ่ประจำปี ธงเหลืองสะพรั่งทั่วถนน สตรีทฟู้ดและร้านอาหารเจระดับตำนานกว่า 100 ร้าน ทั้งผัดหมี่ฮ่องกงเจ กวยจั๊บเจ ขนมตุ๊บตั๊บ และบัวลอย",
+        tip: "แนะนำนั่ง MRT วัดมังกร สะดวกที่สุด ไม่ต้องหาที่จอดรถ",
+        mapQuery: "ถนนเยาวราช วัดมังกรกมลาวาส",
+        category: "food",
+        defaultDay: 4,
+        defaultTime: "18:00 - 21:00"
       },
       {
         id: "exp-3",
-        type: "event",
-        tag: "🎪 งานอีเวนต์ใหญ่ (จัด ต.ค.)",
-        title: "มหกรรมหนังสือระดับชาติ (Book Expo Thailand)",
-        location: "ศูนย์การประชุมแห่งชาติสิริกิติ์ (MRT ศูนย์สิริกิติ์)",
-        desc: "งานมหกรรมหนังสือที่ใหญ่ที่สุดแห่งปีของไทย มีสำนักพิมพ์ชั้นนำ โซนของสะสม การ์ตูน Art Toys และนิทรรศการพิเศษ แอร์เย็นเดินสบาย",
-        tip: "นั่ง MRT จากโรงแรม Mercure Makkasan เพียง 3 สถานี สะดวกสบายมาก",
-        mapQuery: "Queen Sirikit National Convention Center",
-        category: "event",
-        defaultTime: "13:00 - 16:30"
+        type: "festival",
+        filterGroup: "festival",
+        tag: "🎃 ธีมแฟนตาซีฮาโลวีน (ช่วง ต.ค.)",
+        whenText: "จัดตลอดเดือน ต.ค.",
+        title: "Chocolate Ville - Spooky Halloween Village",
+        location: "ถนนประเสริฐมนูกิจ (เกษตร-นวมินทร์)",
+        matchDay: "💡 แนะนำแวะ: Day 3 มื้อเย็น (ขากลับจาก Safari World อยู่โซนรามอินทราพอดี!)",
+        desc: "เนรมิตหมู่บ้านสไตล์ยุโรปเป็นดินแดนฮาโลวีนสุดแฟนตาซี มีโชว์พาเหรดพี่หมี ฟักทองยักษ์ ไฟประดับ หมอกควัน และมุมถ่ายรูปเพียบ",
+        tip: "ลงตัวมากถ้าจัดต่อจาก Safari World ใน Day 3 เพราะขับรถเส้นทางเดียวกัน ไม่ต้องวนรถ",
+        mapQuery: "Chocolate Ville ประเสริฐมนูกิจ",
+        category: "attraction",
+        defaultDay: 3,
+        defaultTime: "17:30 - 20:30"
       },
       {
         id: "exp-4",
-        type: "festival",
-        tag: "🎪 เทศกาลประจำปี (ช่วง ต.ค.)",
-        title: "เทศกาลกินเจเยาวราช (Yaowarat Chinatown)",
-        location: "ถนนเยาวราช (MRT วัดมังกร)",
-        desc: "เทศกาลกินเจสุดยิ่งใหญ่ ธงเหลืองสะพรั่งทั่วเยาวราช สตรีทฟู้ดและร้านอาหารเจระดับตำนานกว่า 100 ร้าน ทั้งของคาว ขนมหวาน ก๋วยเตี๋ยว และติ่มซำ",
-        tip: "แนะนำมาช่วง 17:30 น. เป็นต้นไป ร้านเปิดเต็มถนน อร่อยและคึกคักสุดๆ",
-        mapQuery: "ถนนเยาวราช วัดมังกรกมลาวาส",
-        category: "food",
+        type: "new",
+        filterGroup: "new",
+        tag: "🆕 อภิมหาโครงการใหม่ระดับโลก",
+        whenText: "เปิดใหม่ล่าสุด",
+        title: "One Bangkok (วัน แบงค็อก)",
+        location: "ถนนพระราม 4 (MRT ลุมพินี เชื่อมตรงเข้าห้าง)",
+        matchDay: "💡 แนะนำแวะ: Day 1 หรือ Day 2 ช่วงบ่ายแก่ๆ ถึงมื้อค่ำ",
+        desc: "เมกะโปรเจกต์ใหม่ระดับโลกใจกลางกรุง รวม Parade & The Storeys ร้านอาหารระดับมิชลินและแบรนด์ดังระดับโลก โซน Art Loop จุดถ่ายรูปสถาปัตยกรรมสุดอลังการ",
+        tip: "ช่วง 18:30 น. เป็นต้นไป แสงไฟตัวตึกและสวนกลางแจ้งสวยงามมาก",
+        mapQuery: "One Bangkok Rama 4",
+        category: "shopping",
+        defaultDay: 1,
         defaultTime: "17:30 - 21:00"
       },
       {
         id: "exp-5",
-        type: "art",
-        tag: "🎨 ย่านสุดชิคระดับโลก",
-        title: "ถนนทรงวาด & ตลาดน้อย (Song Wat & Talat Noi)",
-        location: "ถนนทรงวาด สัมพันธวงศ์ (MRT วัดมังกร/หัวลำโพง)",
-        desc: "ย่านที่ได้รับการจัดอันดับให้เป็นหนึ่งใน Coolest Neighborhoods ของโลก คาเฟ่ Specialty Coffee แกลเลอรีศิลปะ ตึกเก่าโบราณ และร้านขนมอบโฮมเมด",
-        tip: "เดินถ่ายรูปสตรีทอาร์ต แวะจิบกาแฟโบราณ และซื้อซาลาเปาอบในตำนาน",
-        mapQuery: "ถนนทรงวาด สัมพันธวงศ์",
-        category: "attraction",
-        defaultTime: "13:00 - 16:30"
+        type: "new",
+        filterGroup: "new",
+        tag: "🆕 ศูนย์การค้าสุดฮิต & สตรีทฟู้ดดึก",
+        whenText: "เปิดใหม่สุขุมวิท",
+        title: "EMSPHERE (เอ็มสเฟียร์ สุขุมวิท)",
+        location: "สุขุมวิท (BTS พร้อมพงษ์ Skywalk)",
+        matchDay: "💡 แนะนำแวะ: Day 1 หรือ Day 2 (สำหรับสายกินดึก แฮงเอาต์)",
+        desc: "ศูนย์การค้ายอดฮิตขวัญใจคนรุ่นใหม่ โซน EM MARKET รวมร้านดังและสตรีทฟู้ดเปิดถึงตี 3 พร้อม IKEA Sukhumvit City Store แห่งแรกในไทย และร้าน Butterbear",
+        tip: "หากเลิกทริปเร็วยังไม่อยากนอน แวะมาทานของหวานหรือเครื่องดื่มที่นี่ได้เลย",
+        mapQuery: "EMSPHERE Sukhumvit",
+        category: "shopping",
+        defaultDay: 2,
+        defaultTime: "20:30 - 23:00"
       },
       {
         id: "exp-6",
-        type: "festival",
-        tag: "🎪 ธีมฮาโลวีนถ่ายรูปสวย",
-        title: "Chocolate Ville - Spooky Halloween Village",
-        location: "ถนนประเสริฐมนูกิจ (เกษตร-นวมินทร์ โซนเดียวกับ Safari World)",
-        desc: "เนรมิตหมู่บ้านสไตล์ยุโรปเป็นดินแดนฮาโลวีนสุดแฟนตาซี มีโชว์พาเหรดพี่หมี ฟักทองยักษ์ ไฟประดับ หมอกควัน และมุมถ่ายรูปเพียบ",
-        tip: "เหมาะมากที่จะแวะเย็นวันเสาร์ (Day 3) ขากลับจาก Safari World เพราะอยู่โซนรามอินทราเหมือนกัน",
-        mapQuery: "Chocolate Ville ประเสริฐมนูกิจ",
-        category: "attraction",
-        defaultTime: "17:30 - 20:30"
+        type: "food",
+        filterGroup: "food",
+        tag: "🍜 ถนนสายของกินอันดับ 1",
+        whenText: "คึกคักทุกค่ำคืน",
+        title: "ถนนบรรทัดทอง (Ban That Thong Food Street)",
+        location: "ถนนบรรทัดทอง แขวงวังใหม่ (ใกล้จุฬาฯ)",
+        matchDay: "💡 แนะนำแวะ: Day 1 หรือ Day 4 มื้อค่ำ-ดึก",
+        desc: "ย่านสตรีทฟู้ดและของหวานที่มาแรงที่สุด รวมร้านเด็ดมิชลิน ร้านเจ๊โอว หนึ่งนมนัว ถ้วยถังไอติม และก๋วยเตี๋ยวเป็ดชื่อดัง",
+        tip: "แนะนำดาวน์โหลดแอป QueQ ไปกดจองคิวร้านดังล่วงหน้าก่อนไปถึง",
+        mapQuery: "ถนนบรรทัดทอง จุฬาฯ",
+        category: "food",
+        defaultDay: 1,
+        defaultTime: "18:30 - 21:30"
       },
       {
         id: "exp-7",
         type: "art",
-        tag: "🌿 ทางเดินลอยฟ้าใจกลางเมือง",
+        filterGroup: "art",
+        tag: "🎨 ย่านสุดชิคระดับโลก (Coolest Neighborhood)",
+        whenText: "เหมาะกับวันเสาร์-อาทิตย์",
+        title: "ถนนทรงวาด & ตลาดน้อย (Song Wat Heritage)",
+        location: "ถนนทรงวาด สัมพันธวงศ์ (MRT วัดมังกร/หัวลำโพง)",
+        matchDay: "💡 แนะนำแวะ: Day 4 ช่วงบ่าย (13:00 - 16:30 น.)",
+        desc: "ย่านคูลระดับโลก คาเฟ่ Specialty Coffee แกลเลอรีศิลปะ ตึกแถวโบราณริมแม่น้ำเจ้าพระยา และโรงเกือกโบราณ",
+        tip: "เดินถ่ายรูปสตรีทอาร์ต แวะจิบกาแฟโบราณ และซื้อซาลาเปาอบในตำนาน",
+        mapQuery: "ถนนทรงวาด สัมพันธวงศ์",
+        category: "attraction",
+        defaultDay: 4,
+        defaultTime: "13:00 - 16:30"
+      },
+      {
+        id: "exp-8",
+        type: "art",
+        filterGroup: "art",
+        tag: "🌿 จุดชมพระอาทิตย์ตก & เดินลอยฟ้า",
+        whenText: "เปิดทุกวัน 06:00 - 21:00 น.",
         title: "BMA Skywalk สะพานเขียว (ลุมพินี - เบญจกิติ)",
-        location: "สะพานเขียว เชื่อมระหว่างสวนลุมพินีและสวนเบญจกิติ",
-        desc: "ทางเดินยกระดับลอยฟ้าท่ามกลางยอดไม้และตึกระฟ้าของกรุงเทพฯ จุดถ่ายรูปพระอาทิตย์ตกดินและออกกำลังกายยอดฮิตบรรยากาศเหมือนอยู่โตเกียว",
-        tip: "แนะนำมาช่วง 16:30 - 18:00 น. แสงแดดอุ่นๆ ถ่ายรูปสวยที่สุด",
+        location: "สะพานเขียว ทางเดินยกระดับเชื่อม 2 สวนใหญ่",
+        matchDay: "💡 แนะนำแวะ: Day 2 ช่วงเย็น (16:30 - 18:00 น.)",
+        desc: "ทางเดินยกระดับลอยฟ้าท่ามกลางยอดไม้และตึกระฟ้าของกรุงเทพฯ จุดถ่ายรูปพระอาทิตย์ตกดินยอดฮิตบรรยากาศเหมือนอยู่ญี่ปุ่น",
+        tip: "แสงแดดช่วง 17:00 น. สวยที่สุด วิวตึกและสะพานเขียวถ่ายรูปขึ้นกล้องมาก",
         mapQuery: "สะพานเขียว สวนลุมพินี สวนเบญจกิติ",
         category: "attraction",
-        defaultTime: "16:30 - 18:00"
+        defaultDay: 2,
+        defaultTime: "16:45 - 18:00"
       }
     ];
 
@@ -2041,6 +2211,7 @@
     let currentActiveDay = 'all';
     let currentCategory = 'all';
     let searchQuery = '';
+    let currentExploreFilter = 'all';
 
     function initData() {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -2062,26 +2233,44 @@
       updateProgress();
     }
 
-    // --- View Switching (Itinerary vs Explore) ---
+    // --- View Switching ---
     function switchView(viewName) {
       const btnItinerary = document.getElementById('btnViewItinerary');
       const btnExplore = document.getElementById('btnViewExplore');
+      const navBtnPlan = document.getElementById('navBtnPlan');
+      const navBtnEvents = document.getElementById('navBtnEvents');
       const itineraryView = document.getElementById('itineraryView');
       const exploreView = document.getElementById('exploreView');
 
       if (viewName === 'explore') {
         btnItinerary.classList.remove('active');
         btnExplore.classList.add('active');
+        navBtnPlan.classList.remove('active');
+        navBtnEvents.classList.add('active');
         itineraryView.style.display = 'none';
         exploreView.classList.add('active');
         renderExplore();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
         btnExplore.classList.remove('active');
         btnItinerary.classList.add('active');
+        navBtnEvents.classList.remove('active');
+        navBtnPlan.classList.add('active');
         exploreView.classList.remove('active');
         itineraryView.style.display = 'block';
         renderItinerary();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+    }
+
+    // --- Filter Explore Items ---
+    function filterExplore(group, btnEl) {
+      currentExploreFilter = group;
+      if (btnEl) {
+        document.querySelectorAll('.exp-filter-btn').forEach(b => b.classList.remove('active'));
+        btnEl.classList.add('active');
+      }
+      renderExplore();
     }
 
     // --- Render Explore Cards ---
@@ -2089,32 +2278,42 @@
       const container = document.getElementById('exploreGridContainer');
       if (!container) return;
 
+      const filtered = EXPLORE_ITEMS.filter(item => {
+        if (currentExploreFilter === 'all') return true;
+        return item.filterGroup === currentExploreFilter;
+      });
+
       let html = '';
-      EXPLORE_ITEMS.forEach(item => {
+      filtered.forEach(item => {
         const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}`;
         let tagClass = 'tag-new';
         if (item.type === 'festival') tagClass = 'tag-festival';
+        if (item.type === 'food') tagClass = 'tag-food-hot';
         if (item.type === 'art') tagClass = 'tag-art';
 
         html += `
           <div class="explore-card">
             <div>
-              <span class="explore-tag ${tagClass}">${item.tag}</span>
+              <div class="explore-card-top">
+                <span class="explore-tag ${tagClass}">${item.tag}</span>
+                <span class="explore-when-badge"><i class="fa-regular fa-clock"></i> ${item.whenText}</span>
+              </div>
               <h3>${item.title}</h3>
               <div class="explore-location">
                 <i class="fa-solid fa-location-dot" style="color: #ef4444;"></i>
                 <span>${item.location}</span>
               </div>
+              <div class="explore-match">${item.matchDay}</div>
               <div class="explore-desc">${item.desc}</div>
-              <div class="explore-tip">💡 ${item.tip}</div>
+              <div class="explore-tip">💡 <strong>คำแนะนำ:</strong> ${item.tip}</div>
             </div>
 
             <div class="explore-card-actions">
               <a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="btn-action map-link" title="เปิดดูใน Google Maps">
-                <i class="fa-solid fa-location-arrow"></i> แผนที่
+                <i class="fa-solid fa-location-arrow"></i> Google Maps
               </a>
               <button class="btn-add-to-plan" onclick="addExploreItemToPlan('${item.id}')">
-                <i class="fa-solid fa-calendar-plus"></i> + เพิ่มเข้าแพลน
+                <i class="fa-solid fa-calendar-plus"></i> + เพิ่มเข้า Day ${item.defaultDay || 1}
               </button>
             </div>
           </div>
@@ -2128,7 +2327,7 @@
       const item = EXPLORE_ITEMS.find(x => x.id === exploreId);
       if (!item) return;
 
-      openAddModal(1);
+      openAddModal(item.defaultDay || 1);
       document.getElementById('formTitle').value = item.title;
       document.getElementById('formCategory').value = item.category || 'attraction';
       document.getElementById('formTimeSlot').value = item.defaultTime || '14:00 - 17:00';
@@ -2136,7 +2335,7 @@
       document.getElementById('formTip').value = item.tip;
       document.getElementById('formMapQuery').value = item.mapQuery;
 
-      showToast(`เลือกวันและช่วงเวลาที่ต้องการเพิ่ม '${item.title}' ได้เลยครับ`);
+      showToast(`เลือกวันและกดบันทึกเพื่อเพิ่ม '${item.title}' ลงแพลนได้เลยครับ ✨`);
     }
 
     // --- Countdown Timer ---
@@ -2389,7 +2588,7 @@
       document.getElementById('formDaySelect').value = defaultDay;
       document.getElementById('formTimeSlot').value = "";
       document.getElementById('formTitle').value = "";
-      document.getElementById('formCategory').value = "food";
+      document.getElementById('formCategory').value = "attraction";
       document.getElementById('formOpeningHours').value = "";
       document.getElementById('formDesc').value = "";
       document.getElementById('formTip').value = "";
@@ -2439,7 +2638,6 @@
       openAddModal(day);
     };
 
-    // Auto-fetch click & Enter key listeners
     document.getElementById('btnAutoFetch').onclick = function() {
       const q = document.getElementById('formTitle').value;
       autoFetchPlaceDetails(q);
@@ -2506,7 +2704,7 @@
         const targetDay = tripData.find(d => d.dayNumber === dayNum);
         if (targetDay) {
           targetDay.events.push(newEvt);
-          showToast("เพิ่มกิจกรรมลงในแพลนเรียบร้อยแล้ว 🎯");
+          showToast(`เพิ่ม '${title}' ลงใน Day ${dayNum} เรียบร้อยแล้ว 🎯`);
         }
       }
 
