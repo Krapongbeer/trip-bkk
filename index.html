@@ -2,635 +2,1857 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bangkok Trip Itinerary | 8 - 12 ต.ค. 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Bangkok Trip Planner 2026 | 8 - 12 ต.ค. 2026</title>
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 for vector icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <style>
     :root {
       --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --primary-light: #dbeafe;
-      --secondary: #f97316;
-      --secondary-light: #ffedd5;
+      --primary-gradient: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      
+      --accent: #f97316;
+      --accent-gradient: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
+      --accent-light: #fff7ed;
+      
+      --success: #10b981;
+      --success-light: #ecfdf5;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      
       --bg-body: #f8fafc;
       --card-bg: #ffffff;
-      --text-main: #1e293b;
-      --text-sub: #64748b;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-soft: #94a3b8;
       --border-color: #e2e8f0;
-      --badge-red: #ef4444;
-      --badge-green: #10b981;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 16px -2px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 28px -4px rgba(0,0,0,0.12);
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Prompt', sans-serif;
+      font-family: 'Prompt', 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       background-color: var(--bg-body);
       color: var(--text-main);
       line-height: 1.6;
-      padding-bottom: 60px;
+      padding-bottom: 90px;
+      min-height: 100vh;
     }
 
-    /* Header Banner */
+    /* Top Navbar */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #1e3a8a;
+    }
+    .brand i {
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-icon {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid var(--border-color);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+    .btn-icon:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    /* Hero Header */
     .hero {
-      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #2563eb 100%);
       color: white;
-      padding: 40px 20px 30px;
+      padding: 35px 20px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -40px;
+      bottom: -40px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-content {
+      max-width: 860px;
+      margin: 0 auto;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 1;
+    }
+    .trip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,0.25);
     }
     .hero h1 {
       font-size: 1.85rem;
       font-weight: 700;
+      margin-bottom: 8px;
       letter-spacing: -0.5px;
-      margin-bottom: 6px;
     }
     .hero p {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       opacity: 0.9;
+      margin-bottom: 18px;
+      font-weight: 300;
+    }
+
+    /* Countdown Bar */
+    .countdown-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+    .countdown-number {
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    /* Flight Cards in Hero */
+    .flights-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
     .flight-pill {
       display: inline-flex;
-      gap: 12px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-      padding: 8px 18px;
-      border-radius: 30px;
-      margin-top: 14px;
-      font-size: 0.85rem;
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-size: 0.82rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: left;
+    }
+    .flight-pill strong {
+      color: #93c5fd;
     }
 
-    /* Container */
+    /* Main Container */
     .container {
       max-width: 860px;
-      margin: 25px auto 0;
-      padding: 0 16px;
+      margin: 0 auto;
+      padding: 20px 16px;
     }
 
-    /* Highlight Banner (LOPIA) */
-    .spotlight-card {
-      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-      border: 1.5px solid #fed7aa;
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 25px;
+    /* Progress & Quick Stats Card */
+    .stats-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .stats-left {
+      flex: 1;
+      min-width: 240px;
+    }
+    .stats-title {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .progress-track {
+      height: 8px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    .stats-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .btn-add-quick {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-add-quick:hover {
+      background: #1d4ed8;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    /* Day Selector Carousel / Tabs */
+    .tabs-wrapper {
+      margin-bottom: 18px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .tabs-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+    .day-tabs {
+      display: flex;
+      gap: 8px;
+      min-width: max-content;
+    }
+    .day-tab {
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .day-tab:hover {
+      border-color: #cbd5e1;
+      background: #f8fafc;
+    }
+    .day-tab.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    }
+    .day-tab .tab-count {
+      background: rgba(0,0,0,0.08);
+      padding: 1px 7px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+    }
+    .day-tab.active .tab-count {
+      background: rgba(255,255,255,0.25);
+      color: white;
+    }
+
+    /* Search & Filter Bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
-      box-shadow: 0 4px 12px rgba(249, 115, 22, 0.08);
+      margin-bottom: 22px;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      position: relative;
+    }
+    .search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: white;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-box input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    .category-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .category-pills::-webkit-scrollbar {
+      display: none;
+    }
+    .cat-btn {
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: #64748b;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .cat-btn:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+    .cat-btn.active {
+      background: #1e293b;
+      color: white;
+      border-color: #1e293b;
+    }
+
+    /* Spotlight Card (LOPIA) */
+    .spotlight-card {
+      background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+      border: 1.5px solid #fdba74;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.12);
+      position: relative;
+      overflow: hidden;
     }
     .spotlight-header {
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
-    .spotlight-header h3 {
-      color: #c2410c;
-      font-size: 1.15rem;
-      font-weight: 700;
-    }
-    .badge-spotlight {
-      background-color: #ea580c;
+    .spotlight-badge {
+      background: #ea580c;
       color: white;
       font-size: 0.75rem;
-      padding: 2px 10px;
-      border-radius: 12px;
-      font-weight: 500;
+      font-weight: 600;
+      padding: 3px 12px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
-    .spotlight-content {
-      font-size: 0.9rem;
+    .spotlight-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #9a3412;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .spotlight-desc {
+      font-size: 0.88rem;
       color: #7c2d12;
+      margin-bottom: 12px;
     }
     .spotlight-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 10px;
-      margin-top: 6px;
     }
     .spotlight-item {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.9);
       padding: 10px 14px;
-      border-radius: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(254, 215, 170, 0.8);
       font-size: 0.82rem;
-      border: 1px solid #ffedd5;
     }
     .spotlight-item strong {
-      color: #9a3412;
+      color: #c2410c;
       display: block;
       margin-bottom: 2px;
     }
 
-    /* Day Accordion / Card */
-    .day-card {
-      background: var(--card-bg);
-      border-radius: 18px;
-      margin-bottom: 22px;
+    /* Day Card Section */
+    .day-section {
+      background: white;
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border-color);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
       overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.25s ease;
     }
-    .day-card:hover {
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    .day-section:hover {
+      box-shadow: var(--shadow-md);
     }
     .day-header {
-      padding: 16px 22px;
       background: #ffffff;
+      padding: 16px 20px;
       border-bottom: 1px solid var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
     }
-    .day-title-group {
+    .day-title-wrap {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    .day-tag {
-      background-color: var(--primary);
+    .day-pill {
+      background: var(--primary);
       color: white;
+      font-weight: 700;
       font-size: 0.85rem;
-      font-weight: 600;
       padding: 4px 12px;
-      border-radius: 8px;
+      border-radius: 10px;
+      letter-spacing: 0.3px;
     }
-    .day-title {
+    .day-name {
       font-size: 1.05rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-main);
     }
     .day-date {
-      font-size: 0.85rem;
-      color: var(--text-sub);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+    .day-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-add-event {
+      background: #f1f5f9;
+      color: var(--primary);
+      border: 1px solid var(--border-color);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+    .btn-add-event:hover {
+      background: var(--primary-light);
+      border-color: var(--primary-border);
     }
 
-    /* Timeline Section */
+    /* Timeline Container */
     .timeline {
-      padding: 20px 22px;
+      padding: 20px 20px 10px;
       position: relative;
     }
-    .timeline-item {
+
+    /* Event Item */
+    .event-card {
       display: flex;
       position: relative;
       padding-bottom: 24px;
+      transition: opacity 0.3s;
     }
-    .timeline-item:last-child {
-      padding-bottom: 0;
+    .event-card:last-child {
+      padding-bottom: 12px;
     }
-    .timeline-item::before {
+    .event-card::before {
       content: '';
       position: absolute;
-      left: 105px;
-      top: 14px;
-      bottom: -10px;
+      left: 110px;
+      top: 24px;
+      bottom: -6px;
       width: 2px;
-      background-color: #f1f5f9;
+      background: #f1f5f9;
     }
-    .timeline-item:last-child::before {
+    .event-card:last-child::before {
       display: none;
     }
 
-    .time-slot {
-      width: 95px;
+    .event-card.is-done {
+      opacity: 0.55;
+    }
+    .event-card.is-done .event-title {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    .time-badge {
+      width: 100px;
       flex-shrink: 0;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
       color: var(--primary);
       padding-top: 2px;
     }
-    .bullet {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: white;
-      border: 3px solid var(--primary);
+
+    .check-bullet {
       position: relative;
-      left: 4.5px;
-      top: 5px;
+      left: 5px;
+      top: 4px;
       flex-shrink: 0;
-      z-index: 1;
+      z-index: 2;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: transparent;
+      font-size: 0.7rem;
     }
-    .event-body {
+    .check-bullet:hover {
+      border-color: var(--success);
+    }
+    .event-card.is-done .check-bullet {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    .event-content {
       margin-left: 20px;
       flex-grow: 1;
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      transition: all 0.2s ease;
     }
-    .event-header {
+    .event-content:hover {
+      background: white;
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-sm);
+    }
+    .event-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 6px;
+      gap: 8px;
+    }
+    .event-title-row {
       display: flex;
       align-items: center;
       gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 4px;
     }
     .event-title {
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       font-weight: 600;
       color: var(--text-main);
     }
-    .badge-time {
-      background: #f1f5f9;
-      color: #475569;
-      font-size: 0.72rem;
-      padding: 1px 8px;
-      border-radius: 6px;
+    .category-tag {
+      font-size: 0.7rem;
       font-weight: 500;
-      border: 1px solid #e2e8f0;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: #e2e8f0;
+      color: #475569;
     }
+    .tag-food { background: #fee2e2; color: #b91c1c; }
+    .tag-shopping { background: #fef3c7; color: #b45309; }
+    .tag-attraction { background: #dcfce7; color: #15803d; }
+    .tag-travel { background: #e0f2fe; color: #0369a1; }
+    .tag-hotel { background: #ede9fe; color: #6d28d9; }
+
     .event-desc {
       font-size: 0.85rem;
-      color: var(--text-sub);
+      color: var(--text-muted);
       line-height: 1.5;
+      margin-bottom: 8px;
     }
-    .event-tips {
-      margin-top: 6px;
-      font-size: 0.8rem;
-      background-color: #f8fafc;
+    .event-tip {
+      background: #ffffff;
+      border-left: 3px solid var(--accent);
       padding: 6px 12px;
-      border-left: 3px solid var(--primary);
       border-radius: 0 6px 6px 0;
-      color: #334155;
+      font-size: 0.8rem;
+      color: #475569;
+      margin-bottom: 10px;
+      border-top: 1px solid #f1f5f9;
+      border-right: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
     }
 
-    /* Safari Show Table inside card */
+    /* Safari Show Box Inside Event */
     .show-box {
-      margin-top: 10px;
+      margin-top: 8px;
+      margin-bottom: 10px;
       background: #f0fdf4;
       border: 1px solid #bbf7d0;
-      border-radius: 10px;
-      padding: 12px;
-      font-size: 0.82rem;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.8rem;
     }
     .show-title {
       color: #166534;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .show-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 6px;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 4px;
       color: #14532d;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.45rem; }
-      .timeline-item { flex-direction: column; padding-bottom: 20px; }
-      .timeline-item::before { left: 4px; top: 28px; bottom: 0; }
-      .time-slot { width: auto; margin-bottom: 4px; padding-left: 20px; }
-      .bullet { position: absolute; left: -2px; top: 5px; }
-      .event-body { margin-left: 20px; }
+    /* Event Actions Bar (Maps, Edit, Delete) */
+    .event-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 4px;
+      border-top: 1px dashed #e2e8f0;
+      margin-top: 6px;
+    }
+    .btn-action {
+      background: transparent;
+      border: none;
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: #64748b;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 6px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-action:hover {
+      background: #e2e8f0;
+      color: var(--text-main);
+    }
+    .btn-action.map-link {
+      color: #0284c7;
+    }
+    .btn-action.map-link:hover {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+    .btn-action.edit-btn:hover {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+    .btn-action.delete-btn:hover {
+      color: var(--danger);
+      background: #fee2e2;
+    }
+
+    /* Modal Backdrop & Dialog */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      animation: fadeIn 0.2s ease;
+    }
+    .modal-backdrop.active {
+      display: flex;
+    }
+    .modal-box {
+      background: white;
+      width: 100%;
+      max-width: 520px;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp 0.25s ease;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    .modal-header h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .btn-close-modal {
+      background: transparent;
+      border: none;
+      color: var(--text-soft);
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-close-modal:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+    }
+    textarea.form-control {
+      resize: vertical;
+      min-height: 65px;
+    }
+    .form-row {
+      display: flex;
+      gap: 12px;
+    }
+    .form-row .form-group {
+      flex: 1;
+    }
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-color);
+    }
+    .btn-secondary {
+      background: #f1f5f9;
+      border: 1px solid var(--border-color);
+      color: #475569;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow-lg);
+      z-index: 200;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+      .hero { padding: 25px 16px 20px; }
+      .hero h1 { font-size: 1.5rem; }
+      .event-card {
+        flex-direction: column;
+        padding-bottom: 20px;
+      }
+      .event-card::before {
+        left: 9px;
+        top: 30px;
+      }
+      .time-badge {
+        width: auto;
+        padding-left: 28px;
+        margin-bottom: 4px;
+      }
+      .check-bullet {
+        position: absolute;
+        left: 0;
+        top: 2px;
+      }
+      .event-content {
+        margin-left: 0;
+        margin-top: 6px;
+      }
+      .flights-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Hero Header -->
+  <!-- Top Sticky Navigation -->
+  <nav class="top-nav">
+    <div class="brand">
+      <i class="fa-solid fa-map-location-dot"></i>
+      <span>BKK Trip Planner</span>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-icon" id="btnExport" title="คัดลอกสรุปทริป">
+        <i class="fa-solid fa-share-nodes"></i>
+      </button>
+      <button class="btn-icon" id="btnReset" title="รีเซ็ตกลับเป็นแพลนตั้งต้น">
+        <i class="fa-solid fa-rotate-left"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Banner -->
   <header class="hero">
-    <h1>🇹🇭 Bangkok 5-Day Vacation Plan</h1>
-    <p>ทริปเที่ยวกรุงเทพฯ ชิมของอร่อย ช้อปปิ้ง และพักผ่อนสบายๆ</p>
-    <div class="flight-pill">
-      <span>🛫 <strong>ไป:</strong> VZ115 CNX 09:35 → BKK 10:55 (8 ต.ค.)</span>
-      <span>🛬 <strong>กลับ:</strong> VZ2106 BKK 19:00 → CNX 20:25 (12 ต.ค.)</span>
+    <div class="hero-content">
+      <div class="trip-badge">
+        <i class="fa-regular fa-calendar-days"></i> 8 - 12 ตุลาคม 2026 (5 วัน 4 คืน)
+      </div>
+      <h1>🇹🇭 Bangkok Vacation Itinerary</h1>
+      <p>แผนเที่ยว กิน ช้อปปิ้ง พักผ่อน ชิลล์กรุงเทพฯ ฉบับปรับเปลี่ยนได้ตามใจคุณ</p>
+      
+      <!-- Countdown Widget -->
+      <div class="countdown-bar">
+        <i class="fa-solid fa-plane-departure" style="color: #38bdf8;"></i>
+        <span>นับถอยหลังสู่วันเดินทาง: <strong class="countdown-number" id="countdownDays">--</strong> วัน</span>
+      </div>
+
+      <!-- Flights Pill -->
+      <div class="flights-row">
+        <div class="flight-pill">
+          <span>🛫 <strong>ไป:</strong> VZ115 CNX 09:35 → BKK 10:55 (8 ต.ค.)</span>
+        </div>
+        <div class="flight-pill">
+          <span>🛬 <strong>กลับ:</strong> VZ2106 BKK 19:00 → CNX 20:25 (12 ต.ค.)</span>
+        </div>
+      </div>
     </div>
   </header>
 
-  <div class="container">
+  <!-- Main App Container -->
+  <main class="container">
 
-    <!-- Special Highlight: LOPIA Japan -->
-    <div class="spotlight-card">
-      <div class="spotlight-header">
-        <span class="badge-spotlight">จุดแวะไฮไลต์พิเศษ</span>
-        <h3>🍱 LOPIA JAPAN @ เซ็นทรัล แจ้งวัฒนะ</h3>
+    <!-- Progress & Quick Actions Card -->
+    <div class="stats-card">
+      <div class="stats-left">
+        <div class="stats-title">
+          <span><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> ความคืบหน้าการเที่ยว</span>
+          <span id="progressText">0% (0/0 สถานที่)</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
       </div>
-      <p class="spotlight-content">
-        ซูเปอร์มาร์เก็ตญี่ปุ่นชื่อดังสาขาแรกในไทย ตั้งอยู่ที่ <strong>ชั้น G เซ็นทรัล แจ้งวัฒนะ</strong> (เปิดวันศุกร์ 10:30 – 22:00 น.) มีโซนรับประทานอาหารปรุงสุกใหม่ พร้อมวัตถุดิบนำเข้าพรีเมียม
+      <div class="stats-actions">
+        <button class="btn-add-quick" id="btnQuickAdd">
+          <i class="fa-solid fa-plus"></i> เพิ่มกิจกรรม
+        </button>
+      </div>
+    </div>
+
+    <!-- Day Navigation Carousel -->
+    <div class="tabs-wrapper">
+      <div class="day-tabs" id="dayTabsContainer">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Filter & Search Bar -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="ค้นหาสถานที่, อาหาร, กิจกรรม...">
+      </div>
+      <div class="category-pills" id="categoryPills">
+        <button class="cat-btn active" data-cat="all">ทั้งหมด</button>
+        <button class="cat-btn" data-cat="food">🍽️ ของกิน</button>
+        <button class="cat-btn" data-cat="shopping">🛍️ ช้อปปิ้ง</button>
+        <button class="cat-btn" data-cat="attraction">🦒 ที่เที่ยว</button>
+        <button class="cat-btn" data-cat="travel">🚗 เดินทาง</button>
+        <button class="cat-btn" data-cat="hotel">🏨 ที่พัก</button>
+      </div>
+    </div>
+
+    <!-- Highlight Section: LOPIA JAPAN -->
+    <div class="spotlight-card" id="spotlightCard">
+      <div class="spotlight-header">
+        <div class="spotlight-title">
+          <i class="fa-solid fa-star" style="color: #ea580c;"></i>
+          <span>LOPIA JAPAN @ เซ็นทรัล แจ้งวัฒนะ</span>
+        </div>
+        <span class="spotlight-badge"><i class="fa-solid fa-fire"></i> จุดแวะไฮไลต์พิเศษ</span>
+      </div>
+      <p class="spotlight-desc">
+        ซูเปอร์มาร์เก็ตญี่ปุ่นชื่อดังสาขาแรกในไทย ตั้งอยู่ที่ <strong>ชั้น G เซ็นทรัล แจ้งวัฒนะ</strong> (เปิดวันศุกร์ 10:30 – 22:00 น.) วัตถุดิบนำเข้าพรีเมียมและโซนอาหารปรุงสุกพร้อมทานยอดฮิต
       </p>
       <div class="spotlight-grid">
         <div class="spotlight-item">
           <strong>🥩 เนื้อวากิวญี่ปุ่นพรีเมียม</strong>
-          นำเข้าเกรด A4–A5 ลายหินอ่อนสวย ในราคาคุ้มค่า
+          นำเข้าเกรด A4–A5 ลายหินอ่อนสวย ในราคาจับต้องได้
         </div>
         <div class="spotlight-item">
           <strong>🍣 ซูชิ & ซาชิมิคำโต</strong>
           ปลาดิบสดใหม่ แซลมอน ฮามาจิ ไข่หอยเม่นหน้าล้น
         </div>
         <div class="spotlight-item">
-          <strong>🍱 โซนอาหารพร้อมทาน (Delica)</strong>
+          <strong>🍱 โซนอาหารปรุงสด (Delica)</strong>
           ข้าวกล่องเบนโตะ ของทอดสไตล์ญี่ปุ่น พิซซ่าอบสด
         </div>
       </div>
     </div>
 
-    <!-- DAY 1 -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-title-group">
-          <span class="day-tag">Day 1</span>
-          <span class="day-title">ถึงกรุงเทพฯ & พักผ่อนใจกลางเมือง</span>
-        </div>
-        <span class="day-date">พฤหัสบดีที่ 8 ต.ค. 2026</span>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="time-slot">10:55 - 12:30</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">✈️ ถึงสุวรรณภูมิ (VZ115) & รับสัมภาระ</span>
-            </div>
-            <div class="event-desc">ลงสถานีชั้นใต้ดิน (ชั้น B) นั่ง <strong>Airport Rail Link (ARL)</strong> มุ่งหน้าสถานีมักกะสัน</div>
-            <div class="event-tips">💡 ใช้ ARL ประหยัดเวลากว่าแท็กซี่ ไม่ต้องเจอปัญหารถติดทางด่วนช่วงเที่ยง</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">12:30 - 16:30</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🏨 เช็คอิน Mercure Bangkok Makkasan</span>
-              <span class="badge-time">Check-in 14:00</span>
-            </div>
-            <div class="event-desc">เก็บสัมภาระ พักผ่อนเอาแรง หรือหาอาหารกลางวันทานแถวโรงแรม</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">17:00 - 21:30</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🛍️ centralwOrld ช้อปปิ้ง & มื้อค่ำ</span>
-              <span class="badge-time">เปิด 10:00 - 22:00</span>
-            </div>
-            <div class="event-desc">นั่ง MRT เพชรบุรี ไปต่อ BTS อโศก ลงสถานีชิดลม เดินผ่านทางเชื่อม Skywalk สะดวกสบาย</div>
-          </div>
-        </div>
-      </div>
+    <!-- Dynamic Days Container -->
+    <div id="itineraryContainer">
+      <!-- Generated via JS -->
     </div>
 
-    <!-- DAY 2 -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-title-group">
-          <span class="day-tag">Day 2</span>
-          <span class="day-title">รับรถเช่า – ตะลุยเซ็นทรัล แจ้งวัฒนะ & ดินเนอร์ LOPIA</span>
-        </div>
-        <span class="day-date">ศุกร์ที่ 9 ต.ค. 2026</span>
+  </main>
+
+  <!-- Activity Add / Edit Modal -->
+  <div class="modal-backdrop" id="eventModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTitle">เพิ่มกิจกรรมใหม่</h3>
+        <button class="btn-close-modal" id="btnCloseModal">&times;</button>
       </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="time-slot">เช้า - 12:30</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">☕ เช้าสบายๆ & ทานมื้อสาย</span>
-            </div>
-            <div class="event-desc">พักผ่อนสบายๆ ไม่ต้องรีบ แวะทานกาแฟหรือบรันช์ที่ Singha Complex</div>
+      <form id="eventForm">
+        <input type="hidden" id="formEventId">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="formDaySelect">วันที่</label>
+            <select id="formDaySelect" class="form-control" required>
+              <option value="1">Day 1 (พฤหัสฯ 8 ต.ค.)</option>
+              <option value="2">Day 2 (ศุกร์ 9 ต.ค.)</option>
+              <option value="3">Day 3 (เสาร์ 10 ต.ค.)</option>
+              <option value="4">Day 4 (อาทิตย์ 11 ต.ค.)</option>
+              <option value="5">Day 5 (จันทร์ 12 ต.ค.)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="formTimeSlot">ช่วงเวลา</label>
+            <input type="text" id="formTimeSlot" class="form-control" placeholder="เช่น 10:00 - 12:00" required>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="time-slot">13:00 - 14:15</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🚗 รับรถเช่า & ขับไปแจ้งวัฒนะ</span>
-            </div>
-            <div class="event-desc">รับมอบรถ ตรวจเช็คสภาพรอบคัน ขับขึ้นทางพิเศษศรีรัชมุ่งหน้าลงด่านแจ้งวัฒนะ</div>
+        <div class="form-group">
+          <label for="formTitle">ชื่อกิจกรรม / สถานที่</label>
+          <input type="text" id="formTitle" class="form-control" placeholder="เช่น ขาไก่สัมมากร, Safari World" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="formCategory">หมวดหมู่</label>
+            <select id="formCategory" class="form-control">
+              <option value="food">🍽️ ของกิน / ร้านอาหาร</option>
+              <option value="shopping">🛍️ ช้อปปิ้ง / ห้าง</option>
+              <option value="attraction">🦒 ที่เที่ยว / กิจกรรม</option>
+              <option value="travel">🚗 การเดินทาง</option>
+              <option value="hotel">🏨 โรงแรม / ที่พัก</option>
+              <option value="other">📌 อื่นๆ</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="formOpeningHours">เวลาเปิด-ปิด (ถ้ามี)</label>
+            <input type="text" id="formOpeningHours" class="form-control" placeholder="เช่น เปิด 10:00 - 22:00">
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="time-slot">14:30 - 18:00</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🏢 Central Chaengwattana</span>
-              <span class="badge-time">เปิด 10:00 - 22:00</span>
-            </div>
-            <div class="event-desc">จอดรถในห้าง เดินเล่นช้อปปิ้งตากแอร์ ดูสินค้าแฟชั่นและไลฟ์สไตล์</div>
-          </div>
+        <div class="form-group">
+          <label for="formDesc">รายละเอียด</label>
+          <textarea id="formDesc" class="form-control" placeholder="รายละเอียดของกิจกรรม เส้นทาง หรือจุดที่ต้องแวะ"></textarea>
         </div>
 
-        <div class="timeline-item">
-          <div class="time-slot">18:00 - 20:30</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🍱 มื้อเย็นที่ LOPIA JAPAN & ร้านอาหารญี่ปุ่น</span>
-              <span class="badge-time">เปิด 10:30 - 22:00</span>
-            </div>
-            <div class="event-desc">แวะทานมื้อค่ำที่โซน LOPIA ชั้น G (ข้าวหน้าเนื้อวากิว, ซูชิ, ดงบุริ) หรือเลือกร้านอาหารญี่ปุ่นชั้น 5-6</div>
-            <div class="event-tips">💡 เดินทางกลับโรงแรมหลัง 20:30 น. ปริมาณรถบนทางด่วนศรีรัชจะเบาบางลงมาก</div>
-          </div>
+        <div class="form-group">
+          <label for="formTip">ทิป / คำแนะนำพิเศษ (ถ้ามี)</label>
+          <input type="text" id="formTip" class="form-control" placeholder="เช่น เลี่ยงทางด่วนช่วงเย็น, โทรจองล่วงหน้า">
         </div>
-      </div>
+
+        <div class="form-group">
+          <label for="formMapQuery">ค้นหาใน Google Maps (ชื่อสถานที่)</label>
+          <input type="text" id="formMapQuery" class="form-control" placeholder="เช่น Central Chaengwattana">
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" id="btnCancelModal">ยกเลิก</button>
+          <button type="submit" class="btn-primary" id="btnSaveModal">บันทึกข้อมูล</button>
+        </div>
+      </form>
     </div>
-
-    <!-- DAY 3 -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-title-group">
-          <span class="day-tag">Day 3</span>
-          <span class="day-title">ขาไก่สัมมากร – สนุกเต็มวัน Safari World – ไนท์มาร์เก็ต</span>
-        </div>
-        <span class="day-date">เสาร์ที่ 10 ต.ค. 2026</span>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="time-slot">08:45 - 09:30</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🚗 เดินทางไปสัมมากร (รามคำแหง 112)</span>
-            </div>
-            <div class="event-desc">วิ่งเส้นพระราม 9 ตรงเข้าสู่ถนนรามคำแหง</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">09:30 - 10:15</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🍗 ขาไก่สัมมากร (Mr.Khakai)</span>
-              <span class="badge-time">เปิด 09:30 - 18:30 (อ.-ส.)</span>
-            </div>
-            <div class="event-desc">ซื้อขนมพายกรอบขาไก่เนยสดในตำนาน *(สลับมาวันเสาร์เพราะร้านหยุดวันอาทิตย์-จันทร์)*</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">10:30 - 16:45</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🦒 Safari World (ซาฟารีเวิลด์)</span>
-              <span class="badge-time">เปิด 09:00 - 17:00</span>
-            </div>
-            <div class="event-desc">ขับรถชม <strong>Safari Park (โซนเปิด)</strong> และเดินชม <strong>Marine Park</strong> พร้อมให้อาหารฝูงยีราฟ</div>
-            <div class="show-box">
-              <div class="show-title">⭐ ตารางโชว์แนะนำช่วงบ่าย:</div>
-              <div class="show-list">
-                <span>• 13:45 น. โชว์โลมา (ไฮไลต์)</span>
-                <span>• 14:45 น. สตันท์ Spy War หรือ โชว์นก</span>
-                <span>• 15:45 น. โชว์สิงโตทะเล</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">17:15 - 20:30</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🛍️ Fashion Island หรือ ตลาดเลียบด่วนรามอินทรา</span>
-            </div>
-            <div class="event-desc">แวะทานมื้อเย็นและช้อปปิ้งส่งท้ายวันบนเส้นทางขากลับโรงแรม</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DAY 4 -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-title-group">
-          <span class="day-tag">Day 4</span>
-          <span class="day-title">ตลาดยิ่งเจริญ – พาต้าคิงคอง – ชิลล์ฝั่งธนฯ</span>
-        </div>
-        <span class="day-date">อาทิตย์ที่ 11 ต.ค. 2026</span>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="time-slot">08:00 - 10:00</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🥬 ตลาดยิ่งเจริญ (สะพานใหม่)</span>
-              <span class="badge-time">เปิด 24 ชม. (เช้าคึกคัก)</span>
-            </div>
-            <div class="event-desc">ขึ้นโทลล์เวย์ไปสะพานใหม่ มีอาคารจอดรถ ตะลุยกินมื้อเช้า: ต้มเลือดหมู โจ๊ก ปาท่องโก๋ ขนมไทย</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">10:00 - 11:30</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🌉 ขับรถข้ามไปฝั่งธนบุรี (ปิ่นเกล้า)</span>
-            </div>
-            <div class="event-desc">ใช้ทางพิเศษประจิมรัถยา (ศรีรัช-วงแหวนรอบนอก) ข้ามเจ้าพระยาลงถนนบรมราชชนนี</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">12:00 - 14:00</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🦍 สวนสัตว์พาต้า (Pata Zoo)</span>
-              <span class="badge-time">เปิด 10:00 - 17:00</span>
-            </div>
-            <div class="event-desc">ชม "บัวน้อย" กอริลลาตัวสุดท้ายในไทย และสัตว์แปลกหายากบนดาดฟ้าห้างพาต้า</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">14:30 - 17:30</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">☕ Central Pinklao / The Sense ปิ่นเกล้า</span>
-              <span class="badge-time">เปิด 10:00 - 22:00</span>
-            </div>
-            <div class="event-desc">เดินตากแอร์ หาเครื่องดื่ม นั่งพักคาเฟ่ชิลล์ๆ ช้อปปิ้งสบายๆ</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">18:00 เป็นต้นไป</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🍽️ มื้อค่ำริมเจ้าพระยา & กลับโรงแรม</span>
-            </div>
-            <div class="event-desc">ข้ามสะพานพระราม 8 กลับเข้าฝั่งพระนคร พักผ่อนและเตรียมแพ็กกระเป๋าเดินทาง</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DAY 5 -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-title-group">
-          <span class="day-tag">Day 5</span>
-          <span class="day-title">ช้อปปิ้งเอาท์เล็ต – คืนรถ – เดินทางกลับเชียงใหม่</span>
-        </div>
-        <span class="day-date">จันทร์ที่ 12 ต.ค. 2026</span>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="time-slot">09:30 - 11:00</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🧳 ตื่นสายสบายๆ & เช็คเอาท์</span>
-              <span class="badge-time">Check-out 12:00</span>
-            </div>
-            <div class="event-desc">เช็คเอาท์จาก Mercure Bangkok Makkasan ขนสัมภาระขึ้นรถ</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">11:30 - 15:00</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🛍️ Central Village หรือ Mega Bangna</span>
-              <span class="badge-time">เปิด 10:00 - 22:00</span>
-            </div>
-            <div class="event-desc">ทานอาหารกลางวัน ช้อปปิ้งสินค้าแบรนด์เนมลดราคาใกล้สนามบินสุวรรณภูมิ เลี่ยงปัญหารถติด</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">15:30 - 16:00</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">🚗 คืนรถเช่าที่สนามบินสุวรรณภูมิ</span>
-            </div>
-            <div class="event-desc">แวะเติมน้ำมันเต็มถัง ตรวจรับมอบรถคืนล่วงหน้า 3 ชม. ก่อนเวลาบิน</div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="time-slot">16:30 - 19:00</div>
-          <div class="bullet"></div>
-          <div class="event-body">
-            <div class="event-header">
-              <span class="event-title">✈️ เดินทางกลับเชียงใหม่ (VZ2106)</span>
-            </div>
-            <div class="event-desc">เช็คอิน โหลดสัมภาระ ผ่านด่านความปลอดภัย รอขึ้นเครื่องที่ Gate (เครื่องออก 19:00 น. ถึงเชียงใหม่ 20:25 น.)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
+  <!-- Toast Element -->
+  <div class="toast" id="toastMessage">
+    <i class="fa-solid fa-circle-info" style="color: #38bdf8;"></i>
+    <span id="toastText">บันทึกสำเร็จ</span>
+  </div>
+
+  <!-- App Logic Script -->
+  <script>
+    // --- Initial Default Data (Rich plan for BKK 8-12 Oct 2026) ---
+    const DEFAULT_DAYS = [
+      {
+        dayNumber: 1,
+        title: "ถึงกรุงเทพฯ & พักผ่อนใจกลางเมือง",
+        dateText: "พฤหัสบดีที่ 8 ต.ค. 2026",
+        events: [
+          {
+            id: "d1-e1",
+            time: "10:55 - 12:30",
+            title: "✈️ ถึงสุวรรณภูมิ (VZ115) & รับสัมภาระ",
+            category: "travel",
+            hours: "",
+            desc: "ลงสถานีชั้นใต้ดิน (ชั้น B) นั่ง <strong>Airport Rail Link (ARL)</strong> มุ่งหน้าสถานีมักกะสัน",
+            tip: "ใช้ ARL ประหยัดเวลากว่าแท็กซี่ ไม่ต้องเจอปัญหารถติดทางด่วนช่วงเที่ยง",
+            mapQuery: "Suvarnabhumi Airport",
+            done: false
+          },
+          {
+            id: "d1-e2",
+            time: "12:30 - 16:30",
+            title: "🏨 เช็คอิน Mercure Bangkok Makkasan",
+            category: "hotel",
+            hours: "Check-in 14:00",
+            desc: "เก็บสัมภาระ พักผ่อนเอาแรง หรือหาอาหารกลางวันทานแถวโรงแรม",
+            tip: "",
+            mapQuery: "Mercure Bangkok Makkasan",
+            done: false
+          },
+          {
+            id: "d1-e3",
+            time: "17:00 - 21:30",
+            title: "🛍️ centralwOrld ช้อปปิ้ง & มื้อค่ำ",
+            category: "shopping",
+            hours: "เปิด 10:00 - 22:00",
+            desc: "นั่ง MRT เพชรบุรี ไปต่อ BTS อโศก ลงสถานีชิดลม เดินผ่านทางเชื่อม Skywalk สะดวกสบาย",
+            tip: "โซน Beacon และ Groove มีร้านอาหารและขนมหวานเด็ดๆ เพียบ",
+            mapQuery: "centralwOrld Bangkok",
+            done: false
+          }
+        ]
+      },
+      {
+        dayNumber: 2,
+        title: "รับรถเช่า – ตะลุยเซ็นทรัล แจ้งวัฒนะ & ดินเนอร์ LOPIA",
+        dateText: "ศุกร์ที่ 9 ต.ค. 2026",
+        events: [
+          {
+            id: "d2-e1",
+            time: "เช้า - 12:30",
+            title: "☕ เช้าสบายๆ & ทานมื้อสาย",
+            category: "food",
+            hours: "",
+            desc: "พักผ่อนสบายๆ ไม่ต้องรีบ แวะทานกาแฟหรือบรันช์ที่ Singha Complex",
+            tip: "",
+            mapQuery: "Singha Complex",
+            done: false
+          },
+          {
+            id: "d2-e2",
+            time: "13:00 - 14:15",
+            title: "🚗 รับรถเช่า & ขับไปแจ้งวัฒนะ",
+            category: "travel",
+            hours: "",
+            desc: "รับมอบรถ ตรวจเช็คสภาพรอบคัน ขับขึ้นทางพิเศษศรีรัชมุ่งหน้าลงด่านแจ้งวัฒนะ",
+            tip: "ตรวจถ่ายรูปรอบคันรถก่อนเซ็นรับมอบ",
+            mapQuery: "ทางด่วนศรีรัช แจ้งวัฒนะ",
+            done: false
+          },
+          {
+            id: "d2-e3",
+            time: "14:30 - 18:00",
+            title: "🏢 Central Chaengwattana",
+            category: "shopping",
+            hours: "เปิด 10:00 - 22:00",
+            desc: "จอดรถในห้าง เดินเล่นช้อปปิ้งตากแอร์ ดูสินค้าแฟชั่นและไลฟ์สไตล์",
+            tip: "",
+            mapQuery: "Central Chaengwattana",
+            done: false
+          },
+          {
+            id: "d2-e4",
+            time: "18:00 - 20:30",
+            title: "🍱 มื้อเย็นที่ LOPIA JAPAN & ร้านอาหารญี่ปุ่น",
+            category: "food",
+            hours: "เปิด 10:30 - 22:00",
+            desc: "แวะทานมื้อค่ำที่โซน LOPIA ชั้น G (ข้าวหน้าเนื้อวากิว, ซูชิ, ดงบุริ) หรือเลือกร้านอาหารญี่ปุ่นชั้น 5-6",
+            tip: "เดินทางกลับโรงแรมหลัง 20:30 น. ปริมาณรถบนทางด่วนศรีรัชจะเบาบางลงมาก",
+            mapQuery: "LOPIA Central Chaengwattana",
+            done: false
+          }
+        ]
+      },
+      {
+        dayNumber: 3,
+        title: "ขาไก่สัมมากร – สนุกเต็มวัน Safari World – ไนท์มาร์เก็ต",
+        dateText: "เสาร์ที่ 10 ต.ค. 2026",
+        events: [
+          {
+            id: "d3-e1",
+            time: "08:45 - 09:30",
+            title: "🚗 เดินทางไปสัมมากร (รามคำแหง 112)",
+            category: "travel",
+            hours: "",
+            desc: "วิ่งเส้นพระราม 9 ตรงเข้าสู่ถนนรามคำแหง แวะรับขนมเจ้าดัง",
+            tip: "",
+            mapQuery: "หมู่บ้านสัมมากร รามคำแหง 112",
+            done: false
+          },
+          {
+            id: "d3-e2",
+            time: "09:30 - 10:15",
+            title: "🍗 ขาไก่สัมมากร (Mr.Khakai)",
+            category: "food",
+            hours: "เปิด 09:30 - 18:30 (อ.-ส.)",
+            desc: "ซื้อขนมพายกรอบขาไก่เนยสดในตำนาน *(สลับมาวันเสาร์เพราะร้านหยุดวันอาทิตย์-จันทร์)*",
+            tip: "ซื้อตุนเป็นของฝากได้ กรอบหอมเนยสดแท้",
+            mapQuery: "ขนมขาไก่สัมมากร Mr.Khakai",
+            done: false
+          },
+          {
+            id: "d3-e3",
+            time: "10:30 - 16:45",
+            title: "🦒 Safari World (ซาฟารีเวิลด์)",
+            category: "attraction",
+            hours: "เปิด 09:00 - 17:00",
+            desc: "ขับรถชม Safari Park (โซนเปิด) และเดินชม Marine Park พร้อมให้อาหารฝูงยีราฟ",
+            shows: [
+              "🐬 13:45 น. โชว์โลมา (ไฮไลต์ห้ามพลาด)",
+              "💥 14:45 น. สตันท์ Spy War หรือ โชว์นก",
+              "🦭 15:45 น. โชว์สิงโตทะเล"
+            ],
+            tip: "แนะนำให้อาหารยีราฟช่วงเที่ยงก่อนไปดูโชว์โลมา",
+            mapQuery: "Safari World Bangkok",
+            done: false
+          },
+          {
+            id: "d3-e4",
+            time: "17:15 - 20:30",
+            title: "🛍️ Fashion Island หรือ ตลาดเลียบด่วนรามอินทรา",
+            category: "shopping",
+            hours: "",
+            desc: "แวะทานมื้อเย็นและช้อปปิ้งส่งท้ายวันบนเส้นทางขากลับโรงแรม",
+            tip: "ถ้าชอบสตรีทฟู้ด ตลาดนัดเลียบด่วนมีของกินเพียบ",
+            mapQuery: "ตลาดนัดเลียบด่วน รามอินทรา",
+            done: false
+          }
+        ]
+      },
+      {
+        dayNumber: 4,
+        title: "ตลาดยิ่งเจริญ – พาต้าคิงคอง – ชิลล์ฝั่งธนฯ",
+        dateText: "อาทิตย์ที่ 11 ต.ค. 2026",
+        events: [
+          {
+            id: "d4-e1",
+            time: "08:00 - 10:00",
+            title: "🥬 ตลาดยิ่งเจริญ (สะพานใหม่)",
+            category: "food",
+            hours: "เปิด 24 ชม. (เช้าคึกคัก)",
+            desc: "ขึ้นโทลล์เวย์ไปสะพานใหม่ มีอาคารจอดรถ ตะลุยกินมื้อเช้า: ต้มเลือดหมู โจ๊ก ปาท่องโก๋ ขนมไทย",
+            tip: "จอดรถที่อาคารจอดรถสะดวกสบาย มีร้านอาหารหลากหลาย",
+            mapQuery: "ตลาดยิ่งเจริญ สะพานใหม่",
+            done: false
+          },
+          {
+            id: "d4-e2",
+            time: "10:00 - 11:30",
+            title: "🌉 ขับรถข้ามไปฝั่งธนบุรี (ปิ่นเกล้า)",
+            category: "travel",
+            hours: "",
+            desc: "ใช้ทางพิเศษประจิมรัถยา (ศรีรัช-วงแหวนรอบนอก) ข้ามเจ้าพระยาลงถนนบรมราชชนนี",
+            tip: "",
+            mapQuery: "สะพานพระราม 8 ปิ่นเกล้า",
+            done: false
+          },
+          {
+            id: "d4-e3",
+            time: "12:00 - 14:00",
+            title: "🦍 สวนสัตว์พาต้า (Pata Zoo)",
+            category: "attraction",
+            hours: "เปิด 10:00 - 17:00",
+            desc: "ชม 'บัวน้อย' กอริลลาตัวสุดท้ายในไทย และสัตว์แปลกหายากบนดาดฟ้าห้างพาต้าในตำนาน",
+            tip: "สวนสัตว์ปรับปรุงใหม่ สะอาดและติดแอร์ในส่วนจัดแสดงหลัก",
+            mapQuery: "Pata Zoo พาต้า ปิ่นเกล้า",
+            done: false
+          },
+          {
+            id: "d4-e4",
+            time: "14:30 - 17:30",
+            title: "☕ Central Pinklao / The Sense ปิ่นเกล้า",
+            category: "shopping",
+            hours: "เปิด 10:00 - 22:00",
+            desc: "เดินตากแอร์ หาเครื่องดื่ม นั่งพักคาเฟ่ชิลล์ๆ ช้อปปิ้งสบายๆ",
+            tip: "",
+            mapQuery: "Central Pinklao",
+            done: false
+          },
+          {
+            id: "d4-e5",
+            time: "18:00 เป็นต้นไป",
+            title: "🍽️ มื้อค่ำริมเจ้าพระยา & กลับโรงแรม",
+            category: "food",
+            hours: "",
+            desc: "ข้ามสะพานพระราม 8 กลับเข้าฝั่งพระนคร พักผ่อนและเตรียมแพ็กกระเป๋าเดินทาง",
+            tip: "ร้านอาหารริมแม่น้ำแนะนำโทรจองโต๊ะริมน้ำล่วงหน้า",
+            mapQuery: "ร้านอาหารริมแม่น้ำเจ้าพระยา พระราม 8",
+            done: false
+          }
+        ]
+      },
+      {
+        dayNumber: 5,
+        title: "ช้อปปิ้งเอาท์เล็ต – คืนรถ – เดินทางกลับเชียงใหม่",
+        dateText: "จันทร์ที่ 12 ต.ค. 2026",
+        events: [
+          {
+            id: "d5-e1",
+            time: "09:30 - 11:00",
+            title: "🧳 ตื่นสายสบายๆ & เช็คเอาท์",
+            category: "hotel",
+            hours: "Check-out 12:00",
+            desc: "เช็คเอาท์จาก Mercure Bangkok Makkasan ขนสัมภาระขึ้นรถให้เรียบร้อย",
+            tip: "เช็คสิ่งของมีค่าในตู้เซฟและปลั๊กชาร์จก่อนออกจากห้อง",
+            mapQuery: "Mercure Bangkok Makkasan",
+            done: false
+          },
+          {
+            id: "d5-e2",
+            time: "11:30 - 15:00",
+            title: "🛍️ Central Village หรือ Mega Bangna",
+            category: "shopping",
+            hours: "เปิด 10:00 - 22:00",
+            desc: "ทานอาหารกลางวัน ช้อปปิ้งสินค้าแบรนด์เนมลดราคาใกล้สนามบินสุวรรณภูมิ เลี่ยงปัญหารถติด",
+            tip: "Central Village อยู่ใกล้สนามบินเพียง 15 นาที ช้อปปิ้งชิลล์ๆ ไม่ต้องเร่งรีบ",
+            mapQuery: "Central Village Outlet Bangkok",
+            done: false
+          },
+          {
+            id: "d5-e3",
+            time: "15:30 - 16:00",
+            title: "🚗 คืนรถเช่าที่สนามบินสุวรรณภูมิ",
+            category: "travel",
+            hours: "",
+            desc: "แวะเติมน้ำมันเต็มถัง ตรวจรับมอบรถคืนล่วงหน้า 3 ชม. ก่อนเวลาบิน",
+            tip: "อย่าลืมขอใบเสร็จค่าน้ำมันและใบเซ็นคืนรถ",
+            mapQuery: "จุดส่งคืนรถเช่า สนามบินสุวรรณภูมิ",
+            done: false
+          },
+          {
+            id: "d5-e4",
+            time: "16:30 - 19:00",
+            title: "✈️ เดินทางกลับเชียงใหม่ (VZ2106)",
+            category: "travel",
+            hours: "",
+            desc: "เช็คอิน โหลดสัมภาระ ผ่านด่านความปลอดภัย รอขึ้นเครื่องที่ Gate (เครื่องออก 19:00 น. ถึงเชียงใหม่ 20:25 น.)",
+            tip: "เตรียมสัมภาระถือขึ้นเครื่องไม่เกิน 7 กก.",
+            mapQuery: "Suvarnabhumi Airport Departure",
+            done: false
+          }
+        ]
+      }
+    ];
+
+    // --- State Management ---
+    const STORAGE_KEY = 'bkk_trip_plan_v2';
+    let tripData = [];
+    let currentActiveDay = 'all'; // 'all' or dayNumber 1..5
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    function initData() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          tripData = JSON.parse(saved);
+        } catch (e) {
+          console.error("Failed to parse saved data, resetting.", e);
+          tripData = JSON.parse(JSON.stringify(DEFAULT_DAYS));
+        }
+      } else {
+        tripData = JSON.parse(JSON.stringify(DEFAULT_DAYS));
+        saveData();
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tripData));
+      updateProgress();
+    }
+
+    // --- Countdown Timer ---
+    function updateCountdown() {
+      const tripDate = new Date("2026-10-08T09:35:00");
+      const now = new Date();
+      const diffTime = tripDate - now;
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const el = document.getElementById('countdownDays');
+      if (el) {
+        el.textContent = diffDays > 0 ? diffDays : "0";
+      }
+    }
+
+    // --- Progress Tracker ---
+    function updateProgress() {
+      let total = 0;
+      let doneCount = 0;
+
+      tripData.forEach(day => {
+        day.events.forEach(evt => {
+          total++;
+          if (evt.done) doneCount++;
+        });
+      });
+
+      const pct = total > 0 ? Math.round((doneCount / total) * 100) : 0;
+      const bar = document.getElementById('progressBar');
+      const text = document.getElementById('progressText');
+      if (bar && text) {
+        bar.style.width = pct + '%';
+        text.textContent = `${pct}% (${doneCount}/${total} สถานที่)`;
+      }
+    }
+
+    // --- Render Day Tabs ---
+    function renderDayTabs() {
+      const container = document.getElementById('dayTabsContainer');
+      if (!container) return;
+
+      let html = `
+        <button class="day-tab ${currentActiveDay === 'all' ? 'active' : ''}" onclick="selectDayTab('all')">
+          <i class="fa-solid fa-layer-group"></i> ทุกวัน
+          <span class="tab-count">${tripData.reduce((acc, d) => acc + d.events.length, 0)}</span>
+        </button>
+      `;
+
+      tripData.forEach(day => {
+        const isActive = currentActiveDay === day.dayNumber;
+        html += `
+          <button class="day-tab ${isActive ? 'active' : ''}" onclick="selectDayTab(${day.dayNumber})">
+            Day ${day.dayNumber}
+            <span class="tab-count">${day.events.length}</span>
+          </button>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function selectDayTab(day) {
+      currentActiveDay = day;
+      renderDayTabs();
+      renderItinerary();
+    }
+
+    // --- Render Category Helpers ---
+    function getCategoryBadge(cat) {
+      switch (cat) {
+        case 'food':
+          return `<span class="category-tag tag-food">🍽️ ของกิน</span>`;
+        case 'shopping':
+          return `<span class="category-tag tag-shopping">🛍️ ช้อปปิ้ง</span>`;
+        case 'attraction':
+          return `<span class="category-tag tag-attraction">🦒 ที่เที่ยว</span>`;
+        case 'travel':
+          return `<span class="category-tag tag-travel">🚗 เดินทาง</span>`;
+        case 'hotel':
+          return `<span class="category-tag tag-hotel">🏨 ที่พัก</span>`;
+        default:
+          return `<span class="category-tag">📌 อื่นๆ</span>`;
+      }
+    }
+
+    // --- Render Itinerary ---
+    function renderItinerary() {
+      const container = document.getElementById('itineraryContainer');
+      if (!container) return;
+
+      const filteredDays = tripData.filter(d => {
+        if (currentActiveDay === 'all') return true;
+        return d.dayNumber === currentActiveDay;
+      });
+
+      let fullHtml = '';
+
+      filteredDays.forEach(day => {
+        const matchingEvents = day.events.filter(evt => {
+          const matchCat = (currentCategory === 'all' || evt.category === currentCategory);
+          const q = searchQuery.toLowerCase().trim();
+          const matchSearch = !q || 
+            evt.title.toLowerCase().includes(q) || 
+            (evt.desc && evt.desc.toLowerCase().includes(q)) || 
+            (evt.tip && evt.tip.toLowerCase().includes(q));
+          return matchCat && matchSearch;
+        });
+
+        if (matchingEvents.length === 0 && (searchQuery || currentCategory !== 'all')) {
+          return;
+        }
+
+        fullHtml += `
+          <div class="day-section" id="day-section-${day.dayNumber}">
+            <div class="day-header">
+              <div class="day-title-wrap">
+                <span class="day-pill">Day ${day.dayNumber}</span>
+                <div>
+                  <div class="day-name">${day.title}</div>
+                  <div class="day-date"><i class="fa-regular fa-clock"></i> ${day.dateText}</div>
+                </div>
+              </div>
+              <div class="day-header-actions">
+                <button class="btn-add-event" onclick="openAddModal(${day.dayNumber})">
+                  <i class="fa-solid fa-plus"></i> เพิ่มกิจกรรม
+                </button>
+              </div>
+            </div>
+
+            <div class="timeline">
+        `;
+
+        if (matchingEvents.length === 0) {
+          fullHtml += `
+            <div style="text-align: center; padding: 25px; color: #94a3b8; font-size: 0.9rem;">
+              <i class="fa-regular fa-calendar-xmark" style="font-size: 1.5rem; margin-bottom: 6px; display: block;"></i>
+              ยังไม่มีกิจกรรมที่ตรงกับเงื่อนไข
+            </div>
+          `;
+        } else {
+          matchingEvents.forEach((evt) => {
+            const mapQuery = encodeURIComponent(evt.mapQuery || evt.title.replace(/^[^\w\s\u0E00-\u0E7F]+/, ''));
+            const mapUrl = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+
+            let showsHtml = '';
+            if (evt.shows && evt.shows.length > 0) {
+              showsHtml = `
+                <div class="show-box">
+                  <div class="show-title">⭐ ตารางโชว์แนะนำ:</div>
+                  <div class="show-list">
+                    ${evt.shows.map(s => `<span>${s}</span>`).join('')}
+                  </div>
+                </div>
+              `;
+            }
+
+            fullHtml += `
+              <div class="event-card ${evt.done ? 'is-done' : ''}" id="evt-${evt.id}">
+                <div class="time-badge">${evt.time}</div>
+                <div class="check-bullet" onclick="toggleEventDone('${evt.id}')" title="กดเพื่อเช็คว่าไปแล้ว">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="event-content">
+                  <div class="event-meta">
+                    <div class="event-title-row">
+                      <span class="event-title">${evt.title}</span>
+                      ${getCategoryBadge(evt.category)}
+                      ${evt.hours ? `<span style="font-size: 0.72rem; color: #64748b; background:#f1f5f9; padding:2px 8px; border-radius:6px;">${evt.hours}</span>` : ''}
+                    </div>
+                  </div>
+                  
+                  ${evt.desc ? `<div class="event-desc">${evt.desc}</div>` : ''}
+                  ${showsHtml}
+                  ${evt.tip ? `<div class="event-tip">💡 ${evt.tip}</div>` : ''}
+
+                  <div class="event-actions">
+                    <a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="btn-action map-link" title="เปิดแผนที่ใน Google Maps">
+                      <i class="fa-solid fa-location-dot"></i> Google Maps
+                    </a>
+                    <button class="btn-action edit-btn" onclick="openEditModal('${evt.id}')">
+                      <i class="fa-solid fa-pen-to-square"></i> แก้ไข
+                    </button>
+                    <button class="btn-action delete-btn" onclick="deleteEvent('${evt.id}')">
+                      <i class="fa-solid fa-trash-can"></i> ลบ
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+        }
+
+        fullHtml += `
+            </div>
+          </div>
+        `;
+      });
+
+      if (!fullHtml) {
+        fullHtml = `
+          <div style="background: white; border-radius: 16px; padding: 40px 20px; text-align: center; border: 1px dashed var(--border-color); color: #64748b;">
+            <i class="fa-solid fa-magnifying-glass" style="font-size: 2rem; color: #cbd5e1; margin-bottom: 10px;"></i>
+            <p style="font-weight: 500;">ไม่พบกิจกรรมที่ตรงกับการค้นหา</p>
+            <button class="btn-secondary" onclick="clearFilters()" style="margin-top: 12px;">ล้างตัวกรองทั้งหมด</button>
+          </div>
+        `;
+      }
+
+      container.innerHTML = fullHtml;
+    }
+
+    // --- Action Handlers ---
+    function toggleEventDone(id) {
+      for (const day of tripData) {
+        const evt = day.events.find(e => e.id === id);
+        if (evt) {
+          evt.done = !evt.done;
+          saveData();
+          renderItinerary();
+          showToast(evt.done ? "ทำเครื่องหมายว่าไปแล้ว 🎉" : "ยกเลิกเครื่องหมายแล้ว");
+          break;
+        }
+      }
+    }
+
+    function deleteEvent(id) {
+      if (!confirm("คุณต้องการลบกิจกรรมนี้ออกจากแพลนใช่หรือไม่?")) return;
+
+      for (const day of tripData) {
+        const idx = day.events.findIndex(e => e.id === id);
+        if (idx !== -1) {
+          day.events.splice(idx, 1);
+          saveData();
+          renderDayTabs();
+          renderItinerary();
+          showToast("ลบกิจกรรมเรียบร้อยแล้ว");
+          break;
+        }
+      }
+    }
+
+    // --- Modal Management (Add / Edit) ---
+    const eventModal = document.getElementById('eventModal');
+    const eventForm = document.getElementById('eventForm');
+
+    function openAddModal(defaultDay = 1) {
+      document.getElementById('modalTitle').textContent = "เพิ่มกิจกรรมใหม่";
+      document.getElementById('formEventId').value = "";
+      document.getElementById('formDaySelect').value = defaultDay;
+      document.getElementById('formTimeSlot').value = "";
+      document.getElementById('formTitle').value = "";
+      document.getElementById('formCategory').value = "food";
+      document.getElementById('formOpeningHours').value = "";
+      document.getElementById('formDesc').value = "";
+      document.getElementById('formTip').value = "";
+      document.getElementById('formMapQuery').value = "";
+
+      eventModal.classList.add('active');
+    }
+
+    function openEditModal(id) {
+      let targetEvt = null;
+      let targetDayNum = 1;
+
+      for (const day of tripData) {
+        const found = day.events.find(e => e.id === id);
+        if (found) {
+          targetEvt = found;
+          targetDayNum = day.dayNumber;
+          break;
+        }
+      }
+
+      if (!targetEvt) return;
+
+      document.getElementById('modalTitle').textContent = "แก้ไขกิจกรรม";
+      document.getElementById('formEventId').value = targetEvt.id;
+      document.getElementById('formDaySelect').value = targetDayNum;
+      document.getElementById('formTimeSlot').value = targetEvt.time || "";
+      document.getElementById('formTitle').value = targetEvt.title || "";
+      document.getElementById('formCategory').value = targetEvt.category || "food";
+      document.getElementById('formOpeningHours').value = targetEvt.hours || "";
+      document.getElementById('formDesc').value = targetEvt.desc || "";
+      document.getElementById('formTip').value = targetEvt.tip || "";
+      document.getElementById('formMapQuery').value = targetEvt.mapQuery || "";
+
+      eventModal.classList.add('active');
+    }
+
+    function closeModal() {
+      eventModal.classList.remove('active');
+    }
+
+    document.getElementById('btnCloseModal').onclick = closeModal;
+    document.getElementById('btnCancelModal').onclick = closeModal;
+    document.getElementById('btnQuickAdd').onclick = () => {
+      const day = currentActiveDay === 'all' ? 1 : currentActiveDay;
+      openAddModal(day);
+    };
+
+    eventForm.onsubmit = function(e) {
+      e.preventDefault();
+      const id = document.getElementById('formEventId').value;
+      const dayNum = parseInt(document.getElementById('formDaySelect').value);
+      const time = document.getElementById('formTimeSlot').value.trim();
+      const title = document.getElementById('formTitle').value.trim();
+      const category = document.getElementById('formCategory').value;
+      const hours = document.getElementById('formOpeningHours').value.trim();
+      const desc = document.getElementById('formDesc').value.trim();
+      const tip = document.getElementById('formTip').value.trim();
+      const mapQuery = document.getElementById('formMapQuery').value.trim();
+
+      if (id) {
+        let eventObj = null;
+
+        for (const d of tripData) {
+          const idx = d.events.findIndex(x => x.id === id);
+          if (idx !== -1) {
+            eventObj = d.events.splice(idx, 1)[0];
+            break;
+          }
+        }
+
+        if (eventObj) {
+          eventObj.time = time;
+          eventObj.title = title;
+          eventObj.category = category;
+          eventObj.hours = hours;
+          eventObj.desc = desc;
+          eventObj.tip = tip;
+          eventObj.mapQuery = mapQuery;
+
+          const targetDay = tripData.find(d => d.dayNumber === dayNum);
+          if (targetDay) {
+            targetDay.events.push(eventObj);
+          }
+          showToast("แก้ไขข้อมูลเรียบร้อยแล้ว ✨");
+        }
+      } else {
+        const newEvt = {
+          id: 'custom-' + Date.now(),
+          time,
+          title,
+          category,
+          hours,
+          desc,
+          tip,
+          mapQuery,
+          done: false
+        };
+
+        const targetDay = tripData.find(d => d.dayNumber === dayNum);
+        if (targetDay) {
+          targetDay.events.push(newEvt);
+          showToast("เพิ่มกิจกรรมเรียบร้อยแล้ว 🎯");
+        }
+      }
+
+      saveData();
+      renderDayTabs();
+      renderItinerary();
+      closeModal();
+    };
+
+    // --- Search & Filters ---
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      searchQuery = e.target.value;
+      renderItinerary();
+    });
+
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentCategory = this.dataset.cat;
+        renderItinerary();
+      });
+    });
+
+    function clearFilters() {
+      searchQuery = '';
+      currentCategory = 'all';
+      currentActiveDay = 'all';
+      document.getElementById('searchInput').value = '';
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.cat === 'all');
+      });
+      renderDayTabs();
+      renderItinerary();
+    }
+
+    // --- Reset & Export ---
+    document.getElementById('btnReset').onclick = function() {
+      if (confirm("ต้องการรีเซ็ตแผนการเที่ยวกลับสู่ค่าเริ่มต้นทั้งหมดหรือไม่? (ข้อมูลที่คุณแก้ไขจะถูกล้าง)")) {
+        localStorage.removeItem(STORAGE_KEY);
+        tripData = JSON.parse(JSON.stringify(DEFAULT_DAYS));
+        saveData();
+        renderDayTabs();
+        renderItinerary();
+        showToast("รีเซ็ตแผนเที่ยวสู่ค่าเริ่มต้นแล้ว");
+      }
+    };
+
+    document.getElementById('btnExport').onclick = function() {
+      let summaryText = `🇹🇭 แผนเที่ยว Bangkok Vacation Plan (8 - 12 ต.ค. 2026)\n\n`;
+      tripData.forEach(day => {
+        summaryText += `📌 Day ${day.dayNumber}: ${day.title} (${day.dateText})\n`;
+        day.events.forEach(evt => {
+          const status = evt.done ? '✅' : '▫️';
+          summaryText += `  ${status} ${evt.time} | ${evt.title}\n`;
+        });
+        summaryText += `\n`;
+      });
+      summaryText += `ดูแผนเต็มและปรับแต่งได้ที่: https://krapongbeer.github.io/trip-bkk/`;
+
+      navigator.clipboard.writeText(summaryText).then(() => {
+        showToast("คัดลอกสรุปทริปลงคลิปบอร์ดแล้ว! พร้อมส่งใน LINE");
+      }).catch(() => {
+        showToast("คัดลอกสรุปทริปแล้ว");
+      });
+    };
+
+    // --- Toast Message Helper ---
+    function showToast(msg) {
+      const toast = document.getElementById('toastMessage');
+      const txt = document.getElementById('toastText');
+      if (toast && txt) {
+        txt.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2600);
+      }
+    }
+
+    // --- Initial Boot ---
+    window.addEventListener('DOMContentLoaded', () => {
+      initData();
+      updateCountdown();
+      renderDayTabs();
+      renderItinerary();
+      updateProgress();
+    });
+  </script>
 </body>
 </html>
