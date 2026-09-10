@@ -24,6 +24,10 @@
       --accent-gradient: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
       --accent-light: #fff7ed;
       
+      --purple: #8b5cf6;
+      --purple-light: #f5f3ff;
+      --purple-border: #ddd6fe;
+      
       --success: #10b981;
       --success-light: #ecfdf5;
       --danger: #ef4444;
@@ -208,6 +212,51 @@
       max-width: 860px;
       margin: 0 auto;
       padding: 20px 16px;
+    }
+
+    /* Navigation Mode Switch (Itinerary vs New Places/Events) */
+    .view-switcher {
+      display: flex;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      gap: 4px;
+    }
+    .view-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .view-btn.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+    .view-badge-hot {
+      background: #ef4444;
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.05); }
     }
 
     /* Progress & Quick Stats Card */
@@ -637,6 +686,7 @@
     .tag-attraction { background: #dcfce7; color: #15803d; }
     .tag-travel { background: #e0f2fe; color: #0369a1; }
     .tag-hotel { background: #ede9fe; color: #6d28d9; }
+    .tag-event { background: #fae8ff; color: #a21caf; }
 
     .event-desc {
       font-size: 0.85rem;
@@ -721,6 +771,135 @@
     .btn-action.delete-btn:hover {
       color: var(--danger);
       background: #fee2e2;
+    }
+
+    /* --- EXPLORE & EVENTS SECTION --- */
+    .explore-container {
+      display: none;
+    }
+    .explore-container.active {
+      display: block;
+    }
+    .explore-hero-card {
+      background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 24px rgba(67, 56, 202, 0.18);
+    }
+    .explore-hero-card h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .explore-hero-card p {
+      font-size: 0.88rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+    .explore-card {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .explore-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+    .explore-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .tag-new {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+    .tag-festival {
+      background: #fce7f3;
+      color: #be185d;
+    }
+    .tag-art {
+      background: #ede9fe;
+      color: #6d28d9;
+    }
+    .explore-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .explore-location {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .explore-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+      flex-grow: 1;
+    }
+    .explore-tip {
+      background: #f8fafc;
+      border-left: 3px solid var(--primary);
+      padding: 6px 10px;
+      font-size: 0.78rem;
+      color: #334155;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 14px;
+    }
+    .explore-card-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-color);
+    }
+    .btn-add-to-plan {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-add-to-plan:hover {
+      background: #1d4ed8;
     }
 
     /* Modal Backdrop & Dialog */
@@ -965,78 +1144,104 @@
   <!-- Main App Container -->
   <main class="container">
 
-    <!-- Progress & Quick Actions Card -->
-    <div class="stats-card">
-      <div class="stats-left">
-        <div class="stats-title">
-          <span><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> ความคืบหน้าการเที่ยว</span>
-          <span id="progressText">0% (0/0 สถานที่)</span>
+    <!-- View Switcher (Itinerary vs New Places/Events) -->
+    <div class="view-switcher">
+      <button class="view-btn active" id="btnViewItinerary" onclick="switchView('itinerary')">
+        <i class="fa-solid fa-calendar-days"></i> แผนการเดินทาง 5 วัน
+      </button>
+      <button class="view-btn" id="btnViewExplore" onclick="switchView('explore')">
+        <i class="fa-solid fa-compass"></i> ที่เที่ยวเปิดใหม่ & งานอีเวนต์
+        <span class="view-badge-hot">ใหม่!</span>
+      </button>
+    </div>
+
+    <!-- VIEW 1: ITINERARY VIEW -->
+    <div id="itineraryView">
+      <!-- Progress & Quick Actions Card -->
+      <div class="stats-card">
+        <div class="stats-left">
+          <div class="stats-title">
+            <span><i class="fa-solid fa-circle-check" style="color: var(--success);"></i> ความคืบหน้าการเที่ยว</span>
+            <span id="progressText">0% (0/0 สถานที่)</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progressBar"></div>
+          </div>
         </div>
-        <div class="progress-track">
-          <div class="progress-fill" id="progressBar"></div>
+        <div class="stats-actions">
+          <button class="btn-add-quick" id="btnQuickAdd">
+            <i class="fa-solid fa-plus"></i> เพิ่มกิจกรรม
+          </button>
         </div>
       </div>
-      <div class="stats-actions">
-        <button class="btn-add-quick" id="btnQuickAdd">
-          <i class="fa-solid fa-plus"></i> เพิ่มกิจกรรม
-        </button>
+
+      <!-- Day Navigation Carousel -->
+      <div class="tabs-wrapper">
+        <div class="day-tabs" id="dayTabsContainer">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Filter & Search Bar -->
+      <div class="filter-bar">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="ค้นหาสถานที่, อาหาร, กิจกรรม...">
+        </div>
+        <div class="category-pills" id="categoryPills">
+          <button class="cat-btn active" data-cat="all">ทั้งหมด</button>
+          <button class="cat-btn" data-cat="food">🍽️ ของกิน</button>
+          <button class="cat-btn" data-cat="shopping">🛍️ ช้อปปิ้ง</button>
+          <button class="cat-btn" data-cat="attraction">🦒 ที่เที่ยว</button>
+          <button class="cat-btn" data-cat="travel">🚗 เดินทาง</button>
+          <button class="cat-btn" data-cat="hotel">🏨 ที่พัก</button>
+        </div>
+      </div>
+
+      <!-- Highlight Section: LOPIA JAPAN -->
+      <div class="spotlight-card" id="spotlightCard">
+        <div class="spotlight-header">
+          <div class="spotlight-title">
+            <i class="fa-solid fa-star" style="color: #ea580c;"></i>
+            <span>LOPIA JAPAN @ เซ็นทรัล แจ้งวัฒนะ</span>
+          </div>
+          <span class="spotlight-badge"><i class="fa-solid fa-fire"></i> จุดแวะไฮไลต์พิเศษ</span>
+        </div>
+        <p class="spotlight-desc">
+          ซูเปอร์มาร์เก็ตญี่ปุ่นชื่อดังสาขาแรกในไทย ตั้งอยู่ที่ <strong>ชั้น G เซ็นทรัล แจ้งวัฒนะ</strong> (เปิดวันศุกร์ 10:30 – 22:00 น.) วัตถุดิบนำเข้าพรีเมียมและโซนอาหารปรุงสุกพร้อมทานยอดฮิต
+        </p>
+        <div class="spotlight-grid">
+          <div class="spotlight-item">
+            <strong>🥩 เนื้อวากิวญี่ปุ่นพรีเมียม</strong>
+            นำเข้าเกรด A4–A5 ลายหินอ่อนสวย ในราคาจับต้องได้
+          </div>
+          <div class="spotlight-item">
+            <strong>🍣 ซูชิ & ซาชิมิคำโต</strong>
+            ปลาดิบสดใหม่ แซลมอน ฮามาจิ ไข่หอยเม่นหน้าล้น
+          </div>
+          <div class="spotlight-item">
+            <strong>🍱 โซนอาหารปรุงสด (Delica)</strong>
+            ข้าวกล่องเบนโตะ ของทอดสไตล์ญี่ปุ่น พิซซ่าอบสด
+          </div>
+        </div>
+      </div>
+
+      <!-- Dynamic Days Container -->
+      <div id="itineraryContainer">
+        <!-- Generated via JS -->
       </div>
     </div>
 
-    <!-- Day Navigation Carousel -->
-    <div class="tabs-wrapper">
-      <div class="day-tabs" id="dayTabsContainer">
-        <!-- Rendered by JS -->
+    <!-- VIEW 2: EXPLORE NEW ATTRACTIONS & EVENTS VIEW -->
+    <div id="exploreView" class="explore-container">
+      <div class="explore-hero-card">
+        <h2>🎪 ที่เที่ยวเปิดใหม่ & งานเทศกาลช่วง 8 - 12 ต.ค. 2026</h2>
+        <p>รวมแลนด์มาร์กใหม่ล่าสุดของกรุงเทพฯ งานเทศกาล และอีเวนต์น่าแวะ สามารถกด <strong>"+ เพิ่มเข้าแพลน"</strong> เพื่อใส่ลงในตารางวันของคุณได้ทันที!</p>
       </div>
-    </div>
 
-    <!-- Filter & Search Bar -->
-    <div class="filter-bar">
-      <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="searchInput" placeholder="ค้นหาสถานที่, อาหาร, กิจกรรม...">
+      <div class="explore-grid" id="exploreGridContainer">
+        <!-- Generated via JS -->
       </div>
-      <div class="category-pills" id="categoryPills">
-        <button class="cat-btn active" data-cat="all">ทั้งหมด</button>
-        <button class="cat-btn" data-cat="food">🍽️ ของกิน</button>
-        <button class="cat-btn" data-cat="shopping">🛍️ ช้อปปิ้ง</button>
-        <button class="cat-btn" data-cat="attraction">🦒 ที่เที่ยว</button>
-        <button class="cat-btn" data-cat="travel">🚗 เดินทาง</button>
-        <button class="cat-btn" data-cat="hotel">🏨 ที่พัก</button>
-      </div>
-    </div>
-
-    <!-- Highlight Section: LOPIA JAPAN -->
-    <div class="spotlight-card" id="spotlightCard">
-      <div class="spotlight-header">
-        <div class="spotlight-title">
-          <i class="fa-solid fa-star" style="color: #ea580c;"></i>
-          <span>LOPIA JAPAN @ เซ็นทรัล แจ้งวัฒนะ</span>
-        </div>
-        <span class="spotlight-badge"><i class="fa-solid fa-fire"></i> จุดแวะไฮไลต์พิเศษ</span>
-      </div>
-      <p class="spotlight-desc">
-        ซูเปอร์มาร์เก็ตญี่ปุ่นชื่อดังสาขาแรกในไทย ตั้งอยู่ที่ <strong>ชั้น G เซ็นทรัล แจ้งวัฒนะ</strong> (เปิดวันศุกร์ 10:30 – 22:00 น.) วัตถุดิบนำเข้าพรีเมียมและโซนอาหารปรุงสุกพร้อมทานยอดฮิต
-      </p>
-      <div class="spotlight-grid">
-        <div class="spotlight-item">
-          <strong>🥩 เนื้อวากิวญี่ปุ่นพรีเมียม</strong>
-          นำเข้าเกรด A4–A5 ลายหินอ่อนสวย ในราคาจับต้องได้
-        </div>
-        <div class="spotlight-item">
-          <strong>🍣 ซูชิ & ซาชิมิคำโต</strong>
-          ปลาดิบสดใหม่ แซลมอน ฮามาจิ ไข่หอยเม่นหน้าล้น
-        </div>
-        <div class="spotlight-item">
-          <strong>🍱 โซนอาหารปรุงสด (Delica)</strong>
-          ข้าวกล่องเบนโตะ ของทอดสไตล์ญี่ปุ่น พิซซ่าอบสด
-        </div>
-      </div>
-    </div>
-
-    <!-- Dynamic Days Container -->
-    <div id="itineraryContainer">
-      <!-- Generated via JS -->
     </div>
 
   </main>
@@ -1082,6 +1287,7 @@
               <option value="attraction">🦒 ที่เที่ยว / กิจกรรม</option>
               <option value="travel">🚗 การเดินทาง</option>
               <option value="hotel">🏨 โรงแรม / ที่พัก</option>
+              <option value="event">🎪 งานอีเวนต์ / เทศกาล</option>
               <option value="other">📌 อื่นๆ</option>
             </select>
           </div>
@@ -1386,6 +1592,94 @@
       }
     ];
 
+    // --- Curated New Landmarks & Mid-October Events (8-12 Oct 2026) ---
+    const EXPLORE_ITEMS = [
+      {
+        id: "exp-1",
+        type: "new",
+        tag: "🆕 อภิมหาโครงการใหม่",
+        title: "One Bangkok (วัน แบงค็อก)",
+        location: "ถนนพระราม 4 (MRT ลุมพินี ทางออกตรงเข้าห้าง)",
+        desc: "เมกะโปรเจกต์ระดับโลกใจกลางกรุง รวม Parade & The Storeys ร้านอาหารระดับมิชลินและแบรนด์ดังระดับโลก โซน Art Loop จุดถ่ายรูปสถาปัตยกรรมสุดอลังการ",
+        tip: "แวะช่วงบ่ายแก่ๆ ถึงค่ำ ถ่ายรูปกับแสงไฟและทานดินเนอร์ สวยงามมาก",
+        mapQuery: "One Bangkok Rama 4",
+        category: "shopping",
+        defaultTime: "17:30 - 21:00"
+      },
+      {
+        id: "exp-2",
+        type: "new",
+        tag: "🆕 ช้อป & สตรีทฟู้ดดึก",
+        title: "EMSPHERE (เอ็มสเฟียร์ สุขุมวิท)",
+        location: "สุขุมวิท (BTS พร้อมพงษ์ Skywalk)",
+        desc: "ศูนย์การค้ายอดฮิตขวัญใจคนรุ่นใหม่ โซน EM MARKET รวมร้านดังและสตรีทฟู้ดเปิดถึงตี 3 พร้อม IKEA Sukhumvit City Store แห่งแรกในไทย",
+        tip: "ร้านเนยกรอบ Butterbear, ร้านราเมน และเบเกอรี่ดังรวมอยู่ที่นี่ครบ",
+        mapQuery: "EMSPHERE Sukhumvit",
+        category: "shopping",
+        defaultTime: "18:00 - 21:30"
+      },
+      {
+        id: "exp-3",
+        type: "event",
+        tag: "🎪 งานอีเวนต์ใหญ่ (จัด ต.ค.)",
+        title: "มหกรรมหนังสือระดับชาติ (Book Expo Thailand)",
+        location: "ศูนย์การประชุมแห่งชาติสิริกิติ์ (MRT ศูนย์สิริกิติ์)",
+        desc: "งานมหกรรมหนังสือที่ใหญ่ที่สุดแห่งปีของไทย มีสำนักพิมพ์ชั้นนำ โซนของสะสม การ์ตูน Art Toys และนิทรรศการพิเศษ แอร์เย็นเดินสบาย",
+        tip: "นั่ง MRT จากโรงแรม Mercure Makkasan เพียง 3 สถานี สะดวกสบายมาก",
+        mapQuery: "Queen Sirikit National Convention Center",
+        category: "event",
+        defaultTime: "13:00 - 16:30"
+      },
+      {
+        id: "exp-4",
+        type: "festival",
+        tag: "🎪 เทศกาลประจำปี (ช่วง ต.ค.)",
+        title: "เทศกาลกินเจเยาวราช (Yaowarat Chinatown)",
+        location: "ถนนเยาวราช (MRT วัดมังกร)",
+        desc: "เทศกาลกินเจสุดยิ่งใหญ่ ธงเหลืองสะพรั่งทั่วเยาวราช สตรีทฟู้ดและร้านอาหารเจระดับตำนานกว่า 100 ร้าน ทั้งของคาว ขนมหวาน ก๋วยเตี๋ยว และติ่มซำ",
+        tip: "แนะนำมาช่วง 17:30 น. เป็นต้นไป ร้านเปิดเต็มถนน อร่อยและคึกคักสุดๆ",
+        mapQuery: "ถนนเยาวราช วัดมังกรกมลาวาส",
+        category: "food",
+        defaultTime: "17:30 - 21:00"
+      },
+      {
+        id: "exp-5",
+        type: "art",
+        tag: "🎨 ย่านสุดชิคระดับโลก",
+        title: "ถนนทรงวาด & ตลาดน้อย (Song Wat & Talat Noi)",
+        location: "ถนนทรงวาด สัมพันธวงศ์ (MRT วัดมังกร/หัวลำโพง)",
+        desc: "ย่านที่ได้รับการจัดอันดับให้เป็นหนึ่งใน Coolest Neighborhoods ของโลก คาเฟ่ Specialty Coffee แกลเลอรีศิลปะ ตึกเก่าโบราณ และร้านขนมอบโฮมเมด",
+        tip: "เดินถ่ายรูปสตรีทอาร์ต แวะจิบกาแฟโบราณ และซื้อซาลาเปาอบในตำนาน",
+        mapQuery: "ถนนทรงวาด สัมพันธวงศ์",
+        category: "attraction",
+        defaultTime: "13:00 - 16:30"
+      },
+      {
+        id: "exp-6",
+        type: "festival",
+        tag: "🎪 ธีมฮาโลวีนถ่ายรูปสวย",
+        title: "Chocolate Ville - Spooky Halloween Village",
+        location: "ถนนประเสริฐมนูกิจ (เกษตร-นวมินทร์ โซนเดียวกับ Safari World)",
+        desc: "เนรมิตหมู่บ้านสไตล์ยุโรปเป็นดินแดนฮาโลวีนสุดแฟนตาซี มีโชว์พาเหรดพี่หมี ฟักทองยักษ์ ไฟประดับ หมอกควัน และมุมถ่ายรูปเพียบ",
+        tip: "เหมาะมากที่จะแวะเย็นวันเสาร์ (Day 3) ขากลับจาก Safari World เพราะอยู่โซนรามอินทราเหมือนกัน",
+        mapQuery: "Chocolate Ville ประเสริฐมนูกิจ",
+        category: "attraction",
+        defaultTime: "17:30 - 20:30"
+      },
+      {
+        id: "exp-7",
+        type: "art",
+        tag: "🌿 ทางเดินลอยฟ้าใจกลางเมือง",
+        title: "BMA Skywalk สะพานเขียว (ลุมพินี - เบญจกิติ)",
+        location: "สะพานเขียว เชื่อมระหว่างสวนลุมพินีและสวนเบญจกิติ",
+        desc: "ทางเดินยกระดับลอยฟ้าท่ามกลางยอดไม้และตึกระฟ้าของกรุงเทพฯ จุดถ่ายรูปพระอาทิตย์ตกดินและออกกำลังกายยอดฮิตบรรยากาศเหมือนอยู่โตเกียว",
+        tip: "แนะนำมาช่วง 16:30 - 18:00 น. แสงแดดอุ่นๆ ถ่ายรูปสวยที่สุด",
+        mapQuery: "สะพานเขียว สวนลุมพินี สวนเบญจกิติ",
+        category: "attraction",
+        defaultTime: "16:30 - 18:00"
+      }
+    ];
+
     // --- State Management ---
     const STORAGE_KEY = 'bkk_trip_plan_v2';
     let tripData = [];
@@ -1411,6 +1705,85 @@
     function saveData() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(tripData));
       updateProgress();
+    }
+
+    // --- View Switching (Itinerary vs Explore) ---
+    function switchView(viewName) {
+      const btnItinerary = document.getElementById('btnViewItinerary');
+      const btnExplore = document.getElementById('btnViewExplore');
+      const itineraryView = document.getElementById('itineraryView');
+      const exploreView = document.getElementById('exploreView');
+
+      if (viewName === 'explore') {
+        btnItinerary.classList.remove('active');
+        btnExplore.classList.add('active');
+        itineraryView.style.display = 'none';
+        exploreView.classList.add('active');
+        renderExplore();
+      } else {
+        btnExplore.classList.remove('active');
+        btnItinerary.classList.add('active');
+        exploreView.classList.remove('active');
+        itineraryView.style.display = 'block';
+        renderItinerary();
+      }
+    }
+
+    // --- Render Explore Cards ---
+    function renderExplore() {
+      const container = document.getElementById('exploreGridContainer');
+      if (!container) return;
+
+      let html = '';
+      EXPLORE_ITEMS.forEach(item => {
+        const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.mapQuery)}`;
+        let tagClass = 'tag-new';
+        if (item.type === 'festival') tagClass = 'tag-festival';
+        if (item.type === 'art') tagClass = 'tag-art';
+
+        html += `
+          <div class="explore-card">
+            <div>
+              <span class="explore-tag ${tagClass}">${item.tag}</span>
+              <h3>${item.title}</h3>
+              <div class="explore-location">
+                <i class="fa-solid fa-location-dot" style="color: #ef4444;"></i>
+                <span>${item.location}</span>
+              </div>
+              <div class="explore-desc">${item.desc}</div>
+              <div class="explore-tip">💡 ${item.tip}</div>
+            </div>
+
+            <div class="explore-card-actions">
+              <a href="${mapUrl}" target="_blank" rel="noopener noreferrer" class="btn-action map-link" title="เปิดดูใน Google Maps">
+                <i class="fa-solid fa-location-arrow"></i> แผนที่
+              </a>
+              <button class="btn-add-to-plan" onclick="addExploreItemToPlan('${item.id}')">
+                <i class="fa-solid fa-calendar-plus"></i> + เพิ่มเข้าแพลน
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    // Quick add explore item to plan
+    function addExploreItemToPlan(exploreId) {
+      const item = EXPLORE_ITEMS.find(x => x.id === exploreId);
+      if (!item) return;
+
+      // Open Modal pre-filled
+      openAddModal(1);
+      document.getElementById('formTitle').value = item.title;
+      document.getElementById('formCategory').value = item.category || 'attraction';
+      document.getElementById('formTimeSlot').value = item.defaultTime || '14:00 - 17:00';
+      document.getElementById('formDesc').value = item.desc;
+      document.getElementById('formTip').value = item.tip;
+      document.getElementById('formMapQuery').value = item.mapQuery;
+
+      showToast(`เลือกวันและช่วงเวลาที่ต้องการเพิ่ม '${item.title}' ได้เลยครับ`);
     }
 
     // --- Countdown Timer ---
@@ -1490,6 +1863,8 @@
           return `<span class="category-tag tag-travel">🚗 เดินทาง</span>`;
         case 'hotel':
           return `<span class="category-tag tag-hotel">🏨 ที่พัก</span>`;
+        case 'event':
+          return `<span class="category-tag tag-event">🎪 อีเวนต์</span>`;
         default:
           return `<span class="category-tag">📌 อื่นๆ</span>`;
       }
@@ -1661,7 +2036,7 @@
       document.getElementById('formDaySelect').value = defaultDay;
       document.getElementById('formTimeSlot').value = "";
       document.getElementById('formTitle').value = "";
-      document.getElementById('formCategory').value = "food";
+      document.getElementById('formCategory').value = "attraction";
       document.getElementById('formOpeningHours').value = "";
       document.getElementById('formDesc').value = "";
       document.getElementById('formTip').value = "";
@@ -1764,7 +2139,7 @@
         const targetDay = tripData.find(d => d.dayNumber === dayNum);
         if (targetDay) {
           targetDay.events.push(newEvt);
-          showToast("เพิ่มกิจกรรมเรียบร้อยแล้ว 🎯");
+          showToast("เพิ่มกิจกรรมลงในแพลนเรียบร้อยแล้ว 🎯");
         }
       }
 
@@ -1772,6 +2147,10 @@
       renderDayTabs();
       renderItinerary();
       closeModal();
+      
+      // Auto switch back to Itinerary View so user sees their new addition
+      switchView('itinerary');
+      selectDayTab(dayNum);
     };
 
     // --- Search & Filters ---
@@ -1841,7 +2220,7 @@
         toast.classList.add('show');
         setTimeout(() => {
           toast.classList.remove('show');
-        }, 2600);
+        }, 2800);
       }
     }
 
