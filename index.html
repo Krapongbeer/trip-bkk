@@ -1335,6 +1335,197 @@
       from { transform: translateY(20px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+  
+    /* Version & Changelog UI */
+    .version-tag {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(236, 72, 153, 0.3);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 8px;
+    }
+    .version-tag:hover {
+      transform: translateY(-1px) scale(1.05);
+      box-shadow: 0 4px 10px rgba(236, 72, 153, 0.4);
+    }
+    .version-hero-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.95);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .version-hero-banner:hover {
+      background: rgba(255, 255, 255, 0.24);
+      transform: translateY(-1px);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+    .version-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 2s infinite;
+    }
+    .version-link {
+      color: #fde047;
+      font-weight: 600;
+      margin-left: 4px;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .app-footer {
+      margin-top: 50px;
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 28px 16px 44px;
+      text-align: center;
+    }
+    .footer-container {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .footer-title {
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .footer-sub {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      margin: 4px 0 0;
+    }
+    .footer-version-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-version-box:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
+    }
+    .footer-ver-badge {
+      background: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .footer-ver-date {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+    .footer-ver-btn {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .changelog-timeline {
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid #e2e8f0;
+      margin: 16px 0 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: left;
+    }
+    .changelog-item {
+      position: relative;
+    }
+    .changelog-dot {
+      position: absolute;
+      left: -27px;
+      top: 3px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #94a3b8;
+      border: 2px solid white;
+    }
+    .changelog-item.current .changelog-dot {
+      background: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+    .changelog-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .changelog-ver {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+    .changelog-badge-current {
+      background: #dcfce7;
+      color: #166534;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .changelog-date {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      margin-left: auto;
+    }
+    .changelog-body {
+      background: #f8fafc;
+      border: 1px solid #f1f5f9;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.84rem;
+      color: #334155;
+      line-height: 1.6;
+    }
+    .changelog-body ul {
+      margin: 6px 0 0 16px;
+      padding: 0;
+    }
+    .changelog-body li {
+      margin-bottom: 4px;
+    }
+
   </style>
 </head>
 <body>
@@ -1344,6 +1535,7 @@
     <div class="brand">
       <i class="fa-solid fa-cake-candles" style="color: #ec4899;"></i>
       <span>BKK Birthday Trip</span>
+      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v3.2</span>
     </div>
     <div class="nav-nav-links">
       <button class="nav-link-btn active" id="navBtnPlan" onclick="switchView('itinerary')">
@@ -1399,6 +1591,14 @@
           <span>🛬 <strong>กลับ:</strong> VZ2106 BKK 19:00 → CNX 20:25 (12 ต.ค.)</span>
         </div>
       </div>
+
+      <!-- Version & Last Updated Pill -->
+      <div class="version-hero-banner" onclick="openVersionModal()" title="คลิกดูประวัติและรายละเอียดการแก้ไข">
+        <span class="version-dot"></span>
+        <span><strong>เวอร์ชัน v3.2</strong> (11 ก.ย. 2026): ปรับ Day 2 รับรถหลังบ่ายสาม & Fact-Check อีเวนต์</span>
+        <span class="version-link">ประวัติแก้ไข <i class="fa-solid fa-angle-right"></i></span>
+      </div>
+
     </div>
   </header>
 
@@ -1516,6 +1716,22 @@
     </div>
 
   </main>
+
+  <!-- App Footer with Version & Changelog -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <p class="footer-title">🇹🇭 Bangkok Birthday Vacation Trip Planner 2026</p>
+        <p class="footer-sub">สำหรับทริป 8 - 12 ต.ค. 2026 (5 วัน 4 คืน) • จัดทำพิเศษฉลองวันเกิดให้ <strong>Pumpui</strong> (1 ต.ค.) 🎂💖</p>
+      </div>
+      <div class="footer-version-box" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขและเวอร์ชันทั้งหมด">
+        <span class="footer-ver-badge">v3.2 Latest</span>
+        <span class="footer-ver-date"><i class="fa-regular fa-calendar-check"></i> แก้ไขล่าสุด: 11 ก.ย. 2026</span>
+        <span class="footer-ver-btn"><i class="fa-solid fa-clock-rotate-left"></i> ดูบันทึกการแก้ไข (Changelog)</span>
+      </div>
+    </div>
+  </footer>
+
 
   <!-- Activity Add / Edit Modal with AI Auto-Fill -->
   <div class="modal-backdrop" id="eventModal">
@@ -2919,6 +3135,35 @@
       }
     }
 
+    
+    // --- Version Modal Handlers ---
+    const versionModal = document.getElementById('versionModal');
+    const btnCloseVersionModal = document.getElementById('btnCloseVersionModal');
+
+    function openVersionModal() {
+      if (versionModal) {
+        versionModal.classList.add('active');
+      }
+    }
+
+    function closeVersionModal() {
+      if (versionModal) {
+        versionModal.classList.remove('active');
+      }
+    }
+
+    if (btnCloseVersionModal) {
+      btnCloseVersionModal.onclick = closeVersionModal;
+    }
+
+    if (versionModal) {
+      versionModal.addEventListener('click', function(e) {
+        if (e.target === versionModal) {
+          closeVersionModal();
+        }
+      });
+    }
+
     // --- Initial Boot ---
     window.addEventListener('DOMContentLoaded', () => {
       initData();
@@ -2939,5 +3184,111 @@
       }, 700);
     });
   </script>
+
+  <!-- Version Changelog Modal -->
+  <div class="modal-backdrop" id="versionModal">
+    <div class="modal-box" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-clock-rotate-left" style="color: var(--primary);"></i> ประวัติการปรับปรุงเวอร์ชัน (Changelog)</h3>
+        <button class="btn-close-modal" id="btnCloseVersionModal">&times;</button>
+      </div>
+
+      <div class="changelog-timeline">
+
+        <!-- v3.2 -->
+        <div class="changelog-item current">
+          <div class="changelog-dot"></div>
+          <div class="changelog-header">
+            <span class="changelog-ver">Version 3.2</span>
+            <span class="changelog-badge-current">เวอร์ชันปัจจุบัน</span>
+            <span class="changelog-date">11 ก.ย. 2026</span>
+          </div>
+          <div class="changelog-body">
+            <strong>🚗 ปรับแผน Day 2 (เวลารับรถช่วงหลังบ่ายสาม) & Fact-Check อีเวนต์จริง:</strong>
+            <ul>
+              <li><strong>ปรับตาราง Day 2:</strong> เปลี่ยนเวลารับรถเช่าเป็น 15:00 น. (ช่วงหลังบ่ายสาม) ณ โรงแรม Mercure Makkasan</li>
+              <li><strong>เพิ่มกิจกรรมช่วงเช้า-บ่าย:</strong> นั่ง MRT สุขุมวิท ไปเดินตากแอร์ ช้อปปิ้ง และทานมื้อเที่ยงที่ <strong>EMSPHERE</strong> (สุขุมวิท 22-24) ไม่ต้องกังวลเรื่องรถติด</li>
+              <li><strong>เส้นทางเลี่ยงรถติด:</strong> ออกเดินทาง 15:45 น. ขึ้นทางด่วนศรีรัชไปถึง Central แจ้งวัฒนะ ก่อนชั่วโมงเร่งด่วน 17:30 น.</li>
+              <li><strong>ดินเนอร์ LOPIA JAPAN:</strong> ชิมของกินญี่ปุ่นและช้อปปิ้งของฝากที่ LOPIA ชั้น G และขับรถกลับโรงแรมช่วงค่ำ (ทางด่วนโล่ง 25 นาที)</li>
+              <li><strong>Fact-Check อีเวนต์จริง (ไม่มโน):</strong> ตรวจสอบปฏิทินจริง งานมหกรรมหนังสือจัด 23 ต.ค. - 1 พ.ย. 2569 (ปลายเดือน) จึงนำออกจากช่วง 8-12 ต.ค. เพื่อความแม่นยำ พร้อมยืนยันเทศกาลกินเจเยาวราช, Chocolate Ville Halloween, นิทรรศการ River City & BACC</li>
+              <li><strong>ระบบเวอร์ชัน:</strong> เพิ่มแถบ Badge และหน้าต่างประวัติการแก้ไขเวอร์ชันบนหน้าเว็บ</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v3.1 -->
+        <div class="changelog-item">
+          <div class="changelog-dot"></div>
+          <div class="changelog-header">
+            <span class="changelog-ver">Version 3.1</span>
+            <span class="changelog-date">10 ก.ย. 2026</span>
+          </div>
+          <div class="changelog-body">
+            <strong>🎂 เพิ่มธีมพิเศษฉลองวันเกิด Happy Birthday Pumpui (1 ต.ค.):</strong>
+            <ul>
+              <li>เพิ่มแถบริบบิ้นวันเกิดด้านบนสุดของหน้าเว็บประกายสีพาสเทล</li>
+              <li>เชื่อมต่อ <code>canvas-confetti</code> ยิงพลุสายรุ้งเฉลิมฉลองเมื่อคลิกริบบิ้น</li>
+              <li>ปรับหัวข้อทริปและข้อความส่งออกทริป (Export to LINE) เป็นธีมวันเกิด</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v3.0 -->
+        <div class="changelog-item">
+          <div class="changelog-dot"></div>
+          <div class="changelog-header">
+            <span class="changelog-ver">Version 3.0</span>
+            <span class="changelog-date">10 ก.ย. 2026</span>
+          </div>
+          <div class="changelog-body">
+            <strong>🤖 Smart Auto-Fetch & เมนูแนะนำอีเวนต์:</strong>
+            <ul>
+              <li>ระบบค้นหาข้อมูลสถานที่อัตโนมัติ (เวลาเปิดปิด หมวดหมู่ คำแนะนำ พิกัด Google Maps) พร้อมเชื่อมต่อ Thai Wikipedia API</li>
+              <li>เพิ่มแท็บ <strong>"แนะนำอีเวนต์ & ที่เที่ยวช่วง 8-12 ต.ค."</strong> พร้อมปุ่ม 1-Click เพิ่มเข้าแผนการเดินทางรายวัน</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v2.0 -->
+        <div class="changelog-item">
+          <div class="changelog-dot"></div>
+          <div class="changelog-header">
+            <span class="changelog-ver">Version 2.0</span>
+            <span class="changelog-date">10 ก.ย. 2026</span>
+          </div>
+          <div class="changelog-body">
+            <strong>📱 ยกระดับ UX/UI สู่ Interactive Web App:</strong>
+            <ul>
+              <li>ระบบแก้ไข เพิ่ม ลบ กิจกรรมในแต่ละวันได้ตามใจชอบ</li>
+              <li>ระบบ Checklist ติ๊กถูกสถานที่ที่ไปแล้ว พร้อมแถบ Progress Bar</li>
+              <li>ระบบค้นหา Real-time, ตัวกรองหมวดหมู่ และแถบเลือกวัน Carousel</li>
+              <li>ระบบบันทึกอัตโนมัติลง LocalStorage และปุ่มแชร์สรุปทริป</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v1.0 -->
+        <div class="changelog-item">
+          <div class="changelog-dot"></div>
+          <div class="changelog-header">
+            <span class="changelog-ver">Version 1.0</span>
+            <span class="changelog-date">10 ก.ย. 2026</span>
+          </div>
+          <div class="changelog-body">
+            <strong>🛫 โครงสร้างแผนการเดินทางเริ่มต้น:</strong>
+            <ul>
+              <li>แผนเที่ยว 5 วัน 4 คืน ไฟลต์บิน VZ115 / VZ2106, Mercure Bangkok Makkasan, Safari World, สวนสัตว์พาต้า, Central Village</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align: right; margin-top: 16px;">
+        <button class="btn btn-primary" onclick="closeVersionModal()" style="padding: 8px 20px;">ปิดหน้าต่าง</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
