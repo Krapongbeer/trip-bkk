@@ -1535,7 +1535,7 @@
     <div class="brand">
       <i class="fa-solid fa-cake-candles" style="color: #ec4899;"></i>
       <span>BKK Birthday Trip</span>
-      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v3.2</span>
+      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v3.3</span>
     </div>
     <div class="nav-nav-links">
       <button class="nav-link-btn active" id="navBtnPlan" onclick="switchView('itinerary')">
@@ -1595,7 +1595,7 @@
       <!-- Version & Last Updated Pill -->
       <div class="version-hero-banner" onclick="openVersionModal()" title="คลิกดูประวัติและรายละเอียดการแก้ไข">
         <span class="version-dot"></span>
-        <span><strong>เวอร์ชัน v3.2</strong> (11 ก.ย. 2026): ปรับ Day 2 รับรถหลังบ่ายสาม & Fact-Check อีเวนต์</span>
+        <span><strong>เวอร์ชัน v3.3</strong> (11 ก.ย. 2026): จัดเวลาจิบกาแฟ TrueSphere Lounge (Day 1 & Day 2)</span>
         <span class="version-link">ประวัติแก้ไข <i class="fa-solid fa-angle-right"></i></span>
       </div>
 
@@ -1725,7 +1725,7 @@
         <p class="footer-sub">สำหรับทริป 8 - 12 ต.ค. 2026 (5 วัน 4 คืน) • จัดทำพิเศษฉลองวันเกิดให้ <strong>Pumpui</strong> (1 ต.ค.) 🎂💖</p>
       </div>
       <div class="footer-version-box" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขและเวอร์ชันทั้งหมด">
-        <span class="footer-ver-badge">v3.2 Latest</span>
+        <span class="footer-ver-badge">v3.3 Latest</span>
         <span class="footer-ver-date"><i class="fa-regular fa-calendar-check"></i> แก้ไขล่าสุด: 11 ก.ย. 2026</span>
         <span class="footer-ver-btn"><i class="fa-solid fa-clock-rotate-left"></i> ดูบันทึกการแก้ไข (Changelog)</span>
       </div>
@@ -1951,6 +1951,24 @@
         tip: "MRT ลุมพินี มีทางเชื่อมใต้ดินเดินเข้าห้างได้โดยตรง ช่วงเย็นวิวไฟสวยมาก",
         mapQuery: "One Bangkok Rama 4"
       },
+      "truesphere": {
+        title: "☕ TrueSphere First Class Lounge (True Black Card)",
+        category: "food",
+        time: "14:00 - 15:30",
+        hours: "เปิด 10:00 - 20:00 น.",
+        desc: "เลานจ์ First Class สำหรับลูกค้า True Black Card รับฟรี TrueBlack Welcome Set (เครื่องดื่มพรีเมียม + ของว่าง/คุกกี้) นั่งพักผ่อนบนเก้าอี้หนังนุ่ม แอร์เย็นฉ่ำ ไฮสปีด Wi-Fi และบริการระดับพรีเมียม",
+        tip: "กดรับสิทธิ์ผ่านแอป TrueID ต่อหน้าพนักงาน (สิทธิ์ 1 ชุด/วัน สูงสุด 4 สิทธิ์/เดือน) พาผู้ติดตามเข้าได้ 1-2 ท่าน",
+        mapQuery: "TrueSphere CentralWorld"
+      },
+      "ทรูสเฟียร์": {
+        title: "☕ TrueSphere First Class Lounge (True Black Card)",
+        category: "food",
+        time: "14:00 - 15:30",
+        hours: "เปิด 10:00 - 20:00 น.",
+        desc: "เลานจ์ First Class สำหรับลูกค้า True Black Card รับฟรี TrueBlack Welcome Set (เครื่องดื่มพรีเมียม + ของว่าง/คุกกี้) นั่งพักผ่อนบนเก้าอี้หนังนุ่ม แอร์เย็นฉ่ำ ไฮสปีด Wi-Fi และบริการระดับพรีเมียม",
+        tip: "กดรับสิทธิ์ผ่านแอป TrueID ต่อหน้าพนักงาน (สิทธิ์ 1 ชุด/วัน สูงสุด 4 สิทธิ์/เดือน) พาผู้ติดตามเข้าได้ 1-2 ท่าน",
+        mapQuery: "TrueSphere CentralWorld"
+      },
       "emsphere": {
         title: "🛍️ EMSPHERE (เอ็มสเฟียร์)",
         category: "shopping",
@@ -2148,12 +2166,23 @@
           },
           {
             id: "d1-e3",
-            time: "17:00 - 21:30",
+            time: "17:00 - 18:15",
+            title: "☕ จิบกาแฟ TrueSphere Lounge @ centralwOrld (ชั้น 4)",
+            category: "food",
+            hours: "เปิด 10:00 - 20:00 น.",
+            desc: "ใช้สิทธิ์ <strong>True Black Card</strong> เข้า First Class Lounge ที่ <strong>TrueSphere centralwOrld</strong> (ชั้น 4 โซนลิฟท์แก้ว / Atrium) รับฟรี Welcome Set กาแฟพรีเมียมและของว่าง นั่งพักผ่อนบนโซฟานุ่ม ชาร์จแบต และคลายเหนื่อยหลังเดินทาง",
+            tip: "เปิดแอป TrueID กดรับสิทธิ์ Welcome Set ฟรี (พาผู้ติดตามเข้าได้ 1-2 ท่าน)",
+            mapQuery: "TrueSphere CentralWorld ชั้น 4",
+            done: false
+          },
+          {
+            id: "d1-e4",
+            time: "18:15 - 21:30",
             title: "🛍️ centralwOrld ช้อปปิ้ง & มื้อค่ำ",
             category: "shopping",
-            hours: "เปิด 10:00 - 22:00",
-            desc: "นั่ง MRT เพชรบุรี ไปต่อ BTS อโศก ลงสถานีชิดลม เดินผ่านทางเชื่อม Skywalk สะดวกสบาย",
-            tip: "โซน Beacon และ Groove มีร้านอาหารและขนมหวานเด็ดๆ เพียบ",
+            hours: "เปิด 10:00 - 22:00 น.",
+            desc: "เดินช้อปปิ้ง ทานอาหารมื้อค่ำที่โซน Beacon / Groove หรือ Central Food Hall ชั้น 7 รวมร้านอาหารระดับโลกเพียบ",
+            tip: "โซน Groove และร้านอาหารชั้น 6-7 มีร้านเด็ดให้เลือกเพียบ หลังมื้อค่ำเดิน Skywalk ชมวิวเมืองยามค่ำคืน",
             mapQuery: "centralwOrld Bangkok",
             done: false
           }
@@ -2177,13 +2206,24 @@
           },
           {
             id: "d2-e2",
-            time: "11:45 - 14:30",
+            time: "11:45 - 13:15",
             title: "🛍️ นั่ง MRT ช้อปปิ้ง & มื้อเที่ยงที่ EMSPHERE (สุขุมวิท)",
             category: "shopping",
-            hours: "เปิด 10:00 - 22:00",
-            desc: "นั่ง MRT สถานีเพชรบุรี เพียง 1 สถานี ไปสถานีสุขุมวิท เชื่อม Skywalk BTS พร้อมพงษ์ เข้าสู่ <strong>EMSPHERE</strong> แลนด์มาร์กใหม่สุดฮอตใจกลางสุขุมวิท ตะลุยกินมื้อเที่ยงที่ EMMARKET ชั้น G หรือแวะถ่ายรูปกับคาเฟ่ดัง Butterbear และเดินดู IKEA Sukhumvit",
-            tip: "ช่วงนี้ยังไม่มีรถส่วนตัว การนั่ง MRT/BTS สะดวก รวดเร็วที่สุด ไม่ต้องกังวลเรื่องหาที่จอดรถหรือรถติดสุขุมวิท",
+            hours: "เปิด 10:00 - 22:00 น.",
+            desc: "นั่ง MRT สถานีเพชรบุรี เพียง 1 สถานี ไปสถานีสุขุมวิท เชื่อม Skywalk BTS พร้อมพงษ์ เข้าสู่ <strong>EMSPHERE</strong> ตะลุยกินมื้อเที่ยงที่ EMMARKET ชั้น G หรือแวะถ่ายรูปกับคาเฟ่ดัง Butterbear และเดินดู IKEA Sukhumvit",
+            tip: "ช่วงนี้ยังไม่มีรถส่วนตัว การนั่ง MRT/BTS สะดวก รวดเร็วที่สุด เลี่ยงรถติดสุขุมวิทได้ดีเยี่ยม",
             mapQuery: "EMSPHERE สุขุมวิท",
+            done: false
+          },
+          {
+            id: "d2-e2-coffee",
+            time: "13:15 - 14:30",
+            title: "☕ จิบกาแฟ TrueSphere @ The EmQuartier / EMSPHERE (ชั้น 2)",
+            category: "food",
+            hours: "เปิด 10:00 - 20:00 น.",
+            desc: "ใช้สิทธิ์ True Black Card จิบกาแฟยามบ่ายที่ <strong>TrueSphere The EmQuartier (ชั้น 2 The Helix Quartier)</strong> หรือ <strong>TrueSphere EMSPHERE (ชั้น 2 True Branding Shop)</strong> รับฟรี Welcome Set กาแฟ/ชาพรีเมียมและเบเกอรี่ นั่งพักผ่อนชิลล์ๆ ในบรรยากาศเฟิร์สคลาส ก่อนนั่ง MRT กลับโรงแรมเตรียมรับรถเช่า",
+            tip: "EmQuartier และ EMSPHERE เชื่อมต่อกันด้วย Skywalk พร้อมพงษ์ เดินทะลุถึงกันสบายมาก นั่งจิบกาแฟแอร์เย็นฉ่ำ",
+            mapQuery: "TrueSphere The EmQuartier ชั้น 2",
             done: false
           },
           {
@@ -2340,12 +2380,12 @@
           {
             id: "d4-e4",
             time: "14:30 - 17:30",
-            title: "☕ Central Pinklao / The Sense ปิ่นเกล้า",
+            title: "☕ Central Pinklao & จิบกาแฟ TrueSphere (ชั้น 3)",
             category: "shopping",
-            hours: "เปิด 10:00 - 22:00",
-            desc: "เดินตากแอร์ หาเครื่องดื่ม นั่งพักคาเฟ่ชิลล์ๆ ช้อปปิ้งสบายๆ",
-            tip: "",
-            mapQuery: "Central Pinklao",
+            hours: "เปิด 10:00 - 22:00 น.",
+            desc: "เดินตากแอร์ ช้อปปิ้ง และแวะใช้สิทธิ์ True Black Card จิบกาแฟฟรีที่ <strong>TrueSphere Central Pinklao (ชั้น 3)</strong> นั่งพักผ่อนบนโซฟานุ่มๆ พร้อม Welcome Set เครื่องดื่มและคุกกี้ ชาร์จแบตพักผ่อนหลังเที่ยวสวนสัตว์พาต้า",
+            tip: "TrueSphere สาขาเซ็นทรัลปิ่นเกล้าบรรยากาศเงียบสงบ คนไม่พลุกพล่าน เหมาะกับการนั่งพักผ่อน",
+            mapQuery: "TrueSphere Central Pinklao ชั้น 3",
             done: false
           },
           {
@@ -2547,7 +2587,7 @@
     ];
 
     // --- State Management ---
-    const STORAGE_KEY = 'bkk_trip_plan_v3';
+    const STORAGE_KEY = 'bkk_trip_plan_v3_3';
     let tripData = [];
     let currentActiveDay = 'all';
     let currentCategory = 'all';
@@ -3195,12 +3235,30 @@
 
       <div class="changelog-timeline">
 
-        <!-- v3.2 -->
+        <!-- v3.3 -->
         <div class="changelog-item current">
           <div class="changelog-dot"></div>
           <div class="changelog-header">
-            <span class="changelog-ver">Version 3.2</span>
+            <span class="changelog-ver">Version 3.3</span>
             <span class="changelog-badge-current">เวอร์ชันปัจจุบัน</span>
+            <span class="changelog-date">11 ก.ย. 2026</span>
+          </div>
+          <div class="changelog-body">
+            <strong>☕ จัดเวลาจิบกาแฟ TrueSphere First Class Lounge (True Black Card):</strong>
+            <ul>
+              <li><strong>Day 1 (พฤหัสฯ 8 ต.ค.) 17:00 - 18:15 น.:</strong> TrueSphere centralwOrld (ชั้น 4 โซนลิฟท์แก้ว / Atrium) แวะจิบกาแฟ Welcome Set พักผ่อนชาร์จแบตก่อนเดินช้อปปิ้งและดินเนอร์</li>
+              <li><strong>Day 2 (ศุกร์ 9 ต.ค.) 13:15 - 14:30 น.:</strong> TrueSphere The EmQuartier (ชั้น 2 The Helix) หรือ TrueSphere EMSPHERE (ชั้น 2) นั่งจิบกาแฟดริปยามบ่ายหลังทานมื้อเที่ยง ก่อนกลับไปรับรถเช่าที่โรงแรม</li>
+              <li><strong>Day 4 (อาทิตย์ 11 ต.ค.) 14:30 - 17:30 น.:</strong> TrueSphere Central Pinklao (ชั้น 3) พักผ่อนจิบกาแฟฟรีหลังเที่ยวสวนสัตว์พาต้า</li>
+              <li><strong>Smart Auto-Fetch:</strong> เพิ่มคลังข้อมูลค้นหาอัตโนมัติสำหรับคำว่า "TrueSphere" และ "ทรูสเฟียร์"</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v3.2 -->
+        <div class="changelog-item">
+          <div class="changelog-dot"></div>
+          <div class="changelog-header">
+            <span class="changelog-ver">Version 3.2</span>
             <span class="changelog-date">11 ก.ย. 2026</span>
           </div>
           <div class="changelog-body">
