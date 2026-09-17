@@ -2,6 +2,9 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Happy Birthday Pumpui! 🎂 Bangkok Trip Planner 2026 | 8 - 12 ต.ค. 2026</title>
   
@@ -1526,6 +1529,45 @@
       margin-bottom: 4px;
     }
 
+  
+    .btn-sync-latest {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-sync-latest:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+      transform: translateY(-1px);
+    }
+    .btn-share-mobile {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-share-mobile:hover {
+      background: #dcfce7;
+      transform: translateY(-1px);
+    }
+
   </style>
 </head>
 <body>
@@ -1535,7 +1577,7 @@
     <div class="brand">
       <i class="fa-solid fa-cake-candles" style="color: #ec4899;"></i>
       <span>BKK Birthday Trip</span>
-      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v3.3</span>
+      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v3.4</span>
     </div>
     <div class="nav-nav-links">
       <button class="nav-link-btn active" id="navBtnPlan" onclick="switchView('itinerary')">
@@ -1595,7 +1637,7 @@
       <!-- Version & Last Updated Pill -->
       <div class="version-hero-banner" onclick="openVersionModal()" title="คลิกดูประวัติและรายละเอียดการแก้ไข">
         <span class="version-dot"></span>
-        <span><strong>เวอร์ชัน v3.3</strong> (11 ก.ย. 2026): จัดเวลาจิบกาแฟ TrueSphere Lounge (Day 1 & Day 2)</span>
+        <span><strong>เวอร์ชัน v3.4</strong> (17 ก.ย. 2026): แก้ปัญหาระบบไม่จำค่า / เพิ่มปุ่มดึงแผนล่าสุด & ซิงค์ข้ามเครื่อง</span>
         <span class="version-link">ประวัติแก้ไข <i class="fa-solid fa-angle-right"></i></span>
       </div>
 
@@ -1629,7 +1671,13 @@
             <div class="progress-fill" id="progressBar"></div>
           </div>
         </div>
-        <div class="stats-actions">
+        <div class="stats-actions" style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <button class="btn-sync-latest" id="btnSyncLatest" onclick="forceSyncLatestPlan()" title="คลิกเพื่อดึงข้อมูลแผนล่าสุดจากระบบ (อัปเดตเวลารับรถ & TrueSphere)">
+            <i class="fa-solid fa-rotate"></i> ดึงแผนล่าสุดจากระบบ
+          </button>
+          <button class="btn-share-mobile" onclick="sharePlanUrl()" title="สร้างลิงก์สำหรับเปิดดูบนมือถือหรือเครื่องอื่น">
+            <i class="fa-solid fa-mobile-screen"></i> ส่งเข้ามือถือ
+          </button>
           <button class="btn-add-quick" id="btnQuickAdd">
             <i class="fa-solid fa-plus"></i> เพิ่มกิจกรรม
           </button>
@@ -1725,7 +1773,7 @@
         <p class="footer-sub">สำหรับทริป 8 - 12 ต.ค. 2026 (5 วัน 4 คืน) • จัดทำพิเศษฉลองวันเกิดให้ <strong>Pumpui</strong> (1 ต.ค.) 🎂💖</p>
       </div>
       <div class="footer-version-box" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขและเวอร์ชันทั้งหมด">
-        <span class="footer-ver-badge">v3.3 Latest</span>
+        <span class="footer-ver-badge">v3.4 Latest</span>
         <span class="footer-ver-date"><i class="fa-regular fa-calendar-check"></i> แก้ไขล่าสุด: 11 ก.ย. 2026</span>
         <span class="footer-ver-btn"><i class="fa-solid fa-clock-rotate-left"></i> ดูบันทึกการแก้ไข (Changelog)</span>
       </div>
@@ -2586,8 +2634,11 @@
       }
     ];
 
-    // --- State Management ---
-    const STORAGE_KEY = 'bkk_trip_plan_v3_3';
+    // --- State Management (v3.4 with Auto-Sync & Anti-Stale Cache) ---
+    const APP_VERSION = 'v3.4';
+    const STORAGE_KEY = 'bkk_trip_plan_v3_4';
+    const VERSION_KEY = 'bkk_trip_app_version';
+
     let tripData = [];
     let currentActiveDay = 'all';
     let currentCategory = 'all';
@@ -2595,23 +2646,103 @@
     let currentExploreFilter = 'all';
 
     function initData() {
+      // 1. Check if there is data in URL Hash for Cross-Device Sync (#plan=...)
+      if (window.location.hash && window.location.hash.startsWith('#plan=')) {
+        try {
+          const encoded = window.location.hash.replace('#plan=', '');
+          const jsonStr = decodeURIComponent(escape(atob(encoded)));
+          const importedData = JSON.parse(jsonStr);
+          if (Array.isArray(importedData) && importedData.length > 0) {
+            tripData = importedData;
+            saveData();
+            localStorage.setItem(VERSION_KEY, APP_VERSION);
+            history.replaceState(null, null, window.location.pathname + window.location.search);
+            showToast("📲 ซิงค์ข้อมูลแผนการเดินทางจากลิงก์เรียบร้อยแล้ว! ✨");
+            return;
+          }
+        } catch (e) {
+          console.error("Failed to load hash plan data", e);
+        }
+      }
+
+      // 2. Check saved version and saved data
+      const savedVersion = localStorage.getItem(VERSION_KEY);
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
+
+      // If version is older than v3.4 or no saved data, automatically upgrade to latest DEFAULT_DAYS!
+      if (savedVersion !== APP_VERSION || !saved) {
+        // Clear all legacy storage keys
+        ['bkk_trip_plan_v1', 'bkk_trip_plan_v2', 'bkk_trip_plan_v3', 'bkk_trip_plan_v3_3'].forEach(k => {
+          try { localStorage.removeItem(k); } catch (e) {}
+        });
+        
+        tripData = JSON.parse(JSON.stringify(DEFAULT_DAYS));
+        localStorage.setItem(VERSION_KEY, APP_VERSION);
+        saveData();
+      } else {
         try {
           tripData = JSON.parse(saved);
         } catch (e) {
-          console.error("Failed to parse saved data, resetting.", e);
+          console.error("Failed to parse saved data, resetting to default.", e);
           tripData = JSON.parse(JSON.stringify(DEFAULT_DAYS));
+          saveData();
         }
-      } else {
-        tripData = JSON.parse(JSON.stringify(DEFAULT_DAYS));
-        saveData();
       }
     }
 
     function saveData() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(tripData));
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(tripData));
+        localStorage.setItem(VERSION_KEY, APP_VERSION);
+      } catch (e) {
+        console.error("Failed to save to localStorage", e);
+      }
       updateProgress();
+    }
+
+    function forceSyncLatestPlan(silent = false) {
+      const doSync = silent || confirm("ต้องการอัปเดตข้อมูลแผนการเดินทางให้ตรงกับเวอร์ชันล่าสุดของระบบ (v3.4) หรือไม่?\n\n• ตาราง Day 2: รับรถเช่าช่วงหลังบ่ายสาม + EMSPHERE + LOPIA\n• สิทธิ์กาแฟ TrueSphere: centralwOrld & EmQuartier\n• Fact-Check อีเวนต์จริงช่วง 8-12 ต.ค.");
+      if (doSync) {
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+          ['bkk_trip_plan_v1', 'bkk_trip_plan_v2', 'bkk_trip_plan_v3', 'bkk_trip_plan_v3_3'].forEach(k => localStorage.removeItem(k));
+        } catch (e) {}
+        tripData = JSON.parse(JSON.stringify(DEFAULT_DAYS));
+        saveData();
+        renderDayTabs();
+        renderItinerary();
+        updateProgress();
+        showToast("🔄 ซิงค์ข้อมูลแผนล่าสุดจากระบบเรียบร้อยแล้ว! ✨");
+      }
+    }
+
+    function sharePlanUrl() {
+      try {
+        const jsonStr = JSON.stringify(tripData);
+        const encoded = btoa(unescape(encodeURIComponent(jsonStr)));
+        const shareUrl = window.location.origin + window.location.pathname + '#plan=' + encoded;
+        
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          showToast("📋 คัดลอกลิงก์ซิงค์แล้ว! ส่งเข้า LINE เปิดบนมือถือเพื่อดูข้อมูลเดียวกันได้ทันที 📲");
+        }).catch(() => {
+          prompt("คัดลอกลิงก์นี้เพื่อนำไปเปิดบนมือถือ:", shareUrl);
+        });
+      } catch (e) {
+        showToast("คัดลอกสรุปทริปผ่านปุ่มแชร์ด้านบนแทนได้ครับ");
+      }
+    }
+
+    function sortDayEvents(events) {
+      return events.sort((a, b) => {
+        const timeA = (a.time || '').match(/(\d{1,2}):(\d{2})/);
+        const timeB = (b.time || '').match(/(\d{1,2}):(\d{2})/);
+        if (!timeA && !timeB) return 0;
+        if (!timeA) return 1;
+        if (!timeB) return -1;
+        const minA = parseInt(timeA[1]) * 60 + parseInt(timeA[2]);
+        const minB = parseInt(timeB[1]) * 60 + parseInt(timeB[2]);
+        return minA - minB;
+      });
     }
 
     // --- View Switching ---
@@ -3045,11 +3176,15 @@
 
       if (id) {
         let eventObj = null;
+        let originalDay = null;
+        let originalIdx = -1;
 
         for (const d of tripData) {
           const idx = d.events.findIndex(x => x.id === id);
           if (idx !== -1) {
-            eventObj = d.events.splice(idx, 1)[0];
+            originalDay = d;
+            originalIdx = idx;
+            eventObj = d.events[idx];
             break;
           }
         }
@@ -3063,10 +3198,24 @@
           eventObj.tip = tip;
           eventObj.mapQuery = mapQuery;
 
-          const targetDay = tripData.find(d => d.dayNumber === dayNum);
-          if (targetDay) {
-            targetDay.events.push(eventObj);
+          if (originalDay.dayNumber === dayNum) {
+            // Day is unchanged: update in place so it preserves position!
+            originalDay.events[originalIdx] = eventObj;
+          } else {
+            // Day changed: remove from old day and add to new day
+            originalDay.events.splice(originalIdx, 1);
+            const targetDay = tripData.find(d => d.dayNumber === dayNum);
+            if (targetDay) {
+              targetDay.events.push(eventObj);
+            }
           }
+
+          // Sort target day chronologically
+          const currentDay = tripData.find(d => d.dayNumber === dayNum);
+          if (currentDay) {
+            sortDayEvents(currentDay.events);
+          }
+
           showToast("แก้ไขข้อมูลเรียบร้อยแล้ว ✨");
         }
       } else {
@@ -3085,6 +3234,7 @@
         const targetDay = tripData.find(d => d.dayNumber === dayNum);
         if (targetDay) {
           targetDay.events.push(newEvt);
+          sortDayEvents(targetDay.events);
           showToast(`เพิ่ม '${title}' ลงใน Day ${dayNum} เรียบร้อยแล้ว 🎯`);
         }
       }
@@ -3235,12 +3385,31 @@
 
       <div class="changelog-timeline">
 
-        <!-- v3.3 -->
+        <!-- v3.4 -->
         <div class="changelog-item current">
           <div class="changelog-dot"></div>
           <div class="changelog-header">
-            <span class="changelog-ver">Version 3.3</span>
+            <span class="changelog-ver">Version 3.4</span>
             <span class="changelog-badge-current">เวอร์ชันปัจจุบัน</span>
+            <span class="changelog-date">17 ก.ย. 2026</span>
+          </div>
+          <div class="changelog-body">
+            <strong>🔄 แก้ปัญหาระบบไม่เปลี่ยนค่าเมื่อเข้าเว็บใหม่ (Auto-Sync & Cross-Device Sync):</strong>
+            <ul>
+              <li><strong>ระบบ Auto-Migration อัตโนมัติ:</strong> แก้ปัญหาเบราว์เซอร์จำข้อมูลแคชเดิม โดยระบบจะตรวจจับเวอร์ชันใหม่และอัปเกรดตารางแผนการเดินทางเป็นเวอร์ชันล่าสุดให้อัตโนมัติทันทีที่เข้าเว็บ</li>
+              <li><strong>ปุ่ม "ดึงแผนล่าสุดจากระบบ":</strong> เพิ่มปุ่มลัดสีฟ้าในหน้าแรกสำหรับคลิกเดียวดึงข้อมูล Day 2 (รับรถบ่ายสาม) และ TrueSphere ได้ตลอดเวลา</li>
+              <li><strong>แก้บั๊กการแก้ไขกิจกรรม (Edit Event):</strong> อัปเดตข้อมูลแบบคงตำแหน่งเดิม (In-place) และเรียงลำดับเวลาให้โดยอัตโนมัติ ไม่ตกไปอยู่ท้ายรายการอีกต่อไป</li>
+              <li><strong>ระบบแชร์ซิงค์ข้อมูลข้ามเครื่อง (Cross-Device Sync):</strong> เพิ่มปุ่ม <em>"ส่งเข้ามือถือ"</em> สามารถสร้างลิงก์สำหรับเปิดบนมือถือหรือเครื่องอื่น เพื่อให้เห็นข้อมูลที่แก้ไขตรงกัน 100%</li>
+              <li><strong>Anti-Cache Meta Tags:</strong> ใส่คำสั่งป้องกันเบราว์เซอร์แคชไฟล์หน้าเว็บ เพื่อให้ได้รับข้อมูลสดใหม่อยู่เสมอ</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v3.3 -->
+        <div class="changelog-item">
+          <div class="changelog-dot"></div>
+          <div class="changelog-header">
+            <span class="changelog-ver">Version 3.3</span>
             <span class="changelog-date">11 ก.ย. 2026</span>
           </div>
           <div class="changelog-body">
