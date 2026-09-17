@@ -2745,28 +2745,26 @@
         updateSyncUI('syncing', 'กำลังเชื่อมต่อ...');
 
         tripDocRef.onSnapshot((docSnap) => {
-          if (docSnap.exists) {
+          if (docSnap.exists && docSnap.data() && Array.isArray(docSnap.data().days) && docSnap.data().days.length > 0) {
             const data = docSnap.data();
-            if (data && Array.isArray(data.days) && data.days.length > 0) {
-              const isRemote = data.lastUpdatedBy && data.lastUpdatedBy !== myDeviceId;
-              
-              isApplyingRemoteChange = true;
-              tripData = data.days;
-              
-              try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(tripData));
-                localStorage.setItem(VERSION_KEY, APP_VERSION);
-              } catch (e) {}
+            const isRemote = data.lastUpdatedBy && data.lastUpdatedBy !== myDeviceId;
+            
+            isApplyingRemoteChange = true;
+            tripData = data.days;
+            
+            try {
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(tripData));
+              localStorage.setItem(VERSION_KEY, APP_VERSION);
+            } catch (e) {}
 
-              renderDayTabs();
-              renderItinerary();
-              updateProgress();
-              updateSyncUI('online', 'ซิงค์สด Realtime');
-              isApplyingRemoteChange = false;
+            renderDayTabs();
+            renderItinerary();
+            updateProgress();
+            updateSyncUI('online', 'ซิงค์สด Realtime');
+            isApplyingRemoteChange = false;
 
-              if (isRemote) {
-                showToast("🔄 มีการแก้ไขแผนจากอุปกรณ์อื่นแบบ Realtime ✨");
-              }
+            if (isRemote) {
+              showToast("🔄 มีการแก้ไขแผนจากอุปกรณ์อื่นแบบ Realtime ✨");
             }
           } else {
             // First device boot: Seed Cloud Firestore with initial rich DEFAULT_DAYS!
