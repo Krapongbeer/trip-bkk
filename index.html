@@ -1631,7 +1631,7 @@
     <div class="brand">
       <i class="fa-solid fa-cake-candles" style="color: #ec4899;"></i>
       <span>BKK Birthday Trip</span>
-      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v4.2</span>
+      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v4.3</span>
     </div>
     <div class="nav-nav-links">
       <button class="nav-link-btn active" id="navBtnPlan" onclick="switchView('itinerary')">
@@ -1695,7 +1695,7 @@
       <!-- Version & Last Updated Pill -->
       <div class="version-hero-banner" onclick="openVersionModal()" title="คลิกดูประวัติและรายละเอียดการแก้ไข">
         <span class="version-dot"></span>
-        <span><strong>เวอร์ชัน v4.2</strong> (17 ก.ย. 2026): ปรับ Day 2 รับรถเช่าที่สุวรรณภูมิ + เส้นทาง ARL & ซิงค์ Realtime</span>
+        <span><strong>เวอร์ชัน v4.3</strong> (17 ก.ย. 2026): เพิ่ม 4 ทางเลือกมื้อเย็น Day 3 (Fashion Island / Eastville / Chocolate Ville / ตลาดเลียบด่วน) & ซิงค์ Realtime</span>
         <span class="version-link">ประวัติแก้ไข <i class="fa-solid fa-angle-right"></i></span>
       </div>
 
@@ -1831,7 +1831,7 @@
         <p class="footer-sub">สำหรับทริป 8 - 12 ต.ค. 2026 (5 วัน 4 คืน) • จัดทำพิเศษฉลองวันเกิดให้ <strong>Pumpui</strong> (1 ต.ค.) 🎂💖</p>
       </div>
       <div class="footer-version-box" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขและเวอร์ชันทั้งหมด">
-        <span class="footer-ver-badge">v4.2 Latest</span>
+        <span class="footer-ver-badge">v4.3 Latest</span>
         <span class="footer-ver-date"><i class="fa-regular fa-calendar-check"></i> แก้ไขล่าสุด: 11 ก.ย. 2026</span>
         <span class="footer-ver-btn"><i class="fa-solid fa-clock-rotate-left"></i> ดูบันทึกการแก้ไข (Changelog)</span>
       </div>
@@ -2433,9 +2433,9 @@
           }
         ]
       },
-      {
+            {
         dayNumber: 3,
-        title: "ขาไก่สัมมากร – สนุกเต็มวัน Safari World – ไนท์มาร์เก็ต",
+        title: "ขาไก่สัมมากร – Safari World – มื้อค่ำ Fashion Island / Eastville / Chocolate Ville",
         dateText: "เสาร์ที่ 10 ต.ค. 2026",
         events: [
           {
@@ -2444,8 +2444,8 @@
             title: "🚗 เดินทางไปสัมมากร (รามคำแหง 112)",
             category: "travel",
             hours: "",
-            desc: "วิ่งเส้นพระราม 9 ตรงเข้าสู่ถนนรามคำแหง แวะรับขนมเจ้าดัง",
-            tip: "",
+            desc: "ขับรถออกจากโรงแรม Mercure Makkasan วิ่งเส้นพระราม 9 ตรงเข้าสู่ถนนรามคำแหง แวะรับขนมเจ้าดัง",
+            tip: "ออกเช้าหน่อยถนนรามคำแหงเสาร์เช้ารถยังไม่ติด วิ่งสบายๆ",
             mapQuery: "หมู่บ้านสัมมากร รามคำแหง 112",
             done: false
           },
@@ -2455,40 +2455,85 @@
             title: "🍗 ขาไก่สัมมากร (Mr.Khakai)",
             category: "food",
             hours: "เปิด 09:30 - 18:30 (อ.-ส.)",
-            desc: "ซื้อขนมพายกรอบขาไก่เนยสดในตำนาน *(สลับมาวันเสาร์เพราะร้านหยุดวันอาทิตย์-จันทร์)*",
-            tip: "ซื้อตุนเป็นของฝากได้ กรอบหอมเนยสดแท้",
+            desc: "ซื้อขนมพายกรอบขาไก่เนยสดในตำนาน *(สลับมาวันเสาร์เพราะร้านหยุดวันอาทิตย์-จันทร์)* กรอบ หอมเนยสดแท้ ไม่หวานเลี่ยน",
+            tip: "ซื้อตุนเป็นเสบียงกินบนรถและเป็นของฝากได้ ยิ่งกินคู่กับกาแฟยิ่งฟิน",
             mapQuery: "ขนมขาไก่สัมมากร Mr.Khakai",
             done: false
           },
           {
             id: "d3-e3",
             time: "10:30 - 16:45",
-            title: "🦒 Safari World (ซาฟารีเวิลด์)",
+            title: "🦒 Safari World (ซาฟารีเวิลด์ & มารีนปาร์ค)",
             category: "attraction",
-            hours: "เปิด 09:00 - 17:00",
-            desc: "ขับรถชม Safari Park (โซนเปิด) และเดินชม Marine Park พร้อมให้อาหารฝูงยีราฟ",
+            hours: "เปิด 09:00 - 17:00 น.",
+            desc: "ขับรถส่วนตัวชมสัตว์อย่างใกล้ชิดใน <strong>Safari Park</strong> (โซนเปิด) และเดินเที่ยว <strong>Marine Park</strong> ชมการแสดงสัตว์ระดับโลกและให้อาหารฝูงยีราฟ",
             shows: [
-              "🐬 13:45 น. โชว์โลมา (ไฮไลต์ห้ามพลาด)",
-              "💥 14:45 น. สตันท์ Spy War หรือ โชว์นก",
-              "🦭 15:45 น. โชว์สิงโตทะเล"
+              "🐬 13:45 น. โชว์โลมา (ไฮไลต์ห้ามพลาด แสนรู้และน่ารักมาก)",
+              "💥 14:45 น. สตันท์ Spy War หรือ โชว์นกแสนรู้",
+              "🦭 15:45 น. โชว์สิงโตทะเลสุดฮา"
             ],
-            tip: "แนะนำให้อาหารยีราฟช่วงเที่ยงก่อนไปดูโชว์โลมา",
+            tip: "ให้อาหารยีราฟบนศาลาลอยฟ้าช่วงเที่ยง ถ่ายรูปใกล้ชิดน่ารักมาก และเตรียมร่ม/พัดลมพกพา",
             mapQuery: "Safari World Bangkok",
             done: false
           },
           {
-            id: "d3-e4",
+            id: "d3-e4-opt1",
             time: "17:15 - 20:30",
-            title: "🛍️ Fashion Island หรือ ตลาดเลียบด่วนรามอินทรา",
+            title: "🛍️ [ทางเลือก 1] Fashion Island & The Promenade",
             category: "shopping",
-            hours: "",
-            desc: "แวะทานมื้อเย็นและช้อปปิ้งส่งท้ายวันบนเส้นทางขากลับโรงแรม",
-            tip: "ถ้าชอบสตรีทฟู้ด ตลาดนัดเลียบด่วนมีของกินเพียบ",
+            hours: "เปิด 10:00 - 21:30 น.",
+            desc: "<strong>ห้างยักษ์ใหญ่ครบวงจรแห่งรามอินทรา:</strong> ห่างจาก Safari World เพียง 15 นาที มีสะพานเชื่อมปรับอากาศเข้าสู่ <strong>The Promenade</strong> มอลล์ดีไซน์สไตล์ยุโรปสุดโรแมนติก พร้อมร้านอาหารชื่อดัง คาเฟ่ และลานน้ำพุดนตรี",
+            tip: "หากชอบเดินห้างแอร์เย็นฉ่ำ ร้านอาหารแบรนด์ดังครบๆ และจอดรถสะดวก แนะนำที่นี่เลย",
+            mapQuery: "Fashion Island รามอินทรา",
+            done: false
+          },
+          {
+            id: "d3-e4-opt2",
+            time: "17:15 - 20:30",
+            title: "🌿 [ทางเลือก 2] Central Eastville & TrueSphere Lounge",
+            category: "shopping",
+            hours: "เปิด 10:00 - 22:00 น.",
+            desc: "<strong>ไลฟ์สไตล์มอลล์สุดชิค (เลียบด่วนรามอินทรา):</strong> บรรยากาศร่มรื่นกึ่งโอเพ่นแอร์ ตกแต่งสวยงามสไตล์นิวยอร์ก รวมร้านอาหารระดับพรีเมียม และมี <strong>TrueSphere First Class Lounge (ชั้น 1)</strong> สำหรับสิทธิ์ True Black Card จิบกาแฟ Welcome Set ฟรี! อยู่บนเส้นทางผ่านขึ้นทางด่วนกลับโรงแรมพอดี",
+            tip: "เหมาะมากสำหรับคนที่อยากเปลี่ยนบรรยากาศเป็นห้างชิคๆ จิบกาแฟฟรี และขับรถกลับโรงแรม Mercure Makkasan ได้ง่ายมากผ่านทางด่วน",
+            mapQuery: "Central Eastville เลียบด่วนรามอินทรา",
+            done: false
+          },
+          {
+            id: "d3-e4-opt3",
+            time: "17:15 - 20:30",
+            title: "🏰 [ทางเลือก 3] Chocolate Ville (ดินเนอร์ยุโรป & ถ่ายรูปฉลองวันเกิด)",
+            category: "food",
+            hours: "เปิด 14:00 - 00:00 น.",
+            desc: "<strong>หมู่บ้านเทพนิยายยุโรปริมน้ำ (เกษตร-นวมินทร์):</strong> ขับจากซาฟารีเวิลด์เพียง 18 นาที (12 กม.) ไฮไลต์มุมถ่ายรูปตึกสไตล์ยุโรป สะพานริมน้ำ แสงไฟประดับยามค่ำคืน การแสดงโชว์พาเหรดพี่หมี และหิมะตก ดินเนอร์มื้อค่ำสุดโรแมนติกฉลองวันเกิดคุณปุ้มปุ้ย!",
+            tip: "แนะนำจองโต๊ะริมน้ำล่วงหน้า หรือไปถึงช่วง 17:15 น. แสงทไวไลท์สวยที่สุด ถ่ายรูปคู่ปังทุกมุม",
+            mapQuery: "Chocolate Ville ประเสริฐมนูกิจ",
+            done: false
+          },
+          {
+            id: "d3-e4-opt4",
+            time: "17:30 - 21:00",
+            title: "🍢 [ทางเลือก 4] ตลาดนัดเลียบด่วน รามอินทรา",
+            category: "food",
+            hours: "เปิด 17:00 - 02:00 น.",
+            desc: "<strong>ไนท์มาร์เก็ตวันเสาร์สุดคึกคัก:</strong> แหล่งรวมสตรีทฟู้ดกว่าร้อยร้าน กุ้งถัง ซีฟู้ดย่างเนยสด หมูกระทะ เล้งแซ่บ ขนมปังปิ้ง ของกินเล่นละลานตา พร้อมโซนช้อปปิ้งเสื้อผ้าแฟชั่นและของสะสม",
+            tip: "เหมาะสำหรับสายลุยที่ชอบบรรยากาศตลาดนัดกลางคืน มีที่จอดรถกว้างขวางริมถนนเลียบด่วน",
             mapQuery: "ตลาดนัดเลียบด่วน รามอินทรา",
+            done: false
+          },
+          {
+            id: "d3-e5",
+            time: "20:30 - 21:15",
+            title: "🚗 ขับรถกลับโรงแรม Mercure Bangkok Makkasan",
+            category: "travel",
+            hours: "ใช้เวลาประมาณ 25-30 นาที",
+            desc: "ขับขึ้นทางพิเศษฉลองรัช (ทางด่วนรามอินทรา-อาจณรงค์) มุ่งหน้าลงพระราม 9 กลับสู่โรงแรม Mercure Makkasan ช่วงค่ำวันเสาร์การจราจรบนทางด่วนคลายตัว วิ่งฉิวสบายๆ พักผ่อนเอาแรงเตรียมเที่ยวฝั่งธนฯ วันพรุ่งนี้",
+            tip: "โรงแรมมีอาคารจอดรถฟรีสำหรับผู้เข้าพัก สแกนบัตรจอดรถที่ล็อบบี้ได้ตลอด 24 ชม.",
+            mapQuery: "Mercure Bangkok Makkasan",
             done: false
           }
         ]
       },
+
       {
         dayNumber: 4,
         title: "ตลาดยิ่งเจริญ – พาต้าคิงคอง – ชิลล์ฝั่งธนฯ",
@@ -2737,8 +2782,8 @@
     ];
 
     // --- State Management (v4.0 Real-time Cloud Firestore & Multi-Device Sync) ---
-    const APP_VERSION = 'v4.2';
-    const STORAGE_KEY = 'bkk_trip_plan_v4_2';
+    const APP_VERSION = 'v4.3';
+    const STORAGE_KEY = 'bkk_trip_plan_v4_3';
     const VERSION_KEY = 'bkk_trip_app_version';
 
     let tripData = [];
@@ -3597,12 +3642,31 @@
 
       <div class="changelog-timeline">
 
-        <!-- v4.2 -->
+        <!-- v4.3 -->
         <div class="changelog-item current">
           <div class="changelog-dot"></div>
           <div class="changelog-header">
-            <span class="changelog-ver">Version 4.2</span>
+            <span class="changelog-ver">Version 4.3</span>
             <span class="changelog-badge-current">เวอร์ชันปัจจุบัน</span>
+            <span class="changelog-date">17 ก.ย. 2026</span>
+          </div>
+          <div class="changelog-body">
+            <strong>🛍️ เพิ่ม 4 ทางเลือกมื้อเย็นและกิจกรรม Day 3 (ขากลับจาก Safari World):</strong>
+            <ul>
+              <li><strong>ทางเลือก 1: Fashion Island & The Promenade</strong> - ห้างยักษ์ใหญ่ครบวงจร พร้อมทางเชื่อม The Promenade สไตล์ยุโรป ลานน้ำพุดนตรี และร้านอาหารดัง</li>
+              <li><strong>ทางเลือก 2: Central Eastville & TrueSphere Lounge</strong> - ไลฟ์สไตล์มอลล์เลียบด่วนรามอินทราสุดชิค กึ่งโอเพ่นแอร์ มี TrueSphere Lounge (ชั้น 1) ใช้สิทธิ์ True Black Card จิบกาแฟฟรี ทางผ่านขึ้นทางด่วนกลับโรงแรม</li>
+              <li><strong>ทางเลือก 3: Chocolate Ville</strong> - หมู่บ้านเทพนิยายยุโรปริมน้ำ ขับเพียง 18 นาทีจากซาฟารีเวิลด์ ถ่ายรูปไฟประดับ หิมะตก และดินเนอร์ฉลองวันเกิดสุดโรแมนติก</li>
+              <li><strong>ทางเลือก 4: ตลาดนัดเลียบด่วน รามอินทรา</strong> - ไนท์มาร์เก็ตวันเสาร์สุดคึกคัก สวรรค์สตรีทฟู้ด ซีฟู้ดย่าง กุ้งถัง หมูกระทะ และช้อปปิ้งเสื้อผ้า</li>
+              <li><strong>Cloud Realtime Auto-Sync:</strong> ซิงค์ข้อมูลขึ้น Google Cloud Firestore พร้อมแสดงผลในทุกอุปกรณ์ทันที</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v4.2 -->
+        <div class="changelog-item">
+          <div class="changelog-dot"></div>
+          <div class="changelog-header">
+            <span class="changelog-ver">Version 4.2</span>
             <span class="changelog-date">17 ก.ย. 2026</span>
           </div>
           <div class="changelog-body">
