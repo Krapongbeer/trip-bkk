@@ -1631,7 +1631,7 @@
     <div class="brand">
       <i class="fa-solid fa-cake-candles" style="color: #ec4899;"></i>
       <span>BKK Birthday Trip</span>
-      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v4.1</span>
+      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v4.2</span>
     </div>
     <div class="nav-nav-links">
       <button class="nav-link-btn active" id="navBtnPlan" onclick="switchView('itinerary')">
@@ -1695,7 +1695,7 @@
       <!-- Version & Last Updated Pill -->
       <div class="version-hero-banner" onclick="openVersionModal()" title="คลิกดูประวัติและรายละเอียดการแก้ไข">
         <span class="version-dot"></span>
-        <span><strong>เวอร์ชัน v4.1</strong> (17 ก.ย. 2026): เพิ่มเส้นทางเดินทางวันแรก (ARL/MRT/BTS/เรือ) ละเอียด & ซิงค์ Realtime</span>
+        <span><strong>เวอร์ชัน v4.2</strong> (17 ก.ย. 2026): ปรับ Day 2 รับรถเช่าที่สุวรรณภูมิ + เส้นทาง ARL & ซิงค์ Realtime</span>
         <span class="version-link">ประวัติแก้ไข <i class="fa-solid fa-angle-right"></i></span>
       </div>
 
@@ -1831,7 +1831,7 @@
         <p class="footer-sub">สำหรับทริป 8 - 12 ต.ค. 2026 (5 วัน 4 คืน) • จัดทำพิเศษฉลองวันเกิดให้ <strong>Pumpui</strong> (1 ต.ค.) 🎂💖</p>
       </div>
       <div class="footer-version-box" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขและเวอร์ชันทั้งหมด">
-        <span class="footer-ver-badge">v4.1 Latest</span>
+        <span class="footer-ver-badge">v4.2 Latest</span>
         <span class="footer-ver-date"><i class="fa-regular fa-calendar-check"></i> แก้ไขล่าสุด: 11 ก.ย. 2026</span>
         <span class="footer-ver-btn"><i class="fa-solid fa-clock-rotate-left"></i> ดูบันทึกการแก้ไข (Changelog)</span>
       </div>
@@ -2327,9 +2327,9 @@
           }
         ]
       },
-      {
+            {
         dayNumber: 2,
-        title: "ชิลล์สุขุมวิท – รับรถเช่าหลังบ่ายสาม – Central แจ้งวัฒนะ & LOPIA",
+        title: "ชิลล์สุขุมวิท – นั่ง ARL รับรถเช่าที่สุวรรณภูมิ – Central แจ้งวัฒนะ & LOPIA",
         dateText: "ศุกร์ที่ 9 ต.ค. 2026",
         events: [
           {
@@ -2356,35 +2356,46 @@
           },
           {
             id: "d2-e2-coffee",
-            time: "13:15 - 14:30",
+            time: "13:15 - 14:15",
             title: "☕ จิบกาแฟ TrueSphere @ The EmQuartier / EMSPHERE (ชั้น 2)",
             category: "food",
             hours: "เปิด 10:00 - 20:00 น.",
-            desc: "ใช้สิทธิ์ True Black Card จิบกาแฟยามบ่ายที่ <strong>TrueSphere The EmQuartier (ชั้น 2 The Helix Quartier)</strong> หรือ <strong>TrueSphere EMSPHERE (ชั้น 2 True Branding Shop)</strong> รับฟรี Welcome Set กาแฟ/ชาพรีเมียมและเบเกอรี่ นั่งพักผ่อนชิลล์ๆ ในบรรยากาศเฟิร์สคลาส ก่อนนั่ง MRT กลับโรงแรมเตรียมรับรถเช่า",
+            desc: "ใช้สิทธิ์ True Black Card จิบกาแฟยามบ่ายที่ <strong>TrueSphere The EmQuartier (ชั้น 2 The Helix Quartier)</strong> หรือ <strong>TrueSphere EMSPHERE (ชั้น 2 True Branding Shop)</strong> รับฟรี Welcome Set กาแฟ/ชาพรีเมียมและเบเกอรี่ นั่งพักผ่อนชิลล์ๆ ในบรรยากาศเฟิร์สคลาส ก่อนออกเดินทางไปรับรถเช่า",
             tip: "EmQuartier และ EMSPHERE เชื่อมต่อกันด้วย Skywalk พร้อมพงษ์ เดินทะลุถึงกันสบายมาก นั่งจิบกาแฟแอร์เย็นฉ่ำ",
             mapQuery: "TrueSphere The EmQuartier ชั้น 2",
             done: false
           },
           {
+            id: "d2-transit-airport",
+            time: "14:15 - 15:00",
+            title: "🚆 เดินทางไปสุวรรณภูมิ: BTS/MRT → ARL มักกะสัน → สุวรรณภูมิ",
+            category: "travel",
+            hours: "ใช้เวลาเดินทางประมาณ 35-40 นาที",
+            desc: "<strong>เส้นทางเดินทางสะดวกรวดเร็ว (เลี่ยงรถติด 100%):</strong><br>1. จาก BTS พร้อมพงษ์ นั่งมาสถานีอโศก ต่อ MRT สุขุมวิท มาสถานีเพชรบุรี (หรือแวะเก็บของที่โรงแรม Mercure Makkasan ก่อนได้เพราะอยู่ติดกัน)<br>2. เดินเชื่อมทาง Skywalk เข้าสู่ <strong>Airport Rail Link (ARL) สถานีมักกะสัน</strong><br>3. นั่งรถไฟฟ้า ARL มุ่งหน้าตรงสู่ <strong>สนามบินสุวรรณภูมิ</strong> (ใช้เวลาเพียง 22 นาที ค่าโดยสาร 35 บาท)",
+            tip: "นั่ง ARL กลับไปรับรถที่สุวรรณภูมิรวดเร็วและตรงเวลาที่สุด ไม่ต้องกังวลเรื่องการจราจรติดขัดช่วงบ่าย",
+            mapQuery: "Airport Rail Link สถานีมักกะสัน",
+            done: false
+          },
+          {
             id: "d2-e3",
             time: "15:00 - 15:45",
-            title: "🚗 รับมอบรถเช่า (ช่วงหลังบ่ายสาม) @ Mercure Makkasan",
+            title: "🚗 รับมอบรถเช่า (ช่วงหลังบ่ายสาม) @ สนามบินสุวรรณภูมิ",
             category: "travel",
             hours: "เวลานัดรับ: 15:00 น.",
-            desc: "กลับมาที่โรงแรม Mercure Bangkok Makkasan เพื่อรอรับมอบรถเช่าจากบริษัทรถเช่า ตรวจเช็คสภาพตัวถัง รอยขีดข่วน ระดับน้ำมัน ไมล์รถ และเซ็นสัญญาเอกสารรับมอบรถ",
+            desc: "พบเจ้าหน้าที่บริษัทรถเช่า ณ จุดนัดรับรถ/เคาน์เตอร์รถเช่า สนามบินสุวรรณภูมิ ตรวจเช็คสภาพตัวถัง รอยขีดข่วน ระดับน้ำมัน ไมล์รถ และเซ็นสัญญาเอกสารรับมอบรถ",
             tip: "ใช้มือถือถ่ายรูปและวิดีโอรอบคันรถ 360 องศา และถ่ายหน้าปัดไมล์/ระดับน้ำมันไว้เป็นหลักฐานก่อนออกเดินทาง",
-            mapQuery: "Mercure Bangkok Makkasan",
+            mapQuery: "เคาน์เตอร์รถเช่า สนามบินสุวรรณภูมิ",
             done: false
           },
           {
             id: "d2-e4",
             time: "15:45 - 17:00",
-            title: "🛣️ ขับรถขึ้นทางด่วนศรีรัชมุ่งหน้าแจ้งวัฒนะ",
+            title: "🛣️ ขับรถจากสุวรรณภูมิ ขึ้นทางด่วนไป Central แจ้งวัฒนะ",
             category: "travel",
             hours: "ใช้เวลาขับประมาณ 45-60 นาที",
-            desc: "ออกเดินทางทันทีหลังรับรถเสร็จ ขึ้นทางพิเศษศรีรัช (ด่านอโศก 2) มุ่งหน้าไปลงด่านแจ้งวัฒนะ ออกเดินทางช่วง 15:45 น. ช่วยให้ถึงแจ้งวัฒนะก่อนช่วง Rush Hour หนาแน่นช่วง 17:30 น.",
-            tip: "เตรียมเงินสดหรือบัตร Easy Pass / บัตรเครดิตแตะจ่ายค่าผ่านทางด่วน (ประมาณ 50-60 บาท)",
-            mapQuery: "ทางพิเศษศรีรัช ด่านแจ้งวัฒนะ",
+            desc: "ออกจากสนามบินสุวรรณภูมิ ขับขึ้นทางหลวงพิเศษมอเตอร์เวย์ (สาย 7) เชื่อมต่อทางพิเศษศรีรัชมุ่งหน้าลงด่านแจ้งวัฒนะ เพื่อมุ่งหน้าสู่ Central แจ้งวัฒนะ ออกเดินทางช่วง 15:45 น. ช่วยให้ถึงแจ้งวัฒนะก่อนช่วง Rush Hour หนาแน่นช่วง 17:30 น.",
+            tip: "เตรียมเงินสดหรือบัตร Easy Pass / บัตรเครดิตแตะจ่ายค่าผ่านทางด่วน (ประมาณ 50-70 บาท)",
+            mapQuery: "Central Chaengwattana",
             done: false
           },
           {
@@ -2726,8 +2737,8 @@
     ];
 
     // --- State Management (v4.0 Real-time Cloud Firestore & Multi-Device Sync) ---
-    const APP_VERSION = 'v4.1';
-    const STORAGE_KEY = 'bkk_trip_plan_v4_1';
+    const APP_VERSION = 'v4.2';
+    const STORAGE_KEY = 'bkk_trip_plan_v4_2';
     const VERSION_KEY = 'bkk_trip_app_version';
 
     let tripData = [];
@@ -3586,12 +3597,30 @@
 
       <div class="changelog-timeline">
 
-        <!-- v4.1 -->
+        <!-- v4.2 -->
         <div class="changelog-item current">
           <div class="changelog-dot"></div>
           <div class="changelog-header">
-            <span class="changelog-ver">Version 4.1</span>
+            <span class="changelog-ver">Version 4.2</span>
             <span class="changelog-badge-current">เวอร์ชันปัจจุบัน</span>
+            <span class="changelog-date">17 ก.ย. 2026</span>
+          </div>
+          <div class="changelog-body">
+            <strong>🚗 ปรับแผน Day 2: รับรถเช่าที่สนามบินสุวรรณภูมิ (เวลา 15:00 น.):</strong>
+            <ul>
+              <li><strong>สุขุมวิท ➔ สุวรรณภูมิ:</strong> หลังจิบกาแฟ TrueSphere ที่ EmQuartier/EMSPHERE นั่ง BTS/MRT มาต่อ Airport Rail Link (ARL สถานีมักกะสัน) มุ่งตรงสู่สนามบินสุวรรณภูมิ (22 นาที 35 บาท เลี่ยงรถติดบ่าย 100%)</li>
+              <li><strong>รับรถเช่าสุวรรณภูมิ:</strong> รับมอบรถเช่าเวลา 15:00 น. ณ จุดนัดรับ/เคาน์เตอร์สนามบินสุวรรณภูมิ เช็คสภาพรถ 360 องศา</li>
+              <li><strong>สุวรรณภูมิ ➔ Central แจ้งวัฒนะ:</strong> ขับขึ้นมอเตอร์เวย์ (สาย 7) เชื่อมต่อทางพิเศษศรีรัชมุ่งหน้าแจ้งวัฒนะ ทานอาหารและช้อปปิ้งที่ LOPIA Japan</li>
+              <li><strong>Cloud Realtime Auto-Sync:</strong> อัปเดตข้อมูลขึ้น Google Cloud Firestore แบบสดๆ ทันทีในทุกอุปกรณ์</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v4.1 -->
+        <div class="changelog-item">
+          <div class="changelog-dot"></div>
+          <div class="changelog-header">
+            <span class="changelog-ver">Version 4.1</span>
             <span class="changelog-date">17 ก.ย. 2026</span>
           </div>
           <div class="changelog-body">
