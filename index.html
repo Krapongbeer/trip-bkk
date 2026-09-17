@@ -1631,7 +1631,7 @@
     <div class="brand">
       <i class="fa-solid fa-cake-candles" style="color: #ec4899;"></i>
       <span>BKK Birthday Trip</span>
-      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v4.0</span>
+      <span class="version-tag" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขเวอร์ชัน">v4.1</span>
     </div>
     <div class="nav-nav-links">
       <button class="nav-link-btn active" id="navBtnPlan" onclick="switchView('itinerary')">
@@ -1695,7 +1695,7 @@
       <!-- Version & Last Updated Pill -->
       <div class="version-hero-banner" onclick="openVersionModal()" title="คลิกดูประวัติและรายละเอียดการแก้ไข">
         <span class="version-dot"></span>
-        <span><strong>เวอร์ชัน v4.0</strong> (17 ก.ย. 2026): เชื่อมต่อ Cloud Firestore ซิงค์ Realtime แก้ไขได้ทุกอุปกรณ์</span>
+        <span><strong>เวอร์ชัน v4.1</strong> (17 ก.ย. 2026): เพิ่มเส้นทางเดินทางวันแรก (ARL/MRT/BTS/เรือ) ละเอียด & ซิงค์ Realtime</span>
         <span class="version-link">ประวัติแก้ไข <i class="fa-solid fa-angle-right"></i></span>
       </div>
 
@@ -1831,7 +1831,7 @@
         <p class="footer-sub">สำหรับทริป 8 - 12 ต.ค. 2026 (5 วัน 4 คืน) • จัดทำพิเศษฉลองวันเกิดให้ <strong>Pumpui</strong> (1 ต.ค.) 🎂💖</p>
       </div>
       <div class="footer-version-box" onclick="openVersionModal()" title="คลิกดูประวัติการแก้ไขและเวอร์ชันทั้งหมด">
-        <span class="footer-ver-badge">v4.0 Latest</span>
+        <span class="footer-ver-badge">v4.1 Latest</span>
         <span class="footer-ver-date"><i class="fa-regular fa-calendar-check"></i> แก้ไขล่าสุด: 11 ก.ย. 2026</span>
         <span class="footer-ver-btn"><i class="fa-solid fa-clock-rotate-left"></i> ดูบันทึกการแก้ไข (Changelog)</span>
       </div>
@@ -2245,51 +2245,84 @@
     const DEFAULT_DAYS = [
       {
         dayNumber: 1,
-        title: "ถึงกรุงเทพฯ & พักผ่อนใจกลางเมือง",
+        title: "ถึงกรุงเทพฯ – เดินทางด้วยรถไฟฟ้า ARL/MRT/BTS – ชิลล์ centralwOrld",
         dateText: "พฤหัสบดีที่ 8 ต.ค. 2026",
         events: [
           {
             id: "d1-e1",
-            time: "10:55 - 12:30",
+            time: "10:55 - 12:00",
             title: "✈️ ถึงสุวรรณภูมิ (VZ115) & รับสัมภาระ",
             category: "travel",
             hours: "",
-            desc: "ลงสถานีชั้นใต้ดิน (ชั้น B) นั่ง <strong>Airport Rail Link (ARL)</strong> มุ่งหน้าสถานีมักกะสัน",
-            tip: "ใช้ ARL ประหยัดเวลากว่าแท็กซี่ ไม่ต้องเจอปัญหารถติดทางด่วนช่วงเที่ยง",
+            desc: "เครื่องลงจอดสนามบินสุวรรณภูมิ เดินไปรับสัมภาระที่สายพาน แล้วเดินลงชั้นใต้ดิน (ชั้น B) เพื่อเตรียมขึ้นรถไฟฟ้าเข้าเมือง",
+            tip: "เตรียมสัมภาระให้พร้อม เดินตามป้าย Airport Rail Link (ARL) ลงมาชั้น B ได้เลย",
             mapQuery: "Suvarnabhumi Airport",
             done: false
           },
           {
             id: "d1-e2",
-            time: "12:30 - 16:30",
-            title: "🏨 เช็คอิน Mercure Bangkok Makkasan",
-            category: "hotel",
-            hours: "Check-in 14:00",
-            desc: "เก็บสัมภาระ พักผ่อนเอาแรง หรือหาอาหารกลางวันทานแถวโรงแรม",
-            tip: "",
-            mapQuery: "Mercure Bangkok Makkasan",
+            time: "12:00 - 12:45",
+            title: "🚆 เดินทางเข้าเมือง: ARL สุวรรณภูมิ → สถานีมักกะสัน",
+            category: "travel",
+            hours: "รถออกทุก 10-15 นาที",
+            desc: "นั่ง <strong>Airport Rail Link (ARL)</strong> จากสนามบินลง <strong>สถานีมักกะสัน</strong> (ใช้เวลาเพียง 22 นาที ค่าโดยสาร 35 บาท/คน) จากนั้นเดินออก Skywalk ทางเชื่อมข้ามเข้าโรงแรม <strong>Mercure Bangkok Makkasan</strong> ได้โดยตรง",
+            tip: "ไม่ต้องขึ้นแท็กซี่ ประหยัดเวลาและเลี่ยงปัญหารถติดทางด่วนหรือถนนพระราม 9 ช่วงเที่ยงได้ 100%",
+            mapQuery: "Airport Rail Link สถานีมักกะสัน",
             done: false
           },
           {
             id: "d1-e3",
-            time: "17:00 - 18:15",
-            title: "☕ จิบกาแฟ TrueSphere Lounge @ centralwOrld (ชั้น 4)",
-            category: "food",
-            hours: "เปิด 10:00 - 20:00 น.",
-            desc: "ใช้สิทธิ์ <strong>True Black Card</strong> เข้า First Class Lounge ที่ <strong>TrueSphere centralwOrld</strong> (ชั้น 4 โซนลิฟท์แก้ว / Atrium) รับฟรี Welcome Set กาแฟพรีเมียมและของว่าง นั่งพักผ่อนบนโซฟานุ่ม ชาร์จแบต และคลายเหนื่อยหลังเดินทาง",
-            tip: "เปิดแอป TrueID กดรับสิทธิ์ Welcome Set ฟรี (พาผู้ติดตามเข้าได้ 1-2 ท่าน)",
-            mapQuery: "TrueSphere CentralWorld ชั้น 4",
+            time: "12:45 - 14:30",
+            title: "🏨 เช็คอิน Mercure Bangkok Makkasan & พักผ่อน",
+            category: "hotel",
+            hours: "Check-in 14:00 น.",
+            desc: "เช็คอินเข้าห้องพัก เก็บสัมภาระ ล้างหน้าเปลี่ยนเสื้อผ้า พักผ่อนเอาแรง หรือแวะทานมื้อเที่ยง/กาแฟชิลล์ๆ ที่ Singha Complex ใกล้โรงแรม",
+            tip: "สามารถฝากกระเป๋าไว้ที่ล็อบบี้ได้หากห้องพักยังไม่พร้อม",
+            mapQuery: "Mercure Bangkok Makkasan",
             done: false
           },
           {
             id: "d1-e4",
-            time: "18:15 - 21:30",
+            time: "14:30 - 15:00",
+            title: "🚇 เดินทางไป centralwOrld: MRT เพชรบุรี → BTS ชิดลม",
+            category: "travel",
+            hours: "ใช้เวลาประมาณ 20-25 นาที",
+            desc: "<strong>เส้นทางแนะนำ (รถไฟฟ้า แอร์เย็น ไม่ติดไฟแดง):</strong><br>1. เดินลง <strong>MRT เพชรบุรี</strong> (ทางออก 1) นั่ง 1 สถานีไปลง <strong>MRT สุขุมวิท</strong><br>2. เดินขึ้น Skywalk เปลี่ยนไปขึ้น <strong>BTS อโศก</strong> นั่ง 3 สถานีลง <strong>BTS ชิดลม (ทางออก 9)</strong><br>3. เดินผ่านทางเชื่อม R-Walk (Skywalk ราชประสงค์) เข้าสู่ centralwOrld ชั้น 2 ได้เลย<br><em>*หรือทางเลือกไว: นั่งเรือคลองแสนแสบจากท่าอโศกไปลงท่าประตูน้ำ (12 นาที) หรือเรียก Grab/Bolt</em>",
+            tip: "แตะจ่ายด้วยบัตรเครดิต/เดบิต Contactless ที่ MRT และบัตร Rabbit ที่ BTS ได้เลย สะดวกมาก",
+            mapQuery: "BTS ชิดลม centralwOrld",
+            done: false
+          },
+          {
+            id: "d1-e5",
+            time: "15:00 - 16:30",
+            title: "☕ จิบกาแฟ TrueSphere Lounge @ centralwOrld (ชั้น 4)",
+            category: "food",
+            hours: "เปิด 10:00 - 20:00 น.",
+            desc: "ใช้สิทธิ์ <strong>True Black Card</strong> เข้า First Class Lounge ที่ <strong>TrueSphere centralwOrld</strong> (ชั้น 4 โซนลิฟท์แก้ว / Atrium) รับฟรี Welcome Set กาแฟพรีเมียมและของว่าง นั่งพักผ่อนบนโซฟานุ่ม ชาร์จแบต และคลายเหนื่อยหลังเดินทาง",
+            tip: "เปิดแอป TrueID กดรับสิทธิ์ Welcome Set ฟรีต่อหน้าพนักงาน (พาผู้ติดตามเข้าได้ 1-2 ท่าน)",
+            mapQuery: "TrueSphere CentralWorld ชั้น 4",
+            done: false
+          },
+          {
+            id: "d1-e6",
+            time: "16:30 - 20:00",
             title: "🛍️ centralwOrld ช้อปปิ้ง & มื้อค่ำ",
             category: "shopping",
             hours: "เปิด 10:00 - 22:00 น.",
             desc: "เดินช้อปปิ้ง ทานอาหารมื้อค่ำที่โซน Beacon / Groove หรือ Central Food Hall ชั้น 7 รวมร้านอาหารระดับโลกเพียบ",
             tip: "โซน Groove และร้านอาหารชั้น 6-7 มีร้านเด็ดให้เลือกเพียบ หลังมื้อค่ำเดิน Skywalk ชมวิวเมืองยามค่ำคืน",
             mapQuery: "centralwOrld Bangkok",
+            done: false
+          },
+          {
+            id: "d1-e7",
+            time: "20:00 - 20:45",
+            title: "🚇 เดินทางกลับโรงแรม: BTS ชิดลม → MRT เพชรบุรี",
+            category: "travel",
+            hours: "ใช้เวลาประมาณ 20-25 นาที",
+            desc: "<strong>วิธีที่ 1 (รถไฟฟ้า):</strong> เดิน Skywalk ไปขึ้น BTS ชิดลม นั่งไปลง BTS อโศก แล้วต่อ MRT สุขุมวิท 1 สถานีลง MRT เพชรบุรี เดินข้ามเข้าโรงแรม<br><strong>วิธีที่ 2 (Grab / Taxi):</strong> เรียก Grab หรือแท็กซี่หน้าห้าง วิ่งเส้นถนนเพชรบุรีตัดใหม่กลับโรงแรม (ช่วงหลัง 20:00 น. รถคลายตัว ใช้เวลาเพียง 15 นาที ค่าโดยสาร ~70-90 บาท)",
+            tip: "ถ้าถือของช้อปปิ้งเยอะ แนะนำกดเรียกรถ Grab หรือ Bolt หน้าห้างนั่งกลับโรงแรมสบายๆ ได้เลย",
+            mapQuery: "Mercure Bangkok Makkasan",
             done: false
           }
         ]
@@ -2693,8 +2726,8 @@
     ];
 
     // --- State Management (v4.0 Real-time Cloud Firestore & Multi-Device Sync) ---
-    const APP_VERSION = 'v4.0';
-    const STORAGE_KEY = 'bkk_trip_plan_v4_0';
+    const APP_VERSION = 'v4.1';
+    const STORAGE_KEY = 'bkk_trip_plan_v4_1';
     const VERSION_KEY = 'bkk_trip_app_version';
 
     let tripData = [];
@@ -3553,12 +3586,30 @@
 
       <div class="changelog-timeline">
 
-        <!-- v4.0 -->
+        <!-- v4.1 -->
         <div class="changelog-item current">
           <div class="changelog-dot"></div>
           <div class="changelog-header">
-            <span class="changelog-ver">Version 4.0</span>
+            <span class="changelog-ver">Version 4.1</span>
             <span class="changelog-badge-current">เวอร์ชันปัจจุบัน</span>
+            <span class="changelog-date">17 ก.ย. 2026</span>
+          </div>
+          <div class="changelog-body">
+            <strong>🚆 เพิ่มข้อมูลการเดินทางวันแรกอย่างละเอียด (กรณีไม่มีรถส่วนตัว):</strong>
+            <ul>
+              <li><strong>สุวรรณภูมิ ➔ Mercure Makkasan:</strong> รถไฟฟ้า Airport Rail Link (ARL) ลงสถานีมักกะสัน (22 นาที 35 บาท) เดิน Skywalk เข้าโรงแรมโดยตรง เลี่ยงรถติดช่วงเที่ยง 100%</li>
+              <li><strong>โรงแรม ➔ centralwOrld:</strong> เดินทางด้วย MRT เพชรบุรี ต่อ BTS ชิดลม ออกทางออก 9 เดินผ่าน R-Walk Skywalk เข้าห้างชั้น 2 แอร์เย็นสบาย (พร้อมทางเลือกเรือคลองแสนแสบ หรือ Grab)</li>
+              <li><strong>centralwOrld ➔ โรงแรม:</strong> รถไฟฟ้า BTS ชิดลม ต่อ MRT เพชรบุรี หรือเรียก Grab/Taxi ขากลับช่วงค่ำ (รถโล่ง 15 นาที)</li>
+              <li><strong>Cloud Realtime Auto-Sync:</strong> อัปเดตข้อมูลขึ้น Google Cloud Firestore พร้อมกระจายไปยังทุกอุปกรณ์แบบสดๆ</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- v4.0 -->
+        <div class="changelog-item">
+          <div class="changelog-dot"></div>
+          <div class="changelog-header">
+            <span class="changelog-ver">Version 4.0</span>
             <span class="changelog-date">17 ก.ย. 2026</span>
           </div>
           <div class="changelog-body">
